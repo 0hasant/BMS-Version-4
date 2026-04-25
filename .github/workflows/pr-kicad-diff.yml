@@ -3,23 +3,72 @@ name: KiCad PR Visual Diff
 on:
   pull_request:
     paths:
-      - 'Hardware/**/*.kicad_pcb'
-      - 'Hardware/**/*.kicad_sch'
+      - '**/*.kicad_pcb'
 
 jobs:
-  kiri-diff:
+  build-diff:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write # Allows the bot to post a comment
-      contents: write      # Allows the bot to temporarily host images
-      
+    
     steps:
-      - name: Checkout Code
+      - name: Install KiCad 9
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-9.0-releases
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends kicad -y
+          
+      - name: Checkout Main Branch (Old Version)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Crucial: Grabs both your old and new commit history
-
-      - name: Run Kiri KiCad Diff Action
-        uses: usa-reddragon/kiri-github-action@v1
+          ref: main
+          path: old_ver
+          
+      - name: Checkout PR Branch (New Version)
+        uses: actions/checkout@v4
         with:
-          project-file: Hardware/BMS_V4.kicad_pro
+          path: new_ver
+
+      - name: Export SVGs
+        run: |
+          mkdir -p diff_output
+          # Dynamically find the exact PCB file in both branches
+          OLD_BOARD=$(find old_ver -name "*.kicad_pcb" | head -n 1)
+          NEW_BOARD=$(find new_ver -name "*.kicad_pcb" | head -n 1)
+          
+          # Export the old board copper and silkscreen perfectly cropped to the board edges
+          kicad-cli pcb export svg --exclude-drawing-sheet --page-size-mode 0 --layers "F.Cu,B.Cu,F.Silkscreen,B.Silkscreen" -o diff_output/old.svg "$OLD_BOARD"
+          
+          # Export the new board
+          kicad-cli pcb export svg --exclude-drawing-sheet --page-size-mode 0 --layers "F.Cu,B.Cu,F.Silkscreen,B.Silkscreen" -o diff_output/new.svg "$NEW_BOARD"
+
+      - name: Create Interactive Web Page
+        run: |
+          cat << 'EOF' > diff_output/diff.html
+          <!doctype html>
+          <html>
+          <head>
+            <title>PCB Visual Diff</title>
+            <style>
+              body { font-family: sans-serif; background: #222; color: #fff; text-align: center; margin: 0; padding: 20px;}
+              .container { position: relative; max-width: 90vw; margin: auto; background: white; border-radius: 4px; overflow: hidden;}
+              .container img { display: block; width: 100%; }
+              #img-new { position: absolute; top: 0; left: 0; clip-path: inset(0 50% 0 0); }
+              input { width: 90vw; margin: 20px 0; }
+            </style>
+          </head>
+          <body>
+            <h2>PCB Visual Diff</h2>
+            <p>Use the slider to compare the Main branch (Old) with your PR branch (New).</p>
+            <input type="range" min="0" max="100" value="50" oninput="document.getElementById('img-new').style.clipPath = 'inset(0 ' + (100-this.value) + '% 0 0)'">
+            <div class="container">
+              <img id="img-old" src="old.svg">
+              <img id="img-new" src="new.svg">
+            </div>
+          </body>
+          </html>
+          EOF
+
+      - name: Upload Diff Artifact (v4)
+        uses: actions/upload-artifact@v4
+        with:
+          name: PCB_Visual_Diff
+          path: diff_output/
