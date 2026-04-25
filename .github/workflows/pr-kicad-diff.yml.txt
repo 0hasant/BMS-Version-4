@@ -1,0 +1,25 @@
+name: KiCad PR Visual Diff
+
+on:
+  pull_request:
+    paths:
+      - 'Hardware/**/*.kicad_pcb'
+      - 'Hardware/**/*.kicad_sch'
+
+jobs:
+  kiri-diff:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # Allows the bot to post a comment
+      contents: write      # Allows the bot to temporarily host images
+      
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Crucial: Grabs both your old and new commit history
+
+      - name: Run Kiri KiCad Diff Action
+        uses: usa-reddragon/kiri-github-action@v1
+        with:
+          project-file: Hardware/BMS_V4.kicad_pro
