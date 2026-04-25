@@ -47,7 +47,7 @@
 			)
 		)
 		(instances
-			(project "BMS_V4.013"
+			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202"
 					(page "3")
 				)
@@ -89,7 +89,7 @@
 			)
 		)
 		(instances
-			(project "BMS_V4.013"
+			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202"
 					(page "5")
 				)
@@ -131,7 +131,7 @@
 			)
 		)
 		(instances
-			(project "BMS_V4.013"
+			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202"
 					(page "4")
 				)
@@ -173,7 +173,7 @@
 			)
 		)
 		(instances
-			(project "BMS_V4.013"
+			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202"
 					(page "2")
 				)
