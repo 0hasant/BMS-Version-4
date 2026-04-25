@@ -51,3 +51,16 @@ _autosave-*
 *.bin
 *.map
 *.lst
+
+# --- STM32CubeIDE & CubeMX Specific ---
+# Build folders where compiled files go
+Debug/
+Release/
+
+# User-specific IDE settings and workspace data
+.metadata/
+.settings/
+*.launch
+
+# Optional: Ignore the CubeMX project backup file
+.mxproject
