@@ -30,3 +30,24 @@
 *.exe
 *.out
 *.app
+
+# --- KiCad Ignores ---
+*-bak
+*.bck
+*-backups/
+*.kicad_pcb-bak
+*.kicad_sch-bak
+_autosave-*
+*.gbr
+*.drl
+*.net
+
+# --- STM32 Ignores ---
+/Firmware/Debug/
+/Firmware/Release/
+*.o
+*.elf
+*.hex
+*.bin
+*.map
+*.lst
