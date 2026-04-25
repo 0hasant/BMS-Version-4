@@ -1,0 +1,8 @@
+../Core/Src/main.c:71:9:BQ_CalculateCRC	4
+../Core/Src/main.c:84:18:BQ_SPI_ReadReg	9
+../Core/Src/main.c:148:9:BQ_IsAlive	5
+../Core/Src/main.c:176:5:main	2
+../Core/Src/main.c:240:6:SystemClock_Config	3
+../Core/Src/main.c:277:13:MX_SPI1_Init	2
+../Core/Src/main.c:315:13:MX_GPIO_Init	1
+../Core/Src/main.c:348:6:Error_Handler	1
