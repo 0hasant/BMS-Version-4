@@ -4,6 +4,9 @@
 	(generator_version "9.0")
 	(uuid "a45fd04d-387f-413b-8875-38371a5f7492")
 	(paper "A4")
+	(title_block
+		(date "2025-08-02")
+	)
 	(lib_symbols
 		(symbol "0805 Capacitor:08055C104K4Z4A"
 			(pin_names

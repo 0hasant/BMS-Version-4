@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := BMS4CODE_V4
+BUILD_ARTIFACT_NAME := BMSv4_Main_Code
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-BMS4CODE_V4.elf \
+BMSv4_Main_Code.elf \
 
 MAP_FILES += \
-BMS4CODE_V4.map \
+BMSv4_Main_Code.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-BMS4CODE_V4.list \
+BMSv4_Main_Code.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: BMS4CODE_V4.elf secondary-outputs
+main-build: BMSv4_Main_Code.elf secondary-outputs
 
 # Tool invocations
-BMS4CODE_V4.elf BMS4CODE_V4.map: $(OBJS) $(USER_OBJS) E:\STM32\bms\BMS4CODE_V4\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BMS4CODE_V4.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"E:\STM32\bms\BMS4CODE_V4\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMS4CODE_V4.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+BMSv4_Main_Code.elf BMSv4_Main_Code.map: $(OBJS) $(USER_OBJS) E:\Electronics_Solaris\BMS\ Version\ 4\Software\BMS4CODE_V4\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BMSv4_Main_Code.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"E:\Electronics_Solaris\BMS Version 4\Software\BMS4CODE_V4\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMSv4_Main_Code.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-BMS4CODE_V4.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "BMS4CODE_V4.list"
+BMSv4_Main_Code.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "BMSv4_Main_Code.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) BMS4CODE_V4.elf BMS4CODE_V4.list BMS4CODE_V4.map default.size.stdout
+	-$(RM) BMSv4_Main_Code.elf BMSv4_Main_Code.list BMSv4_Main_Code.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
