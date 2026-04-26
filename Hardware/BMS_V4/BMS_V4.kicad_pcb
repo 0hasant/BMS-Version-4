@@ -28114,7 +28114,7 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text_box "Version: 4.013\nDate: 18.11.2025\n"
+	(gr_text_box "Version: 4.020\nDate: 18.11.2025\n"
 		(start 41.27 25.9)
 		(end 72.13 35.86)
 		(margins 1.0025 1.0025 1.0025 1.0025)
