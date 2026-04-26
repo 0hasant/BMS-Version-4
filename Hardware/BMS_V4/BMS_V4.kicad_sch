@@ -6,12 +6,32 @@
 	(paper "A4")
 	(title_block
 		(title "BMS PROJECT ONE")
-		(date "2025-08-02")
+		(date "2026-04-26")
 		(rev "4.020")
 		(company "Solar Team Solaris")
 		(comment 1 "Hasan Turan")
 	)
 	(lib_symbols)
+	(text_box "Make connection between BMSIC and cell //26.06"
+		(exclude_from_sim no)
+		(at 18.542 160.02 0)
+		(size 57.404 13.97)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "20999992-0416-4906-8ead-b36ba31f7296")
+	)
 	(sheet
 		(at 97.79 21.59)
 		(size 82.55 30.48)
@@ -92,6 +112,218 @@
 			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202"
 					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 98.806 58.42)
+		(size 81.788 32.004)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "71a8f66f-6a4a-4a66-8261-a58be3884b05")
+		(property "Sheetname" "CellBalance_Input"
+			(at 98.806 57.7084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "CellBalance_Input.kicad_sch"
+			(at 98.806 91.0086 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "1N" output
+			(at 135.89 90.424 270)
+			(uuid "9bc902ae-8ccd-48b3-85e5-d516d850fca7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "1P" output
+			(at 138.43 90.424 270)
+			(uuid "cf6a9a05-4302-4df3-babf-6be02670653b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "2P" output
+			(at 140.97 90.424 270)
+			(uuid "19a0f32d-fc96-4e52-9519-a4837dd524b9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "3P" output
+			(at 143.51 90.424 270)
+			(uuid "77c82d24-682c-40d8-b003-c5eff1b829af")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "4P" output
+			(at 146.05 90.424 270)
+			(uuid "4be7d4aa-48ab-4d1d-80ed-a2dd678ea432")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "5P" output
+			(at 148.59 90.424 270)
+			(uuid "3f8cf125-bb71-4d8c-966d-db76c92de62d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "6P" output
+			(at 151.13 90.424 270)
+			(uuid "601216e6-69fe-485e-aae1-f0ad926899cf")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "7P" output
+			(at 153.67 90.424 270)
+			(uuid "32ce0ace-b9da-439f-b712-961c4b93764a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "8P" output
+			(at 156.21 90.424 270)
+			(uuid "a5464298-44a4-4591-adc2-7557c7d3cc1b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "9P" output
+			(at 158.75 90.424 270)
+			(uuid "4585133a-66ee-4ec1-a3eb-da97bc68c1f6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "10P" output
+			(at 161.29 90.424 270)
+			(uuid "3e938976-c020-4882-9537-42afa9ad9441")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "11P" output
+			(at 163.83 90.424 270)
+			(uuid "80da8577-43e7-44d7-9d6d-d496f3b099fc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "12P" output
+			(at 166.37 90.424 270)
+			(uuid "8dae301c-e1c9-4d76-97db-cf29d31ef5e2")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "13P" output
+			(at 168.91 90.424 270)
+			(uuid "239bc30d-2c3c-42f6-b3fb-729389ce4007")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "14P" output
+			(at 171.45 90.424 270)
+			(uuid "1aa34ba3-d06d-46e0-81e9-4ef29f584cdc")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "15P" output
+			(at 173.99 90.424 270)
+			(uuid "d9fc1f4d-0ba1-4ba7-b498-f95a51068ad0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "16P" output
+			(at 176.53 90.424 270)
+			(uuid "44485368-5ac3-4c8e-9828-509997a7866a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "BMS_V4"
+				(path "/75669ae6-ac20-4eac-978b-1fb06607e202"
+					(page "6")
 				)
 			)
 		)
