@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "bq76952.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -44,15 +45,8 @@ SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 
-volatile uint16_t My_Device_Number = 0;
-volatile uint16_t Battery_Status = 0;
-volatile uint16_t REG18_Voltage_mV = 0; // Internal Reg Value
-volatile uint16_t Cell_Voltages_mV[7] = {0};// 7 Hücrenin voltajını tutacak dizi (Index 0 = Cell 1, Index 6 = Cell 7)
-
-// Diagnostic Variables
-volatile uint8_t debug_Address_Echo = 0;
-volatile uint8_t debug_Data_Byte = 0;
-volatile uint8_t debug_CRC_Byte = 0;
+volatile uint16_t Cell_Voltages_mV[7] = {0};
+volatile uint16_t REG18_Raw_ADC = 0;
 
 /* USER CODE END PV */
 
@@ -66,104 +60,6 @@ static void MX_SPI1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-// 1. Calculate CRC (Mandatory for your specific BQ chip)
-uint8_t BQ_CalculateCRC(uint8_t *data, uint8_t len) {
-  uint8_t crc = 0x00;
-  for (uint8_t i = 0; i < len; i++) {
-    crc ^= data[i];
-    for (uint8_t j = 0; j < 8; j++) {
-      if (crc & 0x80)
-        crc = (crc << 1) ^ 0x07;
-      else
-        crc = (crc << 1);
-    }
-  }
-  return crc;
-}
-
-// 2. Reusable WRITE Function
-void BQ_SPI_WriteReg(uint8_t reg_addr, uint8_t data) {
-  uint8_t tx_buf[3];
-  uint8_t rx_buf[3];
-
-  // R/W bit is 1 for Write (Add 0x80 to the address)
-  tx_buf[0] = reg_addr | 0x80;
-  tx_buf[1] = data;
-  tx_buf[2] = BQ_CalculateCRC(tx_buf, 2);
-
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-  HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-  HAL_Delay(1); // Give BQ time to apply the write
-}
-
-// 3. Reusable READ Function (TI Pipelined Architecture)
-uint8_t BQ_SPI_ReadReg(uint8_t reg_addr) {
-  uint8_t tx_buf[3];
-  uint8_t rx_buf[3] = {0, 0, 0};
-  uint8_t timeout = 10; // Maximum attempts
-
-  // Step A: Prepare the Read Request
-  // R/W bit is 0 for Read, so we just use the raw reg_addr
-  tx_buf[0] = reg_addr;
-  tx_buf[1] = 0xFF; // TI officially uses 0xFF for data during a Read request
-  tx_buf[2] = BQ_CalculateCRC(tx_buf, 2);
-
-  // Step B: Send the initial request (Tells the chip to fetch the data)
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-  HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-  HAL_Delay(2); // Give the BQ time to process
-
-  // Step C: Send the EXACT SAME packet again to clock the data out.
-  // Keep asking until the BQ echoes the register address in rx_buf[0]
-  while (timeout > 0) {
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-    HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-    // Check if the BQ replied with our address!
-    if (rx_buf[0] == reg_addr) {
-        break; // Success! The data is now in rx_buf[1]. Exit the loop.
-    }
-
-    HAL_Delay(1);
-    timeout--;
-  }
-
-  // === DIAGNOSTIC TRAP ===
-  // Save the raw frame so we can see what the BQ actually said!
-  debug_Address_Echo = rx_buf[0];
-  debug_Data_Byte = rx_buf[1];
-  debug_CRC_Byte = rx_buf[2];
-
-  return rx_buf[1];
-}
-
-void Read_BQ_Device_Number(void) {
-  // 0. Wake up the SPI Oscillator
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-  HAL_Delay(1);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-  HAL_Delay(2);
-
-  // 1. Write the subcommand 0x0001 to the Command Register (0x3E)
-  BQ_SPI_WriteReg(0x3E, 0x01);
-  BQ_SPI_WriteReg(0x3F, 0x00);
-
-  // 2. Wait for the BQ chip to process the subcommand
-  HAL_Delay(5);
-
-  // 3. Read the result from the Transfer Buffer (0x40)
-  uint8_t low_byte = BQ_SPI_ReadReg(0x40);
-  uint8_t high_byte = BQ_SPI_ReadReg(0x41);
-
-  // 4. Combine them into the final 16-bit number
-  My_Device_Number = (high_byte << 8) | low_byte;
-}
 
 /* USER CODE END 0 */
 
@@ -199,7 +95,14 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
-  Read_BQ_Device_Number();
+  // 1. Send the wake-up ping to the BQ76952
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+  HAL_Delay(1);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+  HAL_Delay(5);
+
+
+  BQ_Configure_Cell_Count();
 
   /* USER CODE END 2 */
 
@@ -209,57 +112,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  // 1. STM32'nin çalıştığını görmek için LED'i yakıp söndür
-	  		HAL_GPIO_TogglePin(GPIOA, LED_Pin);
 
-	  		// 2. Çipin uyku modunda olma ihtimaline karşı "Uyandırma Sinyali" ver
-	  		HAL_GPIO_WritePin(GPIOA, CS_Pin, GPIO_PIN_RESET);
-	  		HAL_Delay(1);
-	  		HAL_GPIO_WritePin(GPIOA, CS_Pin, GPIO_PIN_SET);
-	  		HAL_Delay(3); // Çipin iç saatinin uyanmasını bekle
+	  HAL_GPIO_TogglePin(GPIOA, LED_Pin);
 
-	  		// =========================================================
+	  BQ_Read_All_Cell_Voltages((uint16_t*)Cell_Voltages_mV);
 
-	  				// TEST 1: REG18 DIAGNOSTIC ADC COUNTS (Subcommand 0x0075)
-	  				// =========================================================
-	  				// 1. Write the subcommand 0x0075 to the 0x3E Mailbox
-	  				BQ_SPI_WriteReg(0x3E, 0x75); // Lower byte of 0x0075
-	  				BQ_SPI_WriteReg(0x3F, 0x00); // Upper byte of 0x0075
+	  REG18_Raw_ADC = BQ_Read_REG18_ADC();
 
-	  				// 2. Wait for the BQ76952 to fetch the diagnostic data
-	  				HAL_Delay(5);
+	  HAL_Delay(500);
 
-	  				// 3. Read the answer from the Transfer Buffer (0x40 and 0x41)
-	  				// We use the pipelined ReadReg function you just perfected!
-	  				uint8_t reg18_low = BQ_SPI_ReadReg(0x40);
-	  				uint8_t reg18_high = BQ_SPI_ReadReg(0x41);
-
-	  				// 4. Combine them into a 16-bit number
-	  				// NOTE: Expect a value near ~29137, NOT 1800!
-	  				REG18_Voltage_mV = (reg18_high << 8) | reg18_low;
-
-
-	  				// =========================================================
-	  					  // 7 HÜCRENİN VOLTAJINI OTOMATİK OKUMA (DÖNGÜ İLE)
-	  					  // =========================================================
-	  				      // Hücre 1'in adresi 0x14'ten başlar, her hücre 2 byte yer kaplar.
-	  					  for (int i = 0; i < 7; i++) {
-	  						  // Matematiksel olarak adresi hesapla
-	  						  uint8_t low_addr = 0x14 + (i * 2);
-	  						  uint8_t high_addr = low_addr + 1;
-
-	  						  // O hesaplanan adresten okuma yap
-	  						  uint8_t cell_low = BQ_SPI_ReadReg(low_addr);
-	  						  uint8_t cell_high = BQ_SPI_ReadReg(high_addr);
-
-	  						  // Dizinin i. elemanına voltajı kaydet
-	  						  Cell_Voltages_mV[i] = (cell_high << 8) | cell_low;
-	  					  }
-
-
-
-	  		// 4. Sistemi yormamak için yarım saniye bekle ve tekrarla
-	  		HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
