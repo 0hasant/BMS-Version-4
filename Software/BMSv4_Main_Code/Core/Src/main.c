@@ -47,6 +47,7 @@ SPI_HandleTypeDef hspi1;
 
 volatile uint16_t Cell_Voltages_mV[7] = {0};
 volatile uint16_t REG18_Raw_ADC = 0;
+volatile uint16_t Stack_Voltage_mV = 0;
 
 /* USER CODE END PV */
 
@@ -118,6 +119,8 @@ int main(void)
 	  BQ_Read_All_Cell_Voltages((uint16_t*)Cell_Voltages_mV);
 
 	  REG18_Raw_ADC = BQ_Read_REG18_ADC();
+
+	  Stack_Voltage_mV = BQ_Read_Stack_Voltage();
 
 	  HAL_Delay(500);
 

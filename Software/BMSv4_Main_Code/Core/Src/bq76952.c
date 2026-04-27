@@ -127,3 +127,16 @@ uint16_t BQ_Read_REG18_ADC(void) {
     // 4. Combine them into a 16-bit number and return
     return (reg18_high << 8) | reg18_low;
 }
+
+// 7. Read the Total Stack Voltage (VC16 pin)
+uint16_t BQ_Read_Stack_Voltage(void) {
+    uint8_t stack_low = BQ_SPI_ReadReg(0x34);
+    uint8_t stack_high = BQ_SPI_ReadReg(0x35);
+
+    // Combine the bytes. The raw value is in 10 mV units (Centivolts)
+    uint16_t stack_cv = (stack_high << 8) | stack_low;
+
+    // Multiply by 10 to return the value in standard millivolts (mV)
+    // Note: A uint16_t can hold up to 65,535 mV (65.5V), which is safe for a 7S pack.
+    return stack_cv * 10;
+}

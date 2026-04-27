@@ -15,6 +15,7 @@ void BQ_Configure_Cell_Count(void);
 
 // BMS Data Reading
 void BQ_Read_All_Cell_Voltages(uint16_t *cell_array);
+uint16_t BQ_Read_Stack_Voltage(void);
 
 // BMS Diagnostic Reading
 uint16_t BQ_Read_REG18_ADC(void);
