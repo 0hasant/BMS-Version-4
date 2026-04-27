@@ -140,3 +140,18 @@ uint16_t BQ_Read_Stack_Voltage(void) {
     // Note: A uint16_t can hold up to 65,535 mV (65.5V), which is safe for a 7S pack.
     return stack_cv * 10;
 }
+// 8. Read the Internal Die Temperature
+float BQ_Read_Internal_Temp_C(void) {
+    // Read the 16-bit temperature data
+    uint8_t temp_low = BQ_SPI_ReadReg(0x68);
+    uint8_t temp_high = BQ_SPI_ReadReg(0x69);
+
+    // Combine the bytes into the raw 16-bit integer
+    uint16_t raw_temp = (temp_high << 8) | temp_low;
+
+    // The raw value is in units of 0.1 Kelvin.
+    // Convert to Celsius: (Raw / 10.0) - 273.15
+    float temp_celsius = (raw_temp / 10.0f) - 273.15f;
+
+    return temp_celsius;
+}

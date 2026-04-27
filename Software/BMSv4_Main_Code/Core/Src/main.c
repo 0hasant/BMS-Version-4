@@ -48,6 +48,7 @@ SPI_HandleTypeDef hspi1;
 volatile uint16_t Cell_Voltages_mV[7] = {0};
 volatile uint16_t REG18_Raw_ADC = 0;
 volatile uint16_t Stack_Voltage_mV = 0;
+volatile float Internal_Temp_C = 0.0f;
 
 /* USER CODE END PV */
 
@@ -121,6 +122,8 @@ int main(void)
 	  REG18_Raw_ADC = BQ_Read_REG18_ADC();
 
 	  Stack_Voltage_mV = BQ_Read_Stack_Voltage();
+
+	  Internal_Temp_C = BQ_Read_Internal_Temp_C();
 
 	  HAL_Delay(500);
 
