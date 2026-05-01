@@ -22,17 +22,24 @@ uint8_t BQ_CalculateCRC(uint8_t *data, uint8_t len) {
 void BQ_SPI_WriteReg(uint8_t reg_addr, uint8_t data) {
     uint8_t tx_buf[3];
     uint8_t rx_buf[3];
+    uint8_t timeout = 10;
 
-    // R/W bit is 1 for Write (Add 0x80 to the address)
-    tx_buf[0] = reg_addr | 0x80;
+    tx_buf[0] = reg_addr | 0x80; // W=1
     tx_buf[1] = data;
     tx_buf[2] = BQ_CalculateCRC(tx_buf, 2);
 
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-    HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+    while (timeout > 0) {
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+        HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
+        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 
-    HAL_Delay(1);
+        // Verification: MISO must echo the command byte
+        if (rx_buf[0] == tx_buf[0]) {
+            break;
+        }
+        HAL_Delay(1);
+        timeout--;
+    }
 }
 
 // 3. Reusable READ Function (TI Pipelined Architecture)
@@ -41,30 +48,33 @@ uint8_t BQ_SPI_ReadReg(uint8_t reg_addr) {
     uint8_t rx_buf[3] = {0, 0, 0};
     uint8_t timeout = 10;
 
-    tx_buf[0] = reg_addr;
+    tx_buf[0] = reg_addr; // R=0
     tx_buf[1] = 0xFF;
     tx_buf[2] = BQ_CalculateCRC(tx_buf, 2);
 
-    // Step A: Send request
+    // Initial dummy clock to request data
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
     HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 
-    HAL_Delay(2);
-
-    // Step B: Clock the data out
     while (timeout > 0) {
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
         HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 
         if (rx_buf[0] == reg_addr) {
-            break;
+            // Validate incoming CRC
+            uint8_t expected_crc = BQ_CalculateCRC(rx_buf, 2);
+            if (expected_crc == rx_buf[2]) {
+                return rx_buf[1];
+            } else {
+                // Handle CRC error (e.g., retry or trigger fault)
+            }
         }
-        HAL_Delay(1);
+        HAL_Delay(1); // Wait for IC to prepare data
         timeout--;
     }
-    return rx_buf[1];
+    return 0; // Or a designated error code
 }
 
 // 4. Configure 7S Vcell Mode
