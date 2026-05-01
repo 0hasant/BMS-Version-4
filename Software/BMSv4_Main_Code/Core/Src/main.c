@@ -49,6 +49,7 @@ volatile uint16_t Cell_Voltages_mV[7] = {0};
 volatile uint16_t REG18_Raw_ADC = 0;
 volatile uint16_t Stack_Voltage_mV = 0;
 volatile float Internal_Temp_C = 0.0f;
+volatile float Pack_Current = 0;
 
 /* USER CODE END PV */
 
@@ -105,6 +106,7 @@ int main(void)
 
 
   BQ_Configure_Cell_Count();
+  BQ_Configure_Current_Sensor();
 
   /* USER CODE END 2 */
 
@@ -124,6 +126,8 @@ int main(void)
 	  Stack_Voltage_mV = BQ_Read_Stack_Voltage();
 
 	  Internal_Temp_C = BQ_Read_Internal_Temp_C();
+
+	  Pack_Current = BQ_Get_Pack_Current_Amps();
 
 	  HAL_Delay(500);
 
