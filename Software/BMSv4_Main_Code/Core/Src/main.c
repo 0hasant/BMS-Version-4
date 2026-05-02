@@ -129,7 +129,7 @@ int main(void)
 
 	  Pack_Current = BQ_Get_Pack_Current_Amps();
 
-	  HAL_Delay(500);
+	  HAL_Delay(1);
 
   }
   /* USER CODE END 3 */
