@@ -4537,6 +4537,16 @@
 	)
 	(wire
 		(pts
+			(xy 180.34 34.29) (xy 180.34 30.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c06fc08d-d8dd-4b63-ad0d-1df70eeadb60")
+	)
+	(wire
+		(pts
 			(xy 162.56 140.97) (xy 173.99 140.97)
 		)
 		(stroke
@@ -4739,28 +4749,6 @@
 			)
 		)
 	)
-	(global_label "SPI_CS"
-		(shape bidirectional)
-		(at 121.92 77.47 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "2a51bb40-6330-4b55-bb51-0677a438b8a4")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 132.5479 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "VDDA"
 		(shape input)
 		(at 107.95 59.69 90)
@@ -4840,28 +4828,6 @@
 		(uuid "55a967be-5215-40ac-abe7-573a6a1dcf2b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 128.6547 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "SPI_SCLK"
-		(shape bidirectional)
-		(at 121.92 80.01 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "5d03bc53-5b42-4bf1-9dc2-4c2de384a9dd")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 134.846 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5245,50 +5211,6 @@
 			)
 		)
 	)
-	(global_label "SPI_MISO"
-		(shape input)
-		(at 121.92 82.55 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "e80a84c6-4fa7-4d3e-b6bf-0878ec93c77e")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 133.5533 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "SPI_MOSI"
-		(shape output)
-		(at 121.92 85.09 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "ee8a25fe-e25c-4b87-b7c6-f33023cd0f48")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 133.5533 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "Test2"
 		(shape input)
 		(at 120.65 69.85 0)
@@ -5332,6 +5254,50 @@
 				(hide yes)
 			)
 		)
+	)
+	(hierarchical_label "SPI_MOSI"
+		(shape input)
+		(at 121.92 85.09 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "36212806-a6d8-4ac3-9bb6-1c8c83b2d7d2")
+	)
+	(hierarchical_label "SPI_SCLK"
+		(shape output)
+		(at 121.92 80.01 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "58712a9e-b4fa-4161-a6ed-40f354f309c6")
+	)
+	(hierarchical_label "SPI_CS"
+		(shape output)
+		(at 121.92 77.47 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a4de2e3d-4f2d-4473-984b-3f6331c73265")
+	)
+	(hierarchical_label "SPI_MISO"
+		(shape input)
+		(at 121.92 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b32c0b1a-ed51-4bdc-9b39-063e446aeb76")
 	)
 	(symbol
 		(lib_id "power:GND")
@@ -6083,16 +6049,15 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 180.34 30.48 180)
+		(at 180.34 34.29 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "2fa78d8b-99a9-4b88-89cf-5d1a003041f5")
 		(property "Reference" "TP7"
-			(at 182.88 32.5119 0)
+			(at 182.88 36.3219 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6101,7 +6066,7 @@
 			)
 		)
 		(property "Value" "TEST_LED"
-			(at 182.88 35.0519 0)
+			(at 182.88 38.8619 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6110,7 +6075,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_THTPad_D1.0mm_Drill0.5mm"
-			(at 175.26 30.48 0)
+			(at 175.26 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6119,7 +6084,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 175.26 30.48 0)
+			(at 175.26 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6128,7 +6093,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 180.34 30.48 0)
+			(at 180.34 34.29 0)
 			(effects
 				(font
 					(size 1.27 1.27)

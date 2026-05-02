@@ -2245,7 +2245,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 120.65) (xy 186.69 120.65)
+			(xy 176.53 120.65) (xy 186.69 120.65)
 		)
 		(stroke
 			(width 0)
@@ -2735,7 +2735,7 @@
 	)
 	(hierarchical_label "-Batt_Out"
 		(shape input)
-		(at 173.99 120.65 180)
+		(at 176.53 120.65 180)
 		(effects
 			(font
 				(size 1.27 1.27)
