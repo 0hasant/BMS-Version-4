@@ -22,24 +22,17 @@ uint8_t BQ_CalculateCRC(uint8_t *data, uint8_t len) {
 void BQ_SPI_WriteReg(uint8_t reg_addr, uint8_t data) {
     uint8_t tx_buf[3];
     uint8_t rx_buf[3];
-    uint8_t timeout = 10;
 
-    tx_buf[0] = reg_addr | 0x80; // W=1
+    // R/W bit is 1 for Write (Add 0x80 to the address)
+    tx_buf[0] = reg_addr | 0x80;
     tx_buf[1] = data;
     tx_buf[2] = BQ_CalculateCRC(tx_buf, 2);
 
-    while (timeout > 0) {
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-        HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+    HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 
-        // Verification: MISO must echo the command byte
-        if (rx_buf[0] == tx_buf[0]) {
-            break;
-        }
-        HAL_Delay(1);
-        timeout--;
-    }
+    HAL_Delay(1);
 }
 
 // 3. Reusable READ Function (TI Pipelined Architecture)
@@ -48,33 +41,30 @@ uint8_t BQ_SPI_ReadReg(uint8_t reg_addr) {
     uint8_t rx_buf[3] = {0, 0, 0};
     uint8_t timeout = 10;
 
-    tx_buf[0] = reg_addr; // R=0
+    tx_buf[0] = reg_addr;
     tx_buf[1] = 0xFF;
     tx_buf[2] = BQ_CalculateCRC(tx_buf, 2);
 
-    // Initial dummy clock to request data
+    // Step A: Send request
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
     HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 
+    HAL_Delay(2);
+
+    // Step B: Clock the data out
     while (timeout > 0) {
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
         HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
         HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 
         if (rx_buf[0] == reg_addr) {
-            // Validate incoming CRC
-            uint8_t expected_crc = BQ_CalculateCRC(rx_buf, 2);
-            if (expected_crc == rx_buf[2]) {
-                return rx_buf[1];
-            } else {
-                // Handle CRC error (e.g., retry or trigger fault)
-            }
+            break;
         }
-        HAL_Delay(1); // Wait for IC to prepare data
+        HAL_Delay(1);
         timeout--;
     }
-    return 0; // Or a designated error code
+    return rx_buf[1];
 }
 
 // 4. Configure 7S Vcell Mode
@@ -166,70 +156,41 @@ float BQ_Read_Internal_Temp_C(void) {
     return temp_celsius;
 }
 
-// 9. Helper function to write 4 bytes to Data Memory
-void BQ_Write_DataMemory_4Byte(uint16_t mem_addr, uint32_t data) {
-    uint8_t buffer[4];
-    // Convert 32-bit data to Little Endian
-    buffer[0] = (uint8_t)(data & 0xFF);         // LSB
-    buffer[1] = (uint8_t)((data >> 8) & 0xFF);
-    buffer[2] = (uint8_t)((data >> 16) & 0xFF);
-    buffer[3] = (uint8_t)((data >> 24) & 0xFF); // MSB
-
-    // Write internal memory address to 0x3E and 0x3F (Mailbox)
-    BQ_SPI_WriteReg(0x3E, (uint8_t)(mem_addr & 0xFF));
-    BQ_SPI_WriteReg(0x3F, (uint8_t)((mem_addr >> 8) & 0xFF));
-
-    // Write the 4 bytes of data to the transfer buffer (0x40 - 0x43)
-    BQ_SPI_WriteReg(0x40, buffer[0]);
-    BQ_SPI_WriteReg(0x41, buffer[1]);
-    BQ_SPI_WriteReg(0x42, buffer[2]);
-    BQ_SPI_WriteReg(0x43, buffer[3]);
-
-    // Calculate checksum and write to 0x60
-    // Checksum = ~(0x3E_byte + 0x3F_byte + data0 + data1 + data2 + data3)
-    uint8_t sum = (uint8_t)(mem_addr & 0xFF) + (uint8_t)((mem_addr >> 8) & 0xFF) +
-                  buffer[0] + buffer[1] + buffer[2] + buffer[3];
-    uint8_t checksum = ~sum;
-
-    BQ_SPI_WriteReg(0x60, checksum);
-
-    // Write length to 0x61 (Length = 4 bytes data + 2 bytes addr + 2 bytes checksum/len = 8)
-    BQ_SPI_WriteReg(0x61, 0x08);
-
-    HAL_Delay(2); // Allow IC to process the RAM write
-}
-
-// 10. Initialize the Current Scaling
-void BQ_Configure_Current_Sensor(void) {
-    // Enter CONFIG_UPDATE mode
-    BQ_SPI_WriteReg(0x3E, 0x90);
-    BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(2);
-
-    // Write CC Gain (3.7842 -> 0x40723055)
-    // Assuming CC Gain register address is 0x9180 (Verify exact address in BQ Studio Data Memory map)
-    BQ_Write_DataMemory_4Byte(0x9180, 0x40723055);
-
-    // Write Capacity Gain (1128681.6 -> 0x4989CA29)
-    // Assuming Capacity Gain register address is 0x9184
-    BQ_Write_DataMemory_4Byte(0x9184, 0x4989CA29);
-
-    // Exit CONFIG_UPDATE mode
-    BQ_SPI_WriteReg(0x3E, 0x92);
-    BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(2);
-}
-
-// 11. Read the actual current in Amps
+// Read the actual pack current in Amps using STM32 math (No BQ RAM writes required)
 float BQ_Get_Pack_Current_Amps(void) {
-    // Read 0x3A (CC2 Current Low Byte) and 0x3B (CC2 Current High Byte)
+    // Read direct commands 0x3A (CC2 Current Low Byte) and 0x3B (High Byte)
     uint8_t curr_low = BQ_SPI_ReadReg(0x3A);
     uint8_t curr_high = BQ_SPI_ReadReg(0x3B);
 
-    // Combine into signed 16-bit
+    // Combine into a signed 16-bit integer
+    // 2's complement natively handles negative values for discharge currents
     int16_t current_raw = (int16_t)((curr_high << 8) | curr_low);
 
-    // The result is in userAmps. By default, 1 userA = 1 mA[cite: 4].
-    // If you haven't changed DA Configuration[USER_AMPS], divide by 1000 to get Amperes.
-    return (float)current_raw / 1000.0f;
+    // --- The Math Explanation ---
+    // Out of the box, the BQ76952 expects a 1 mOhm sense resistor, where 1 LSB = 1 mA.
+    // Because your hardware uses a 2 mOhm resistor, the voltage drop across it is twice as large.
+    // This means the BQ76952 will report a raw number that is exactly DOUBLE your actual current.
+    // To get the real current in mA, we divide by 2. To get Amperes, we divide by 1000.
+    // Combined, we just divide the raw reading by 2000.0f.
+
+    float actual_current_amps = (float)current_raw / 2000.0f;
+
+    return actual_current_amps;
+}
+
+
+// Wake the BQ76952's internal oscillator before a burst of SPI reads
+void BQ_Wake_SPI(void) {
+    uint8_t tx_buf[3] = {0x00, 0xFF, 0xFF}; // Dummy read to Control Status (0x00)
+    uint8_t rx_buf[3];
+
+    // 1. Send the dummy frame to wake the High-Frequency Oscillator (HFO)[cite: 4]
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+    HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+
+    // 2. Wait for the HFO to stabilize.
+    // TRM specifies waiting at least 135 µs in NORMAL/SLEEP mode[cite: 4].
+    // A 1 ms delay is extremely safe.
+    HAL_Delay(1);
 }

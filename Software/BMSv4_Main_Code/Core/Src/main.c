@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "bq76952.h"
+//V1.0.1 -Hasan Turan
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -49,8 +50,7 @@ volatile uint16_t Cell_Voltages_mV[7] = {0};
 volatile uint16_t REG18_Raw_ADC = 0;
 volatile uint16_t Stack_Voltage_mV = 0;
 volatile float Internal_Temp_C = 0.0f;
-volatile float Pack_Current = 0;
-
+volatile float Battery_Current = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -106,7 +106,6 @@ int main(void)
 
 
   BQ_Configure_Cell_Count();
-  BQ_Configure_Current_Sensor();
 
   /* USER CODE END 2 */
 
@@ -117,7 +116,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
+	  // Check which hardware fault tripped
+
 	  HAL_GPIO_TogglePin(GPIOA, LED_Pin);
+
+	  BQ_Wake_SPI();// Check that function
 
 	  BQ_Read_All_Cell_Voltages((uint16_t*)Cell_Voltages_mV);
 
@@ -127,9 +130,9 @@ int main(void)
 
 	  Internal_Temp_C = BQ_Read_Internal_Temp_C();
 
-	  Pack_Current = BQ_Get_Pack_Current_Amps();
+	  Battery_Current = BQ_Get_Pack_Current_Amps();
 
-	  HAL_Delay(1);
+	  HAL_Delay(5);
 
   }
   /* USER CODE END 3 */

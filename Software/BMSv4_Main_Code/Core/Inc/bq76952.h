@@ -12,8 +12,8 @@ uint8_t BQ_SPI_ReadReg(uint8_t reg_addr);
 
 // BMS Setup and Configuration
 void BQ_Configure_Cell_Count(void);
-void BQ_Write_DataMemory_4Byte(uint16_t mem_addr, uint32_t data);
-void BQ_Configure_Current_Sensor(void);
+void BQ_Wake_SPI(void);
+
 // BMS Data Reading
 void BQ_Read_All_Cell_Voltages(uint16_t *cell_array);
 uint16_t BQ_Read_Stack_Voltage(void);
