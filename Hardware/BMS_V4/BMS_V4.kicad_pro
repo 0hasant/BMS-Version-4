@@ -997,6 +997,10 @@
     [
       "58ad889b-5819-4ba8-84ce-e0a42c717c47",
       "Power Circuit"
+    ],
+    [
+      "71a8f66f-6a4a-4a66-8261-a58be3884b05",
+      "CellBalance_Input"
     ]
   ],
   "text_variables": {}

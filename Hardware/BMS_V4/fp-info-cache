@@ -1,4 +1,4 @@
-26768162922818187
+26777090502200292
 0805 Capacitor
 CAPC2012X94N
 
@@ -2838,13 +2838,6 @@ Buzzer_Beeper
 Speaker_CUI_CMR-1206S-67
 Speaker, 30mW, 300-7000Hz, IP67 face, 12x6x2,25mm, https://www.cuidevices.com/product/resource/cmr-12062s-67.pdf
 speaker CUI
-0
-2
-2
-CL31B105KCHNNNE
-CAPC3216X180N
-
-
 0
 2
 2
@@ -62488,13 +62481,6 @@ GDT 3R-6
 0
 3
 3
-Garph
-anime
-
-
-0
-0
-0
 Heatsink
 Heatsink_35x26mm_1xFixation3mm_Fischer-SK486-35
 Heatsink, 35mm x 26mm, 1x Fixation 3mm, Fischer SK486-35
@@ -97314,6 +97300,13 @@ Power Supply
 4
 4
 SamacSys_Parts
+3362F1102LF
+3362F-1-102LF-2
+Variable Resistor
+0
+3
+3
+SamacSys_Parts
 1984756
 1984756-3
 Connector
@@ -97342,6 +97335,13 @@ Schottky Diode
 2
 2
 SamacSys_Parts
+DIOM5226X230N
+SMA (1)
+Diode
+0
+2
+2
+SamacSys_Parts
 DTS62RV
 DTS-62R-V-3
 Switch
@@ -97366,6 +97366,20 @@ SamacSys_Parts
 HDRV3W66P0X254_1X3_762X249X1003P
 22-28-5032
 Connector
+0
+3
+3
+SamacSys_Parts
+INDPM7373X450N
+SRI0704-2R2M
+Inductor
+0
+2
+2
+SamacSys_Parts
+IRL530NSTRLPBF
+D2Pak_2021
+MOSFET (N-Channel)
 0
 3
 3
@@ -97446,6 +97460,13 @@ Integrated Circuit
 0
 14
 14
+SamacSys_Parts
+SOP50P490X110-10N
+DGS0010A
+Integrated Circuit
+0
+10
+10
 SamacSys_Parts
 SOP254P1040X485-8N
 SOP
@@ -99533,6 +99554,13 @@ Logo UKCA marking
 0
 0
 Symbol
+Untitled
+
+
+0
+0
+0
+Symbol
 WEEE-Logo_4.2x6mm_SilkScreen
 Waste Electrical and Electronic Equipment Directive https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32012L0019#page=29
 Logo WEEE
@@ -99571,6 +99599,13 @@ Symbol
 WEEE-Logo_28.1x40mm_SilkScreen
 Waste Electrical and Electronic Equipment Directive https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=CELEX:32012L0019#page=29
 Logo WEEE
+0
+0
+0
+Symbol
+solaris_logo
+
+
 0
 0
 0
