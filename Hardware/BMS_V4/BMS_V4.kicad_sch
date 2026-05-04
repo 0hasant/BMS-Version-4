@@ -6,8 +6,8 @@
 	(paper "A4")
 	(title_block
 		(title "BMS v4")
-		(date "2026-04-26")
-		(rev "4.020")
+		(date "2026-05-05")
+		(rev "4.021")
 		(company "Solar Team Solaris")
 		(comment 1 "Hasan Turan")
 	)

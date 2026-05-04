@@ -5,7 +5,7 @@
 	(uuid "437fc4e4-c7b3-4cfb-820a-06f86940ff83")
 	(paper "A4")
 	(title_block
-		(date "2026-04-26")
+		(date "2026-05-05")
 	)
 	(lib_symbols
 		(symbol "Connector:TestPoint"

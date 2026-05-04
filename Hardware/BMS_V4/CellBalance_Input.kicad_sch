@@ -5,7 +5,7 @@
 	(uuid "9f400bff-00f9-4e27-80eb-1048c0c9eb63")
 	(paper "A4")
 	(title_block
-		(date "2026-04-26")
+		(date "2026-05-05")
 	)
 	(lib_symbols
 		(symbol "Device:C_Small"

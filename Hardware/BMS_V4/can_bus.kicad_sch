@@ -5,7 +5,7 @@
 	(uuid "a0b15043-8bfb-4f85-a62e-df8a8e1dcfbb")
 	(paper "A4")
 	(title_block
-		(date "2026-04-26")
+		(date "2026-05-05")
 	)
 	(lib_symbols
 		(symbol "Connector:Screw_Terminal_01x04"
@@ -2136,6 +2136,16 @@
 			(type none)
 		)
 		(uuid 4e59d8a3-cf67-4037-9fa6-aefcde353b47)
+	)
+	(text "Add a diode output of the 5V from idc to prevent reverse current\n"
+		(exclude_from_sim no)
+		(at 50.038 180.086 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "7244bdc8-f781-4402-9222-8790fe29c9a5")
 	)
 	(text_box "CAN_BUS_ISO_5V"
 		(exclude_from_sim no)

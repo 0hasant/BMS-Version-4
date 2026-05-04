@@ -1,0 +1,12 @@
+﻿Part,Manufacturer,Part Number,Quantity,Price ($),Footprint (mm²),Description
+Cac,Yageo,CC0805JRNPO9BN560,1,0.01,6.75,Cap: 56 pF  Total Derated Cap: 56 pF  VDC: 50 V  ESR: 0 Ω  Package: 0805  
+Rr,Vishay-Dale,CRCW0603475KFKEA,1,0.01,4.68,Resistance: 475 kΩ  Tolerance: 1.0%  Power: 100 mW  
+Cr,Kemet,C0805C222K5RACTU,1,0.01,6.75,Cap: 2.2 nF  Total Derated Cap: 2.2 nF  VDC: 50 V  ESR: 400 mΩ  Package: 0805  
+Cin,TDK,C3225X7R2A225K230AB,1,0.21,14.7,Cap: 2.2 µF  Total Derated Cap: 640 nF  VDC: 100 V  ESR: 1.73 mΩ  Package: 1210_250  
+L1,Wurth Elektronik,74404086151,1,0.68,100,L: 150 µH  DCR: 355 mΩ  IDC: 1.2 A  
+Cbst,Kemet,C0805C222K5RACTU,1,0.01,6.75,Cap: 2.2 nF  Total Derated Cap: 2.2 nF  VDC: 50 V  ESR: 400 mΩ  Package: 0805  
+Rfbt,Yageo,RC0603FR-07316KL,1,0.01,4.68,Resistance: 316 kΩ  Tolerance: 1.0%  Power: 100 mW  
+Rfbb,Yageo,RT0805BRD07101KL,1,0.054,6.75,Resistance: 101 kΩ  Tolerance: 0.1%  Power: 125 mW  
+Cout,MuRata,GRM31CR71E106KA12L,1,0.06,10.92,Cap: 10 µF  Total Derated Cap: 7.7 µF  VDC: 25 V  ESR: 4 mΩ  Package: 1206  
+U1,Texas Instruments,LM5163HQDDARQ1,1,1.835,55.2,
+Ron,Vishay-Dale,CRCW080561K9FKEA,1,0.01,6.75,Resistance: 61.9 kΩ  Tolerance: 1.0%  Power: 125 mW  

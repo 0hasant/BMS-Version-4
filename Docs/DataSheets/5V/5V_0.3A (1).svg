@@ -198,10 +198,10 @@
   <text for="Cin" x="215.0" y="310.0" style="font-family:arial;font-size:13px;stroke-width:0.5;stroke:#115566;fill:#115566;">Cin</text>
   <text for="Cin" x="215.0" y="320.0" style="font-family:arial;font-size:10px;stroke-width:0.1;stroke:#CC0000;fill:#CC0000;">2.2uF</text>
   <text for="Cin" x="215.0" y="330.0" style="font-family:arial;font-size:10px;stroke-width:0.1;stroke:#CC0000;fill:#CC0000;">1.73mOhm</text>
-  <use id="L1" class="comp" xlink:href="#WB_INDUCTOR" x="740.0" y="205.0" partNo="74404086151" thermalId="WE-LQS_8065" l="150uH" dcr="355mOhm" manufacturer="Wurth Elektronik" />
+  <use id="L1" class="comp" xlink:href="#WB_INDUCTOR" x="740.0" y="205.0" partNo="74404086221" manufacturer="Wurth Elektronik" thermalId="WE-LQS_8065" l="220uH" dcr="555mOhm" />
   <text for="L1" x="720.0" y="190.0" style="font-family:arial;font-size:13px;stroke-width:0.5;stroke:#115566;fill:#115566;">L1</text>
-  <text for="L1" x="720.0" y="225.0" style="font-family:arial;font-size:10px;stroke-width:0.1;stroke:#CC0000;fill:#CC0000;">150uH</text>
-  <text for="L1" x="720.0" y="235.0" style="font-family:arial;font-size:10px;stroke-width:0.1;stroke:#CC0000;fill:#CC0000;">355mOhm</text>
+  <text for="L1" x="720.0" y="225.0" style="font-family:arial;font-size:10px;stroke-width:0.1;stroke:#CC0000;fill:#CC0000;">220uH</text>
+  <text for="L1" x="720.0" y="235.0" style="font-family:arial;font-size:10px;stroke-width:0.1;stroke:#CC0000;fill:#CC0000;">555mOhm</text>
   <use id="Cbst" class="comp" xlink:href="#WB_CAPACITOR" x="610.0" y="110.0" transform="rotate(-180, 610.0, 110.0)" cap="2.2nF" partNo="C0805C222K5RACTU" thermalId="0805" esr="400mOhm" manufacturer="Kemet" />
   <text for="Cbst" x="590.0" y="95.0" style="font-family:arial;font-size:13px;stroke-width:0.5;stroke:#115566;fill:#115566;">Cbst</text>
   <text for="Cbst" x="590.0" y="130.0" style="font-family:arial;font-size:10px;stroke-width:0.1;stroke:#CC0000;fill:#CC0000;">2.2nF</text>
@@ -239,13 +239,34 @@
   <text for="Vin" x="115.0" y="285.0" style="font-family:arial;font-size:13px;stroke-width:0.5;stroke:#CC0000;fill:#CC0000;">Vin</text>
   <line x1="360.0" y1="245.0" x2="415.0" y2="245.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="360.0" y1="245.0" x2="360.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="405.0" y1="245.0" x2="415.0" y2="245.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="360.0" y1="215.0" x2="360.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="405.0" y1="245.0" x2="415.0" y2="245.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="360.0" y1="215.0" x2="360.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="405.0" y1="245.0" x2="415.0" y2="245.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="360.0" y1="215.0" x2="360.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="415.0" y1="335.0" x2="415.0" y2="285.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="415.0" y1="455.0" x2="415.0" y2="395.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="415.0" y1="295.0" x2="415.0" y2="285.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="415.0" y1="455.0" x2="415.0" y2="445.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="415.0" y1="295.0" x2="415.0" y2="285.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="415.0" y1="455.0" x2="415.0" y2="445.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="415.0" y1="295.0" x2="415.0" y2="285.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="415.0" y1="455.0" x2="415.0" y2="445.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="785.0" y1="255.0" x2="720.0" y2="255.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="845.0" y1="255.0" x2="850.0" y2="255.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="730.0" y1="325.0" x2="730.0" y2="315.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="660.0" y1="255.0" x2="660.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="850.0" y1="255.0" x2="850.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="730.0" y1="325.0" x2="730.0" y2="315.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="660.0" y1="215.0" x2="660.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="850.0" y1="215.0" x2="850.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="730.0" y1="325.0" x2="730.0" y2="315.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="660.0" y1="215.0" x2="660.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="850.0" y1="215.0" x2="850.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="730.0" y1="325.0" x2="730.0" y2="315.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="660.0" y1="215.0" x2="660.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="850.0" y1="215.0" x2="850.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="200.0" y1="455.0" x2="200.0" y2="340.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="575.0" y1="275.0" x2="640.0" y2="275.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="640.0" y1="110.0" x2="650.0" y2="110.0" stroke="#000000" stroke-width="2" fill="none" />
@@ -266,28 +287,45 @@
   <line x1="580.0" y1="110.0" x2="575.0" y2="110.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="575.0" y1="315.0" x2="610.0" y2="315.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="895.0" y1="205.0" x2="895.0" y2="245.0" stroke="#000000" stroke-width="2" fill="none" />
-  <line x1="770.0" y1="205.0" x2="1065.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="100.0" y1="455.0" x2="1065.0" y2="455.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="200.0" y1="280.0" x2="200.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="770.0" y1="205.0" x2="1065.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="100.0" y1="205.0" x2="415.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="1055.0" y1="455.0" x2="1065.0" y2="455.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="200.0" y1="260.0" x2="200.0" y2="230.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="770.0" y1="205.0" x2="800.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="1055.0" y1="455.0" x2="1065.0" y2="455.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="200.0" y1="260.0" x2="200.0" y2="230.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="770.0" y1="205.0" x2="800.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="1055.0" y1="455.0" x2="1065.0" y2="455.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="200.0" y1="260.0" x2="200.0" y2="230.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="1065.0" y1="345.0" x2="1065.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="1065.0" y1="455.0" x2="1065.0" y2="405.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="1065.0" y1="295.0" x2="1065.0" y2="265.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="1065.0" y1="455.0" x2="1065.0" y2="445.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="1065.0" y1="295.0" x2="1065.0" y2="265.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="1065.0" y1="455.0" x2="1065.0" y2="445.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="1065.0" y1="295.0" x2="1065.0" y2="265.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="1065.0" y1="455.0" x2="1065.0" y2="445.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="100.0" y1="315.0" x2="100.0" y2="455.0" stroke="#000000" stroke-width="2" fill="none" />
   <line x1="100.0" y1="255.0" x2="100.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="100.0" y1="215.0" x2="100.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="100.0" y1="215.0" x2="100.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
+  <line x1="100.0" y1="215.0" x2="100.0" y2="205.0" stroke="#000000" stroke-width="2" fill="none" />
   <circle cx="660.0" cy="205.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="650.0" cy="205.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="895.0" cy="325.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="730.0" cy="325.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="610.0" cy="315.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
-  <circle cx="850.0" cy="205.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
-  <circle cx="975.0" cy="205.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
-  <circle cx="895.0" cy="205.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="415.0" cy="455.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="200.0" cy="455.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="975.0" cy="455.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="895.0" cy="455.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="610.0" cy="455.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="520.0" cy="455.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
+  <circle cx="850.0" cy="205.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
+  <circle cx="975.0" cy="205.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
+  <circle cx="895.0" cy="205.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="360.0" cy="205.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="200.0" cy="205.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
   <circle cx="730.0" cy="255.0" r="5" stroke="#000000" stroke-width="0" fill="#000000" />
