@@ -15,6 +15,8 @@
 9. Make the component naming system consistent.
 10. Add an external balancing system.
 11. Make the net name conventions consistent.
+12. Place R18 cap to near.
+13. Place the current read cap to near to BQ.
 
 ### Software Changes
 
