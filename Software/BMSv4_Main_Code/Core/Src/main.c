@@ -46,11 +46,12 @@ SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 
-volatile uint16_t Cell_Voltages_mV[7] = {0};
-volatile uint16_t REG18_Raw_ADC = 0;
-volatile uint16_t Stack_Voltage_mV = 0;
-volatile float Internal_Temp_C = 0.0f;
-volatile float Battery_Current = 0;
+volatile uint16_t         Cell_Voltages_mV[7] = {0};
+volatile uint16_t         REG18_Raw_ADC = 0;
+volatile uint16_t         Stack_Voltage_mV = 0;
+volatile float            Internal_Temp_C = 0.0f;
+volatile float            Battery_Current = 0;
+         BQ_Balance_Status_t Balance_Status = {0}; // Live expression: inspect all balance fields
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -106,6 +107,7 @@ int main(void)
 
 
   BQ_Configure_Cell_Count();
+  BQ_Configure_Balancing();  // Set up CB thresholds and eligible cells (VC1-VC7)
 
   /* USER CODE END 2 */
 
@@ -123,6 +125,9 @@ int main(void)
 	  BQ_Wake_SPI();// Check that function
 
 	  BQ_Read_All_Cell_Voltages((uint16_t*)Cell_Voltages_mV);
+
+	  // Monitor what the BQ76952's autonomous balancer is doing (read-only)
+	  BQ_Read_Balance_Status((uint16_t*)Cell_Voltages_mV, &Balance_Status);
 
 	  REG18_Raw_ADC = BQ_Read_REG18_ADC();
 
