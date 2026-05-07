@@ -137,7 +137,9 @@ int main(void)
 
 	  Battery_Current = BQ_Get_Pack_Current_Amps();
 
-	  HAL_Delay(5);
+	  // 100 ms gives the BQ76952 one full ADC measurement cycle (~50 Hz)
+	  // to complete before the next read burst, ensuring fresh voltage data.
+	  HAL_Delay(100);
 
   }
   /* USER CODE END 3 */

@@ -260,42 +260,97 @@ static void BQ_WriteDataMem2(uint16_t sub_addr, uint16_t value) {
 //    The STM32 does NOT need to send balance commands every loop.
 //
 //    Data Memory registers written (BQ76952 TRM - Settings:Cell Balancing):
-//      0x9335 - Balancing Configuration  (1 byte, enable bits)
-//               Bit 0: CB_RLX  = balance during Relaxation
-//               Bit 1: CB_CHG  = balance during Charging
-//      0x9336 - CB Active Cells          (2 bytes, cell bitmask)
-//      0x9339 - Cell Balance Min Cell V  (2 bytes, mV)
-//      0x933B - Cell Balance Min Delta   (1 byte, mV)
+//      0x9330 - CB Min Cell Temp       (1 byte,  °C, signed) [SAFETY]
+//      0x9331 - CB Max Cell Temp       (1 byte,  °C)         [SAFETY]
+//      0x9332 - CB Max Internal Temp   (1 byte,  °C)         [SAFETY]
+//      0x9333 - CB Interval            (1 byte,  seconds)
+//      0x9335 - Balancing Configuration(1 byte,  enable bits)
+//      0x9336 - CB Active Cells        (2 bytes, cell bitmask)
+//      0x9338 - CB Max Cells           (1 byte,  max simultaneous)
+//      0x9339 - CB Min Cell V          (2 bytes, mV)
+//      0x933B - CB Min Delta           (1 byte,  mV)  start threshold
+//      0x933C - CB Stop Delta          (1 byte,  mV)  stop hysteresis
 // ---------------------------------------------------------------------------
 void BQ_Configure_Balancing(void) {
 
-    // --- Enter CONFIG_UPDATE mode (subcommand 0x0090) ---
+    // -----------------------------------------------------------------------
+    // Step 1: Enter CONFIG_UPDATE mode (subcommand 0x0090).
+    // Poll the CFGUPDATE bit (bit 2 of BatteryStatus low byte, direct cmd 0x12)
+    // instead of relying on a blind delay, so we know the IC is actually ready.
+    // -----------------------------------------------------------------------
     BQ_SPI_WriteReg(0x3E, 0x90);
     BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(5);
+
+    uint32_t t_start = HAL_GetTick();
+    while (!(BQ_SPI_ReadReg(0x12) & 0x04)) {   // Wait for CFGUPDATE bit
+        if (HAL_GetTick() - t_start > 500U) {
+            Error_Handler();  // IC did not enter CONFIG_UPDATE within 500 ms
+        }
+        HAL_Delay(1);
+    }
+
+    // -----------------------------------------------------------------------
+    // Step 2: Write all cell-balancing configuration registers.
+    // -----------------------------------------------------------------------
+
+    // --- Temperature Guards (SAFETY CRITICAL — TI SLUAA81A Figure 3-2) ---
+    // Balancing is automatically inhibited outside these temperature bounds.
+    BQ_WriteDataMem1(0x9330, (uint8_t)(-20)); // CB Min Cell Temp  = -20 °C
+    BQ_WriteDataMem1(0x9331, 60);             // CB Max Cell Temp  =  60 °C
+    BQ_WriteDataMem1(0x9332, 70);             // CB Max Internal Temp = 70 °C
+
+    // --- Balancing Interval = 20 s (TI recommended) ---
+    // The IC re-evaluates which cell to balance every 20 seconds.
+    BQ_WriteDataMem1(0x9333, 20);
 
     // --- Balancing Configuration = 0x03 ---
-    //   Bit 0 = CB_RLX (balance during relaxation)  = 1
-    //   Bit 1 = CB_CHG (balance during charging)     = 1
-    //   -> 0x03: autonomous balancing in both charge and relax modes
+    //   Bit 0 = CB_RLX (balance during relaxation) = 1
+    //   Bit 1 = CB_CHG (balance during charging)   = 1
     BQ_WriteDataMem1(0x9335, 0x03);
 
     // --- CB Active Cells = 0x007F ---
-    //   bit 0 = VC1 ... bit 6 = VC7 -> all 7 cells eligible
+    //   Bit 0 = VC1 ... Bit 6 = VC7 -> all 7 cells eligible
     BQ_WriteDataMem2(0x9336, 0x007F);
 
-    // --- Cell Balance Min Cell Voltage = BALANCE_MIN_VOLTAGE_MV ---
-    //   No cell will be balanced if its voltage is below this (default 2800 mV).
+    // --- CB Max Cells = 1 ---
+    // Limit simultaneous balancing to 1 cell at a time for thermal safety.
+    // Balancing all 7 cells at once dissipates ~0.7 W into the IC die.
+    BQ_WriteDataMem1(0x9338, 1);
+
+    // --- CB Min Cell Voltage = BALANCE_MIN_VOLTAGE_MV ---
+    // A cell below this voltage is not eligible for balancing.
+    // NOTE: Set to 2800 mV intentionally during testing to observe balancing
+    //       at all SOC levels. Change to 3900 mV for production deployment.
     BQ_WriteDataMem2(0x9339, BALANCE_MIN_VOLTAGE_MV);
 
-    // --- Cell Balance Min Delta = BALANCE_THRESHOLD_MV ---
-    //   Balancing starts when (max_cell - min_cell) exceeds this (default 20 mV).
+    // --- CB Min Delta = BALANCE_THRESHOLD_MV (start threshold) ---
+    // Balancing begins when (max_cell - min_cell) exceeds this value.
     BQ_WriteDataMem1(0x933B, (uint8_t)BALANCE_THRESHOLD_MV);
 
-    // --- Exit CONFIG_UPDATE mode (subcommand 0x0092) ---
+    // --- CB Stop Delta = BALANCE_STOP_DELTA_MV (stop hysteresis) ---
+    // Balancing stops when (max_cell - min_cell) falls below this value.
+    // Must be lower than Min Delta to prevent rapid on/off cycling.
+    BQ_WriteDataMem1(0x933C, (uint8_t)BALANCE_STOP_DELTA_MV);
+
+    // -----------------------------------------------------------------------
+    // Step 3: Exit CONFIG_UPDATE mode (subcommand 0x0092).
+    // -----------------------------------------------------------------------
     BQ_SPI_WriteReg(0x3E, 0x92);
     BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(5);
+    HAL_Delay(10);   // Allow IC to commit and return to normal mode
+
+    // -----------------------------------------------------------------------
+    // Step 4: Read-back verification.
+    // Read CB Active Cells (0x9336) low byte and confirm it equals 0x7F.
+    // If this fails, the SPI write did not reach the IC correctly.
+    // -----------------------------------------------------------------------
+    BQ_SPI_WriteReg(0x3E, 0x36);
+    BQ_SPI_WriteReg(0x3F, 0x93);
+    HAL_Delay(3);
+    uint8_t verify = BQ_SPI_ReadReg(0x40);
+    if (verify != 0x7Fu) {
+        Error_Handler();  // Balancing configuration write failed
+    }
 }
 
 // ---------------------------------------------------------------------------

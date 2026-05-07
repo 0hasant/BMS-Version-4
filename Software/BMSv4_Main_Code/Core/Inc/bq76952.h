@@ -8,16 +8,25 @@
 // ---------------------------------------------------------------------------
 
 // Minimum voltage difference between the highest and lowest cell (mV).
-// If the pack spread is smaller than this, no balancing occurs.
-#define BALANCE_THRESHOLD_MV     20U
+// If the pack spread is smaller than this, no balancing starts.
+// TI SLUAA81A recommends 40 mV; raised from 20 mV to reduce noise-triggered cycles.
+#define BALANCE_THRESHOLD_MV     40U
+
+// Stop hysteresis (mV). Balancing halts when spread drops below this value.
+// Must be < BALANCE_THRESHOLD_MV to prevent rapid on/off oscillation.
+#define BALANCE_STOP_DELTA_MV    20U
 
 // Minimum cell voltage (mV) below which balancing is prohibited.
-// Prevents balancing deeply discharged cells (e.g. below 2.8 V).
+// TESTING: Set to 2800 mV to observe balancing at all SOC levels.
+// PRODUCTION: Change to 3900U — only balance near-full cells.
 #define BALANCE_MIN_VOLTAGE_MV   2800U
 
-// Maximum cell voltage (mV). Balancing only fires on cells at or above this.
-// Prevents wasting energy balancing at low state-of-charge.
+// Maximum cell voltage (mV). Kept for reference; overvoltage protection
+// is enforced by the BQ76952 COV threshold, not by this constant.
 #define BALANCE_MAX_VOLTAGE_MV   4250U
+
+// Balancing interval in seconds. The IC re-evaluates cell selection every N seconds.
+#define BALANCE_INTERVAL_S       20U
 
 // Number of series cells in this pack.
 #define NUM_CELLS                7U
