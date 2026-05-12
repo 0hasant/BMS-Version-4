@@ -280,10 +280,10 @@ void BQ_Configure_Balancing(void) {
     BQ_WriteDataMem1(0x9338, 70);             // Max Internal Temp = 70 °C
 
     // --- Balancing Interval ---
-    BQ_WriteDataMem1(0x9339, 20);             // 20 s
+    BQ_WriteDataMem1(0x9339, 3);             // 20 s
 
     // --- CB Max Cells ---
-    BQ_WriteDataMem1(0x933A, 3);              // 1 cell simultaneously
+    BQ_WriteDataMem1(0x933A, 2);              // 1 cell simultaneously
 
     // --- Charge Balancing Thresholds ---
     BQ_WriteDataMem2(0x933B, BALANCE_MIN_VOLTAGE_MV);          // Min Cell V (Charge)

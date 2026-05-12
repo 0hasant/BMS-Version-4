@@ -10,13 +10,14 @@
 4. Connect the PACK pin to the positive terminal of the battery pack. //Done by Hasan Turan
 5. Fix the VC0 and VC1 connections. // Done by Hasan Turan.
 6. Add temperature reading to the BMS.
-7. Fix the 5V regulator circuit. The cell connection can be reduced to 13 cells.
+7. Fix the 5V regulator circuit. The cell connection can be reduced to 13 cells.//Done by Hasan Turan
 8. Revise the R32 and GND connection.// 02.05.2026 - Done by Hasan Turan.
 9. Make the component naming system consistent.
 10. Add an external balancing system.
 11. Make the net name conventions consistent.
 12. Place R18 cap to near.
 13. Place the current read cap to near to BQ.
+14. Add two switch for BMS numbering.
 
 ### Software Changes
 
