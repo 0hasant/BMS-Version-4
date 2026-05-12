@@ -26,7 +26,7 @@
 #define BALANCE_MAX_VOLTAGE_MV   4250U
 
 // Balancing interval in seconds. The IC re-evaluates cell selection every N seconds.
-#define BALANCE_INTERVAL_S       20U
+#define BALANCE_INTERVAL_S       3U
 
 // Number of series cells in this pack.
 #define NUM_CELLS                7U
@@ -58,6 +58,7 @@ uint8_t BQ_SPI_ReadReg(uint8_t reg_addr);
 void BQ_Configure_Cell_Count(void);
 void BQ_Configure_Balancing(void);
 void BQ_Wake_SPI(void);
+void BQ_Configure_Power_Modes(void);
 
 // BMS Data Reading
 void     BQ_Read_All_Cell_Voltages(uint16_t *cell_array);

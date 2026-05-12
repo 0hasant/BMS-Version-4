@@ -51,7 +51,8 @@ volatile uint16_t         REG18_Raw_ADC = 0;
 volatile uint16_t         Stack_Voltage_mV = 0;
 volatile float            Internal_Temp_C = 0.0f;
 volatile float            Battery_Current = 0;
-         BQ_Balance_Status_t Balance_Status = {0}; // Live expression: inspect all balance fields
+BQ_Balance_Status_t Balance_Status = {0}; // Live expression: inspect all balance fields
+volatile uint16_t         BQ_Alarms = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -107,6 +108,7 @@ int main(void)
 
 
   BQ_Configure_Cell_Count();
+  BQ_Configure_Power_Modes();
   BQ_Configure_Balancing();  // Set up CB thresholds and eligible cells (VC1-VC7)
 
   /* USER CODE END 2 */
@@ -136,6 +138,12 @@ int main(void)
 	  Internal_Temp_C = BQ_Read_Internal_Temp_C();
 
 	  Battery_Current = BQ_Get_Pack_Current_Amps();
+
+
+	  // Direct command 0x62 is AlarmStatus. If it is NOT 0, a fault is blocking balancing!
+	  BQ_Alarms = BQ_SPI_ReadReg(0x62) | (BQ_SPI_ReadReg(0x63) << 8);
+	  // If (alarms & 0x0004) -> CUV is active
+	  // If (alarms & 0x0008) -> COV is active
 
 	  // 100 ms gives the BQ76952 one full ADC measurement cycle (~50 Hz)
 	  // to complete before the next read burst, ensuring fresh voltage data.
