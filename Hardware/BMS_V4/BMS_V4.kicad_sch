@@ -6,10 +6,11 @@
 	(paper "A4")
 	(title_block
 		(title "BMS v4")
-		(date "2026-05-05")
-		(rev "4.022")
+		(date "2026-05-13")
+		(rev "4.023")
 		(company "Solar Team Solaris")
 		(comment 1 "Hasan Turan")
+		(comment 2 "External Balance")
 	)
 	(lib_symbols)
 	(text_box "The CELL_16+ referse to the higest voltage that enter the pcb "
@@ -650,6 +651,176 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+		(pin "Cell0" input
+			(at 87.63 22.225 90)
+			(uuid "5cea77ef-6d05-435c-a12d-8da816015735")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell1" input
+			(at 85.09 22.225 90)
+			(uuid "e72dc620-87f9-475c-affb-b78db583e16b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell2" input
+			(at 82.55 22.225 90)
+			(uuid "b7586d24-107f-4aa3-a024-bc1b50e6b643")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell3" input
+			(at 80.01 22.225 90)
+			(uuid "b18aec6d-2aee-464d-8593-053e20d05559")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell4" input
+			(at 77.47 22.225 90)
+			(uuid "bf5ac722-03b2-4439-b2d1-69e76da36e7c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell5" input
+			(at 74.93 22.225 90)
+			(uuid "7579ab48-bfd5-402c-850e-bb0c7f1e6761")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell6" input
+			(at 72.39 22.225 90)
+			(uuid "a4c322a0-a97b-4f31-9cc9-9e96376fa2c8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell7" input
+			(at 69.85 22.225 90)
+			(uuid "6a361302-3540-4167-b0f7-a58d42307452")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell8" input
+			(at 67.31 22.225 90)
+			(uuid "fd1318ea-a3e6-4bef-a02f-2c065171c0a5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell9" input
+			(at 64.77 22.225 90)
+			(uuid "b1b8088a-69b5-4625-899c-36b1bb9af70d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell10" input
+			(at 62.23 22.225 90)
+			(uuid "b37f60c0-036a-42b6-a62e-6bf5e6a447f9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell11" input
+			(at 59.69 22.225 90)
+			(uuid "c2944181-3007-4bfa-9fca-35173460dd64")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell12" input
+			(at 57.15 22.225 90)
+			(uuid "5cd7c11d-ec87-421d-8ec8-1368428054b9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell13" input
+			(at 54.61 22.225 90)
+			(uuid "e27fb6c5-415e-4b29-9dc2-2b7ecb077905")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell14" input
+			(at 52.07 22.225 90)
+			(uuid "05ecceae-1f8c-4750-ac34-8b5295fe6b8d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell15" input
+			(at 49.53 22.225 90)
+			(uuid "f93ec39d-dd83-4cce-a41f-095fac453650")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cell16" input
+			(at 46.99 22.225 90)
+			(uuid "6c67b801-c3b6-4dd4-bcf6-0b826233af9e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances

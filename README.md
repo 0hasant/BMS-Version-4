@@ -18,6 +18,7 @@
 12. Place R18 cap to near.
 13. Place the current read cap to near to BQ.
 14. Add two switch for BMS numbering.
+15. Complete routing of PCB.
 
 ### Software Changes
 
