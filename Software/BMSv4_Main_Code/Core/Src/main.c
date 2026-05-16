@@ -46,7 +46,7 @@ SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 
-volatile uint16_t         Cell_Voltages_mV[7] = {0};
+volatile uint16_t         Cell_Voltages_mV[16] = {0};
 volatile uint16_t         REG18_Raw_ADC = 0;
 volatile uint16_t         Stack_Voltage_mV = 0;
 volatile float            Internal_Temp_C = 0.0f;

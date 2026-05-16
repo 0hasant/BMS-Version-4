@@ -29,7 +29,7 @@
 #define BALANCE_INTERVAL_S       3U
 
 // Number of series cells in this pack.
-#define NUM_CELLS                7U
+#define NUM_CELLS                16U
 
 // ---------------------------------------------------------------------------
 // Balance Status Struct (monitor-only — visible in debugger live expressions)
@@ -37,7 +37,7 @@
 // This struct is populated by BQ_Read_Balance_Status() each loop iteration.
 // ---------------------------------------------------------------------------
 typedef struct {
-    uint8_t  hw_balance_mask;      // HW readback: bit 0 = cell 1 balancing ... bit 6 = cell 7
+    uint16_t  hw_balance_mask;      // HW readback: bit 0 = cell 1 balancing ... bit 6 = cell 7
     uint8_t  cells_balancing;      // Count of cells currently being drained by the IC
     uint16_t min_voltage_mV;       // Lowest cell voltage this cycle (computed by STM32)
     uint16_t max_voltage_mV;       // Highest cell voltage this cycle
