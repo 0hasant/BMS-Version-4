@@ -13,6 +13,26 @@
 		(comment 2 "External Balance")
 	)
 	(lib_symbols)
+	(text "Connect Photo mos pin to suitble connector\n"
+		(exclude_from_sim no)
+		(at 98.806 136.398 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "82802c98-226e-4906-aab5-fdde6d4865f7")
+	)
+	(text "Connect emmiter to suitble STM32 pin\n"
+		(exclude_from_sim no)
+		(at 174.244 105.41 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "9be47c4e-63db-4125-a8d7-9bfce4948b1f")
+	)
 	(text_box "The CELL_16+ referse to the higest voltage that enter the pcb "
 		(exclude_from_sim no)
 		(at 18.542 160.02 0)
@@ -135,6 +155,16 @@
 	)
 	(wire
 		(pts
+			(xy 99.06 113.03) (xy 101.6 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "823083f6-46de-48bf-a5a1-68eea810abe6")
+	)
+	(wire
+		(pts
 			(xy 71.12 53.34) (xy 71.12 66.04)
 		)
 		(stroke
@@ -165,6 +195,16 @@
 	)
 	(wire
 		(pts
+			(xy 88.9 99.06) (xy 99.06 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d8835c8-0449-4faf-ae7b-7a5194f72a0d")
+	)
+	(wire
+		(pts
 			(xy 93.98 86.36) (xy 101.6 86.36)
 		)
 		(stroke
@@ -182,6 +222,26 @@
 			(type default)
 		)
 		(uuid "a481f751-d2e4-4855-b628-d5ab181a6734")
+	)
+	(wire
+		(pts
+			(xy 88.9 96.52) (xy 88.9 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b29c19d4-a72f-4cd8-9bd1-16c0e0464533")
+	)
+	(wire
+		(pts
+			(xy 99.06 99.06) (xy 99.06 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b7cab3c3-c630-4854-b3d7-c916a8c33e46")
 	)
 	(wire
 		(pts
@@ -282,6 +342,129 @@
 			(type default)
 		)
 		(uuid "fe095c26-4ad0-473f-8de5-9182d042c99e")
+	)
+	(sheet
+		(at 101.6 107.315)
+		(size 78.74 31.115)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "23618e57-3705-450f-9811-ebc758eeac0a")
+		(property "Sheetname" "Additional Circuits"
+			(at 101.6 106.6034 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "add_circ_sch.kicad_sch"
+			(at 101.6 139.0146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "Bal_Opto_Anode" input
+			(at 162.56 107.315 90)
+			(uuid "5bcdd3eb-b498-40e1-8c00-14482ea8823f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Bal_Opto_Cathode" input
+			(at 165.1 107.315 90)
+			(uuid "72d08a79-2601-4d59-a8a7-7664eea96d8c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Bal_Opto_Emiter" input
+			(at 157.48 107.315 90)
+			(uuid "81d6d31b-cb43-424b-accf-ba3034879a33")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "Cont_PhotoMOS_Anode" input
+			(at 101.6 113.03 180)
+			(uuid "318d504b-d88e-4bb2-823b-b54771424ee1")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "HighSide_PhotoMOS_In" input
+			(at 101.6 118.11 180)
+			(uuid "11817504-0416-422a-b555-6ceff88f5e20")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Highside_PhotoMOS_Out" output
+			(at 101.6 120.65 180)
+			(uuid "87f44842-da31-4e76-a4f8-7f19f2d2a70c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LowSide_PhotoMOS_In" input
+			(at 101.6 125.73 180)
+			(uuid "27e8e7fe-ad7b-454d-b70b-bfa42a6b30af")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "LowSide_PhotoMOS_Out" output
+			(at 101.6 128.27 180)
+			(uuid "5e6b428c-e128-4300-861e-160bf9a5a938")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "BMS_V4"
+				(path "/75669ae6-ac20-4eac-978b-1fb06607e202"
+					(page "7")
+				)
+			)
+		)
 	)
 	(sheet
 		(at 101.6 66.04)
@@ -1151,6 +1334,16 @@
 		(pin "5V_Source" output
 			(at 55.88 96.52 270)
 			(uuid "669c517b-79d5-42df-adeb-5c2e856a1b07")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "DDSG" output
+			(at 88.9 96.52 270)
+			(uuid "2107f35a-5f98-4824-9d14-11927bc8618e")
 			(effects
 				(font
 					(size 1.27 1.27)

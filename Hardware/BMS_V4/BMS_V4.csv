@@ -1,0 +1,73 @@
+Reference,Qty,Value,DNP,Exclude from BOM,Exclude from Board,Footprint,Description
+BQ_Reg1,1,TestPoint,,,,Connector_Pin:Pin_D0.7mm_L6.5mm_W1.8mm_FlatFork,test point
+C1,1,CL31B105KCHNNNE,,,,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,1 µF ±10% 100V Ceramic Capacitor X7R 1206 (3216 Metric)
+C2,1,0.1 uF,,,,0805 Capacitor:CAPC2012X94N,0.1 µF ±10% 50V Ceramic Capacitor X7R 0805 (2012 Metric)
+C3,1,0805 100pF +100VDC,,,,0805 Capacitor:CAPC2012X94N,0.1 µF ±10% 50V Ceramic Capacitor X7R 0805 (2012 Metric)
+C4,1,100 pF,,,,0805 Capacitor:CAPC2012X94N,0.1 µF ±10% 50V Ceramic Capacitor X7R 0805 (2012 Metric)
+C5,1,CL21B225KAFNNNE,,,,0805 Capacitor:CAPC2012X94N,0.1 µF ±10% 50V Ceramic Capacitor X7R 0805 (2012 Metric)
+"C6,C14",2,100n 805,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,"Unpolarized capacitor, small symbol"
+C7,1,0.47uF,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,
+C8,1,10u,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,
+"C9,C10,C11,C12",4,100n,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,
+C13,1,"22pf,0805",,,,0805 Capacitor:CAPC2012X94N,"Unpolarized capacitor, small symbol"
+C15,1,"22pF,0805",,,,0805 Capacitor:CAPC2012X94N,"Unpolarized capacitor, small symbol"
+"C16,C19",2,100nF,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Unpolarized capacitor
+C17,1,"4.7uF,0805",,,,0805 Capacitor:CAPC2012X94N,"Unpolarized capacitor, small symbol"
+C18,1,"10uF,0805",,,,0805 Capacitor:CAPC2012X94N,"Unpolarized capacitor, small symbol"
+"C20,C21",2,30pF,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Unpolarized capacitor
+C22,1,3.3nF,,,,Capacitor_THT:C_Disc_D10.5mm_W5.0mm_P5.00mm,Unpolarized capacitor
+C23,1,10pF,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Unpolarized capacitor
+C24,1,0805 1u,,,,0805 Capacitor:CAPC2012X94N,"Unpolarized capacitor, small symbol"
+C25,1,CL31B225KCHSNNE,,,,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,MLCC (3216) 1206 2.2uF 100VDC ±10% X7R
+C26,1,805 10n,,,,0805 Capacitor:CAPC2012X94N,"Unpolarized capacitor, small symbol"
+C27,1,805 1u,,,,0805 Capacitor:CAPC2012X94N,"Unpolarized capacitor, small symbol"
+"C28,C30",2,MCF05KTB500222,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,MLCC (2012) 0805 2.2nF 50VDC ±10% X7R
+C29,1,MCF05JTN500560,,,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,MLCC (2012) 0805 56pF 50VDC ±5% C0G (NP0)
+C31,1,CL31B106KBHNNNE,,,,Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder,MLCC (3216) 1206 10uF 50VDC ±10% X7R
+"C32,C33,C34,C35,C36,C37,C38,C39,C40,C41,C42,C43,C44,C45,C46,C47,C48",17,200n 805,,,,Capacitor_SMD:C_0805_2012Metric,"Unpolarized capacitor, small symbol"
+D1,1,BAT46W-7-F,,,,BAT46W-7-F:SOD3715X145N,Diode Schottky 100V 0.15A 2Pin SOD123 | Diodes Inc BAT46W-7-F
+"D2,D3,D4,D5,D6,D7,D14,D15,D16,D17,D18,D24,D25,D26,D27,D28",16,BZX584C4V7_R2_00001,,,,Diode_SMD:D_SOD-523,DIODE ZENER 200mW 4.7V ±5% SOD523 SMT
+"D8,D9,D10,D11,D12,D13,D19,D20,D21,D22,D23,D29,D30,D31,D32,D33",16,HL-PSC-2012S9AC,,,,LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,LED SMD 0805 RED 110mcd 120° WATER CLEAR
+IC1,1,TPS73233DBVR,,,,SOT95P280X145-5N,"Cap-Free, NMOS, 250mA Low Dropout Regulator with Reverse Current Protection"
+IC2,1,LM5163HQDDARQ1,,,,SOIC127P600X170-9N,"Switching Voltage Regulators 100-V Input, 0.5-A synchronous high temperature buck DC/DC converter with ultra-low IQ 8-SO PowerPAD -40 to 125"
+"J1,J3",2,380-10-103-00-002000,,,,HDRV3W51P0X254_1X3_762X254X470P,Headers & Wire Housings STANDARD PIN HEADER
+J2,1,DS1013-10SSIB1,,,,Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical,
+"J4,J5",2,380-10-103-00-002000,,,,SamacSys_Parts:HDRV3W51P0X254_1X3_762X254X470P,Headers & Wire Housings STANDARD PIN HEADER
+J6,1,Screw_Terminal_01x04,,,,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal","Generic screw terminal, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
+J7,1,K51-00A_H_,,,,SamacSys_Parts:K5100AH,"Metal Part,nominal current:92A,screw thre Specification:M5,Contact surface"
+J8,1,K51-00A_H_,,,,K5100AH,"Metal Part,nominal current:92A,screw thre Specification:M5,Contact surface"
+L1,1,SDI104R-221M,,,,Inductor_SMD:L_10.4x10.4_H4.8,INDUCTOR POWER 220UH 10.5X10.3X4.0MM SMD
+LED1,1,KP-2012SRC-PRV,,,,SamacSys_Parts:LEDC2012X110N,"Red 0805 clear chip-LED KP-2012SRC-PRV Kingbright KP-2012SRC-PRV Red LED, 640 nm, 2012 (0805), Rectangle Lens SMD Package"
+PS1,1,1S4E_1505S1U,,,,1S4E_0303S1U,1W - Single Output - Fixed Input - Isolated & Unregulated SIP PACKAGE
+"Q1,Q2,Q3,Q4,Q5,Q6,Q7,Q8,Q9,Q10,Q11,Q12,Q13,Q14,Q15,Q16",16,RQ6E080AJ,,,,SamacSys_Parts:SOTFL50P160X60-6N,"8A Id, 30V Vds, 16.5 mOhm RdsOn, N-Channel Small-Signal MOSFET, TSOT-23-6"
+R1,1,0805 100 Ohms 1%,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,"Resistor, US symbol"
+R2,1,BVS-A-R002-1.0,,,,PSR400ITQFJ2L00:RESC10052X125N,"2 mOhms ±1% 6W Chip Resistor 3920 (1052 Metric) Automotive AEC-Q200, Current Sense Metal Element"
+"R3,R4",2,0805 100R 1%,,,,0805 Resistor:RES_ERA6AHD330V,
+"R5,R100",2,10k_0805,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,"Resistor, US symbol"
+"R6,R12",2,100R,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,"Resistor, US symbol"
+"R7,R99",2,CRT05F7E4701,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RES.(2012) 0805 4.7K Ohms 1% 1/8W 100PPM
+R8,1,10k,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,Resistor
+R9,1,1k 805,,,,SamacSys_Parts:RESC2012X70N,"Resistor, US symbol"
+R10,1,4.7k,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,"Resistor, US symbol"
+R11,1,"100R,0805",,,,0805 Resistor:RES_ERA6AHD330V,"Resistor, US symbol"
+R13,1,"200R,0805",,,,LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,"Resistor, US symbol"
+R14,1,330R,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,Resistor
+R15,1,1M,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,Resistor
+"R16,R17",2,60R,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,Resistor
+R18,1,1206S4F6192T5E,,,,Resistor_SMD:R_1206_3216Metric_Pad1.30x1.75mm_HandSolder,RES.(3216) 1206 61.9K Ohms 1% 1/4W-S 100PPM
+R19,1,0805S8F4753T5E,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RES.(2012) 0805 475K Ohms 1% 1/8W-S 100PPM
+R20,1,0805S8F3163T5E,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RES.(2012) 0805 316K Ohms 1% 1/8W-S 100PPM
+R21,1,0805S8F1003T5E,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RES.(2012) 0805 100K Ohms 1% 1/8W-S 100PPM
+R22,1,0805 20 Ohms 1%,,,,SamacSys_Parts:RESC2012X70N,
+"R23,R25,R27,R29,R31,R33,R53,R55,R57,R59,R61,R77,R80,R82,R84,R86",16,CRT05F7E1001,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RES.(2012) 0805 1K Ohms 1% 1/8W-S 100PPM
+"R24,R26,R28,R30,R32,R52,R54,R56,R58,R60,R78,R79,R81,R83,R85,R87",16,CRT05F7E1000,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RES.(2012) 0805 100 Ohms 1% 1/8W 100PPM
+"R34,R35,R36,R37,R38,R39,R62,R63,R64,R65,R66,R88,R89,R90,R91,R92",16,HP122WJ0100T4E,,,,Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder,RES.(6432) 2512 10 Ohms 5% 2W 200PPM
+"R40,R41,R42,R43,R44,R45,R67,R68,R69,R70,R71,R94,R95,R96,R97,R98",16,0805S8F4700T5E,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RES.(2012) 0805 470 Ohms 1% 1/8W-S 100PPM
+"R46,R47,R48,R49,R50,R51,R72,R73,R74,R75,R76,R93",12,0805S8F0000TDE,,,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,RES.(2012) 0805 0 Ohms 1% 1/8W-S 800PPM
+"S1,S2",2,DTS-62R-V,,,,SamacSys_Parts:DTS62RV,Switch Tactile N.O. SPST Round Button PC Pins 0.05A 12VDC 2.55N Thru-Hole
+U1,1,BQ76952PFBR,,,,BQ76952PFBR:QFP50P900X900X120-48N,"3-s to 16-s high-accuracy battery monitor and protector for Li-ion, Li-polymer and LiFePO4"
+U2,1,REF3033,,,,Package_TO_SOT_SMD:SOT-23,"3.3V 50-ppm/°C Max, 50-μA, CMOS Voltage Reference, SOT-23-3"
+U3,1,STM32F103C8Tx,,,,Package_QFP:LQFP-48_7x7mm_P0.5mm,"STMicroelectronics Arm Cortex-M3 MCU, 64KB flash, 20KB RAM, 72 MHz, 2.0-3.6V, 37 GPIO, LQFP48"
+U4,1,ISO1050DUB,,,,Package_SO:SOP-8_6.62x9.15mm_P2.54mm,"Isolated CAN Transceiver, SOP-8"
+U5,1,IS281GB,,,,Package_SO:SO-4_4.4x2.3mm_P1.27mm,IC-281 OPTOISO SO4 SMD TR ISOCOM
+Y1,1,RH100-16.000-18-3050-TR,,,,RH10016000183050TR,"MHz Crystal, 16 MHz, 3.2 x 2.5 mm, +/-30 ppm tolerance, +/-50 ppm stability, 18 pF, -20~70C, SMD"
