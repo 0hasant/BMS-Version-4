@@ -2420,7 +2420,7 @@
 				)
 			)
 		)
-		(property "Footprint" "DS104002RN"
+		(property "Footprint" "Button_Switch_THT:SW_DIP_SPSTx02_Slide_9.78x7.26mm_W7.62mm_P2.54mm"
 			(at 161.29 127.94 0)
 			(effects
 				(font
@@ -2950,7 +2950,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "ddc8fed5-8430-4489-9224-446ec92f6a7d")
+			(uuid "ddc8fed5-8430-4489-9224-446ec92f6a7e")
 		)
 		(instances
 			(project ""
@@ -3783,7 +3783,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "87db1584-bcb3-4dcb-95dc-c2e21523e850")
+			(uuid "87db1584-bcb3-4dcb-95dc-c2e21523e851")
 		)
 		(instances
 			(project ""
