@@ -1107,49 +1107,40 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "SamacSys_Parts:DS1040-02RN"
+		(symbol "Switch:SW_Push_Dual"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "S"
-				(at 19.05 7.62 0)
+			(property "Reference" "SW"
+				(at 0 7.62 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
 				)
 			)
-			(property "Value" "DS1040-02RN"
-				(at 19.05 5.08 0)
+			(property "Value" "SW_Push_Dual"
+				(at 0 -6.35 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
 				)
 			)
-			(property "Footprint" "DS104002RN"
-				(at 19.05 -94.92 0)
+			(property "Footprint" ""
+				(at 0 7.62 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://static.chipdip.ru/lib/974/DOC000974669.pdf"
-				(at 19.05 -194.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Description" "Plugin DIP Switches ROHS"
+			(property "Datasheet" "~"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1158,158 +1149,248 @@
 					(hide yes)
 				)
 			)
-			(property "Height" "7.6"
-				(at 19.05 -394.92 0)
+			(property "Description" "Push button switch, generic, symbol, four pins"
+				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Name" "Connfly"
-				(at 19.05 -494.92 0)
+			(property "ki_keywords" "switch normally-open pushbutton push-button"
+				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Part_Number" "DS1040-02RN"
-				(at 19.05 -594.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Part Number" ""
-				(at 19.05 -694.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Price/Stock" ""
-				(at 19.05 -794.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Arrow Part Number" ""
-				(at 19.05 -894.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Arrow Price/Stock" ""
-				(at 19.05 -994.92 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(symbol "DS1040-02RN_1_1"
-				(rectangle
-					(start 5.08 2.54)
-					(end 17.78 -5.08)
+			(symbol "SW_Push_Dual_0_1"
+				(circle
+					(center -2.032 2.54)
+					(radius 0.508)
 					(stroke
-						(width 0.254)
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center -2.032 -2.54)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 3.81) (xy 0 5.588)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 3.048) (xy 0 3.556)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 2.032) (xy 0 2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 1.016) (xy 0 1.524)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0.508) (xy 0 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 -0.508) (xy 0 -1.016)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 2.54)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 -2.54)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 3.81) (xy -2.54 3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -1.27) (xy -2.54 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 2.54 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 2.54)
+					(name "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 2.54 180)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 -2.54 180)
+					(length 2.54)
+					(name "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "SW_Push_Dual_1_1"
+				(rectangle
+					(start -3.175 5.715)
+					(end 3.175 -4.445)
+					(stroke
+						(width 0)
 						(type default)
 					)
 					(fill
 						(type background)
-					)
-				)
-				(pin passive line
-					(at 0 0 0)
-					(length 5.08)
-					(name "B1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "B1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -2.54 0)
-					(length 5.08)
-					(name "A1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "A1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 22.86 0 180)
-					(length 5.08)
-					(name "B2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "B2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 22.86 -2.54 180)
-					(length 5.08)
-					(name "A2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "A2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
 					)
 				)
 			)
@@ -1639,13 +1720,19 @@
 		(uuid "e1a20f84-1d7b-4607-943e-8878c8a1cacf")
 	)
 	(junction
+		(at 172.72 31.75)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0aab6e08-6e88-422a-a5d3-4c3008adbdbf")
+	)
+	(junction
 		(at 97.79 104.14)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "301e7c5f-6057-4a54-85e1-a88e4a9484e3")
 	)
 	(junction
-		(at 166.37 35.56)
+		(at 166.37 36.83)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6ddb1da6-6cfb-49b0-a7c8-7edca2406e2a")
@@ -1679,12 +1766,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b34be873-14e7-4c67-ad06-eefc638d1ac6")
-	)
-	(junction
-		(at 172.72 33.02)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "df48e7d6-f90d-4c97-b444-ad49e76d3f7d")
 	)
 	(junction
 		(at 96.52 82.55)
@@ -1780,7 +1861,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 35.56) (xy 168.91 35.56)
+			(xy 166.37 36.83) (xy 168.91 36.83)
 		)
 		(stroke
 			(width 0)
@@ -1810,6 +1891,16 @@
 	)
 	(wire
 		(pts
+			(xy 158.75 31.75) (xy 172.72 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3dfc9c20-7f77-4bb7-be39-4c683f517ff1")
+	)
+	(wire
+		(pts
 			(xy 43.18 92.71) (xy 43.18 104.14)
 		)
 		(stroke
@@ -1830,7 +1921,7 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 25.4) (xy 135.89 33.02)
+			(xy 135.89 25.4) (xy 135.89 31.75)
 		)
 		(stroke
 			(width 0)
@@ -1860,7 +1951,7 @@
 	)
 	(wire
 		(pts
-			(xy 172.72 33.02) (xy 179.07 33.02)
+			(xy 172.72 31.75) (xy 179.07 31.75)
 		)
 		(stroke
 			(width 0)
@@ -1887,16 +1978,6 @@
 			(type default)
 		)
 		(uuid "57cf56fa-38a5-412c-a653-ab59e38c2bb5")
-	)
-	(wire
-		(pts
-			(xy 165.1 33.02) (xy 172.72 33.02)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5dd652f9-2fe0-4389-bacf-37392d5464b9")
 	)
 	(wire
 		(pts
@@ -1960,7 +2041,7 @@
 	)
 	(wire
 		(pts
-			(xy 179.07 33.02) (xy 179.07 36.83)
+			(xy 179.07 31.75) (xy 179.07 36.83)
 		)
 		(stroke
 			(width 0)
@@ -1970,7 +2051,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 29.21) (xy 166.37 35.56)
+			(xy 166.37 29.21) (xy 166.37 36.83)
 		)
 		(stroke
 			(width 0)
@@ -2030,7 +2111,17 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 33.02) (xy 142.24 33.02)
+			(xy 158.75 36.83) (xy 166.37 36.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "93e60d79-b79b-4812-abd0-3ff883423056")
+	)
+	(wire
+		(pts
+			(xy 135.89 31.75) (xy 148.59 31.75)
 		)
 		(stroke
 			(width 0)
@@ -2070,7 +2161,7 @@
 	)
 	(wire
 		(pts
-			(xy 129.54 25.4) (xy 129.54 35.56)
+			(xy 129.54 25.4) (xy 129.54 36.83)
 		)
 		(stroke
 			(width 0)
@@ -2120,7 +2211,7 @@
 	)
 	(wire
 		(pts
-			(xy 172.72 29.21) (xy 172.72 33.02)
+			(xy 172.72 29.21) (xy 172.72 31.75)
 		)
 		(stroke
 			(width 0)
@@ -2150,7 +2241,7 @@
 	)
 	(wire
 		(pts
-			(xy 129.54 35.56) (xy 142.24 35.56)
+			(xy 129.54 36.83) (xy 148.59 36.83)
 		)
 		(stroke
 			(width 0)
@@ -2197,26 +2288,6 @@
 			(type default)
 		)
 		(uuid "f083f4ad-ebef-411e-ae0c-93baeb766b58")
-	)
-	(wire
-		(pts
-			(xy 168.91 35.56) (xy 168.91 36.83)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f80af102-1ee1-44f1-a920-68e9f7ce85d9")
-	)
-	(wire
-		(pts
-			(xy 165.1 35.56) (xy 166.37 35.56)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fd4974b9-2f1d-4572-ad0f-0a60dac6d5f1")
 	)
 	(hierarchical_label "Bal_Opto_Anode"
 		(shape input)
@@ -2338,7 +2409,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "044caac7-66cf-4361-9a4d-bb34507f819c")
-		(property "Reference" "#PWR073"
+		(property "Reference" "#PWR082"
 			(at 179.07 54.61 0)
 			(effects
 				(font
@@ -2388,153 +2459,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "#PWR073")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SamacSys_Parts:DS1040-02RN")
-		(at 142.24 33.02 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "12764406-bdbb-45b1-ac72-4545a5d481c2")
-		(property "Reference" "S3"
-			(at 153.67 25.4 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "DS1040-02RN"
-			(at 153.67 27.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Button_Switch_THT:SW_DIP_SPSTx02_Slide_9.78x7.26mm_W7.62mm_P2.54mm"
-			(at 161.29 127.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://static.chipdip.ru/lib/974/DOC000974669.pdf"
-			(at 161.29 227.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Description" "Plugin DIP Switches ROHS"
-			(at 142.24 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Height" "7.6"
-			(at 161.29 427.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" "Connfly"
-			(at 161.29 527.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "DS1040-02RN"
-			(at 161.29 627.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" ""
-			(at 161.29 727.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" ""
-			(at 161.29 827.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Arrow Part Number" ""
-			(at 161.29 927.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Arrow Price/Stock" ""
-			(at 161.29 1027.94 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(pin "A2"
-			(uuid "d2699bce-87e8-4db6-81a2-92981bce0eba")
-		)
-		(pin "A1"
-			(uuid "de060576-7e43-4bb5-81ad-00be3c2d53f7")
-		)
-		(pin "B2"
-			(uuid "c125ca9a-d245-486c-b4f3-99375c558afd")
-		)
-		(pin "B1"
-			(uuid "fc5c9fe7-e853-431d-b82e-1a6a78c426b5")
-		)
-		(instances
-			(project ""
-				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "S3")
+					(reference "#PWR082")
 					(unit 1)
 				)
 			)
@@ -2549,7 +2474,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "32f78696-32b6-474f-9301-5fc827665655")
-		(property "Reference" "R100"
+		(property "Reference" "R107"
 			(at 74.93 29.21 90)
 			(effects
 				(font
@@ -2601,7 +2526,7 @@
 		(instances
 			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "R100")
+					(reference "R107")
 					(unit 1)
 				)
 			)
@@ -2617,7 +2542,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "544cc067-17b0-456f-ac9a-0d9ddea4b864")
-		(property "Reference" "R99"
+		(property "Reference" "R104"
 			(at 52.07 30.48 90)
 			(effects
 				(font
@@ -2669,7 +2594,7 @@
 		(instances
 			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "R99")
+					(reference "R104")
 					(unit 1)
 				)
 			)
@@ -2685,7 +2610,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "56891fb2-690e-4dab-a6a4-00028b6722ad")
-		(property "Reference" "D34"
+		(property "Reference" "D35"
 			(at 86.36 91.4399 90)
 			(effects
 				(font
@@ -2757,7 +2682,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "D34")
+					(reference "D35")
 					(unit 1)
 				)
 			)
@@ -2773,7 +2698,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "72c42dfb-e642-434d-96a0-14acc88c9ca2")
-		(property "Reference" "#PWR069"
+		(property "Reference" "#PWR075"
 			(at 55.88 92.71 0)
 			(effects
 				(font
@@ -2823,7 +2748,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "#PWR069")
+					(reference "#PWR075")
 					(unit 1)
 				)
 			)
@@ -2839,7 +2764,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7583a4b1-5feb-488f-ae45-d198e9360b48")
-		(property "Reference" "#PWR068"
+		(property "Reference" "#PWR076"
 			(at 57.15 116.84 0)
 			(effects
 				(font
@@ -2889,7 +2814,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "#PWR068")
+					(reference "#PWR076")
 					(unit 1)
 				)
 			)
@@ -2905,7 +2830,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8eb006cc-6e53-476d-85e1-93087066928d")
-		(property "Reference" "#PWR072"
+		(property "Reference" "#PWR081"
 			(at 168.91 54.61 0)
 			(effects
 				(font
@@ -2955,7 +2880,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "#PWR072")
+					(reference "#PWR081")
 					(unit 1)
 				)
 			)
@@ -2971,7 +2896,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "995105f8-edb1-45fc-91ce-929fcf8ae5a9")
-		(property "Reference" "#PWR070"
+		(property "Reference" "#PWR079"
 			(at 129.54 29.21 0)
 			(effects
 				(font
@@ -3021,7 +2946,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "#PWR070")
+					(reference "#PWR079")
 					(unit 1)
 				)
 			)
@@ -3114,7 +3039,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a759d837-d6de-4e14-9925-3c3394d74d9e")
-		(property "Reference" "R102"
+		(property "Reference" "R106"
 			(at 57.15 97.79 90)
 			(effects
 				(font
@@ -3166,7 +3091,7 @@
 		(instances
 			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "R102")
+					(reference "R106")
 					(unit 1)
 				)
 			)
@@ -3182,7 +3107,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a85549b9-58e6-4c1b-a473-f2ca44ec82e4")
-		(property "Reference" "J9"
+		(property "Reference" "J12"
 			(at 137.16 91.4399 0)
 			(effects
 				(font
@@ -3242,7 +3167,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "J9")
+					(reference "J12")
 					(unit 1)
 				)
 			)
@@ -3257,7 +3182,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a9076454-240a-466f-978c-1c3f297fbc94")
-		(property "Reference" "R104"
+		(property "Reference" "R109"
 			(at 176.784 40.64 90)
 			(effects
 				(font
@@ -3309,7 +3234,7 @@
 		(instances
 			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "R104")
+					(reference "R109")
 					(unit 1)
 				)
 			)
@@ -3325,7 +3250,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ada21136-4233-4c27-b3b2-d0ee89ed6145")
-		(property "Reference" "R101"
+		(property "Reference" "R105"
 			(at 55.88 73.66 90)
 			(effects
 				(font
@@ -3377,7 +3302,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "R101")
+					(reference "R105")
 					(unit 1)
 				)
 			)
@@ -3393,7 +3318,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c0bff81d-8d16-434e-bc82-ce2cfbca45f3")
-		(property "Reference" "#PWR066"
+		(property "Reference" "#PWR077"
 			(at 77.47 27.94 0)
 			(effects
 				(font
@@ -3443,7 +3368,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "#PWR066")
+					(reference "#PWR077")
 					(unit 1)
 				)
 			)
@@ -3459,7 +3384,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c5597109-1f40-4b2b-ada4-5642df90d39f")
-		(property "Reference" "C49"
+		(property "Reference" "C52"
 			(at 71.12 72.39 0)
 			(effects
 				(font
@@ -3589,7 +3514,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "C49")
+					(reference "C52")
 					(unit 1)
 				)
 			)
@@ -3604,7 +3529,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "c7cda7f9-9e13-4d03-af63-f21aea83a043")
-		(property "Reference" "R103"
+		(property "Reference" "R108"
 			(at 166.37 40.64 90)
 			(effects
 				(font
@@ -3656,7 +3581,7 @@
 		(instances
 			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "R103")
+					(reference "R108")
 					(unit 1)
 				)
 			)
@@ -3672,7 +3597,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cea7dc22-c2bd-4a57-90fe-eca17969dba1")
-		(property "Reference" "#PWR067"
+		(property "Reference" "#PWR078"
 			(at 77.47 50.8 0)
 			(effects
 				(font
@@ -3722,7 +3647,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "#PWR067")
+					(reference "#PWR078")
 					(unit 1)
 				)
 			)
@@ -3738,7 +3663,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "da5161cc-2bee-4c42-a519-7b71a0df266c")
-		(property "Reference" "#PWR071"
+		(property "Reference" "#PWR080"
 			(at 135.89 29.21 0)
 			(effects
 				(font
@@ -3788,7 +3713,7 @@
 		(instances
 			(project ""
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "#PWR071")
+					(reference "#PWR080")
 					(unit 1)
 				)
 			)
@@ -3804,7 +3729,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e06e1aab-01ef-4fea-9a73-63c69812ad85")
-		(property "Reference" "C50"
+		(property "Reference" "C53"
 			(at 71.12 96.52 0)
 			(effects
 				(font
@@ -3934,7 +3859,81 @@
 		(instances
 			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
-					(reference "C50")
+					(reference "C53")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Push_Dual")
+		(at 153.67 34.29 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f03f782a-8e00-4413-ba2c-c742ea510153")
+		(property "Reference" "SW1"
+			(at 153.67 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_Push_Dual"
+			(at 153.67 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_DIP_SPSTx02_Slide_9.78x7.26mm_W7.62mm_P2.54mm"
+			(at 153.67 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 153.67 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, symbol, four pins"
+			(at 153.67 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "4"
+			(uuid "f312480f-ce6c-47e1-a817-f07b36579403")
+		)
+		(pin "1"
+			(uuid "c1f0284b-72ab-405c-b36c-a075cec8e3bf")
+		)
+		(pin "3"
+			(uuid "3dbad2e0-38a0-4e91-990e-96441c09689b")
+		)
+		(pin "2"
+			(uuid "548b73d3-f053-45f7-8bbc-0b7691cebab5")
+		)
+		(instances
+			(project ""
+				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/23618e57-3705-450f-9811-ebc758eeac0a"
+					(reference "SW1")
 					(unit 1)
 				)
 			)

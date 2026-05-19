@@ -1011,6 +1011,10 @@
     [
       "23618e57-3705-450f-9811-ebc758eeac0a",
       "Additional Circuits"
+    ],
+    [
+      "90b75a44-1d8d-4368-b0c1-0deaeed82650",
+      "TempratureReading"
     ]
   ],
   "text_variables": {}
