@@ -240,7 +240,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "4.023"
     },
     "layer_pairs": [
       {
@@ -515,6 +515,7 @@
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.25,
+        "tuning_profile": "",
         "via_diameter": 0.8,
         "via_drill": 0.4,
         "wire_width": 6
@@ -530,6 +531,7 @@
         "priority": 0,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 5.0,
+        "tuning_profile": "",
         "via_diameter": 1.0,
         "via_drill": 0.4
       },
@@ -544,12 +546,13 @@
         "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.5,
+        "tuning_profile": "",
         "via_diameter": 0.8,
         "via_drill": 0.4
       }
     ],
     "meta": {
-      "version": 4
+      "version": 5
     },
     "net_colors": null,
     "netclass_assignments": null,
@@ -1021,16 +1024,16 @@
       {
         "filename": "BMS_V4.kicad_sch",
         "name": "BMS_V4",
-        "uuid": "00000000-0000-0000-0000-000000000000"
+        "uuid": "75669ae6-ac20-4eac-978b-1fb06607e202"
       }
     ],
-    "used_designators": "J1-12,IC1-2,R1-100,#FLG1-6,L1,D1-35,#PWR1-90,BQ_Reg1,C1-55,LED1,PS1,Q1-16,S1-2,SW1,TH1-3,TP1-9,U1-6,Y1",
+    "used_designators": "",
     "variants": []
   },
   "sheets": [
     [
       "75669ae6-ac20-4eac-978b-1fb06607e202",
-      "Root"
+      "BMS_V4"
     ],
     [
       "ed1bd4eb-d501-46df-b6cb-8f4698997956",
