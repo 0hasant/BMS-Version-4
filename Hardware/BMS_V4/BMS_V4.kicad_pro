@@ -60,7 +60,20 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        [
+          "silk_edge_clearance|140369800|65138484|f80c7545-fe5f-4eb9-a607-ef889c2de6b6|ff0d7779-0d11-4825-b91f-beb4fef98f68",
+          ""
+        ],
+        [
+          "silk_edge_clearance|140369800|65228284|f80c7545-fe5f-4eb9-a607-ef889c2de6b6|8f5b9626-afaa-42bf-8a95-a2b69503c75b",
+          ""
+        ],
+        [
+          "silk_overlap|77586639|115340197|9b26c34e-0a9e-493e-be1b-a7353de0fcb0|e7c1e2cf-900e-4d3e-8dd3-c6f4a9b3e9b3",
+          ""
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -91,8 +104,8 @@
         "item_on_disabled_layer": "error",
         "items_not_allowed": "error",
         "length_out_of_range": "error",
-        "lib_footprint_issues": "warning",
-        "lib_footprint_mismatch": "warning",
+        "lib_footprint_issues": "ignore",
+        "lib_footprint_mismatch": "ignore",
         "malformed_courtyard": "error",
         "microvia_drill_out_of_range": "error",
         "mirrored_text_on_front_layer": "warning",
@@ -508,7 +521,7 @@
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
         "line_style": 0,
-        "microvia_diameter": 0.3,
+        "microvia_diameter": 0.4,
         "microvia_drill": 0.1,
         "name": "Default",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
@@ -528,7 +541,7 @@
         "microvia_drill": 0.1,
         "name": "Current Flow",
         "pcb_color": "rgb(29, 53, 162)",
-        "priority": 0,
+        "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 5.0,
         "tuning_profile": "",
@@ -543,9 +556,21 @@
         "microvia_drill": 0.1,
         "name": "Power Line",
         "pcb_color": "rgb(45, 255, 71)",
-        "priority": 1,
+        "priority": 2,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
         "track_width": 0.5,
+        "tuning_profile": "",
+        "via_diameter": 0.8,
+        "via_drill": 0.4
+      },
+      {
+        "clearance": 0.2,
+        "microvia_diameter": 0.4,
+        "name": "Voltage Read",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.4,
         "tuning_profile": "",
         "via_diameter": 0.8,
         "via_drill": 0.4
