@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20250114)
+	(version 20260306)
 	(generator "eeschema")
-	(generator_version "9.0")
+	(generator_version "10.0")
 	(uuid "9f400bff-00f9-4e27-80eb-1048c0c9eb63")
 	(paper "A4")
 	(title_block
@@ -2165,11 +2165,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "06655b24-9d37-4a93-998b-f636084e4367")
 		(property "Sheetname" "Cell1_In"
 			(at 173.99 147.2434 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2179,12 +2181,14 @@
 		)
 		(property "Sheetfile" "Cell1_In_sch.kicad_sch"
 			(at 173.99 159.3346 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "1N" output
@@ -2248,11 +2252,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "092efcab-12f4-4c47-a8e1-f89810281893")
 		(property "Sheetname" "GeneralCell_In3"
 			(at 173.99 86.9184 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2262,12 +2268,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 173.99 99.0096 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -2331,11 +2339,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "273cc5a6-3d57-4411-ac30-23cdd28e9f75")
 		(property "Sheetname" "GeneralCell_In6"
 			(at 173.99 40.5634 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2345,12 +2355,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 173.99 52.6546 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -2414,11 +2426,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "27e1a04d-807a-4985-bf27-8eaff45dffa3")
 		(property "Sheetname" "GeneralCell_In"
 			(at 173.99 132.0034 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2428,12 +2442,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 173.99 144.0946 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -2497,11 +2513,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "30cbfbf9-a723-4b87-adb2-2f9eb33adc0c")
 		(property "Sheetname" "GeneralCell_In7"
 			(at 173.99 24.6884 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2511,12 +2529,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 173.99 36.7796 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -2580,11 +2600,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "40e8eb16-1c04-4ba6-97e9-42c01248b993")
 		(property "Sheetname" "GeneralCell_In11"
 			(at 97.79 95.8084 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2594,12 +2616,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 97.79 107.8996 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -2663,11 +2687,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "521ff398-47bb-4da5-85a3-e1fab3ca2219")
 		(property "Sheetname" "GeneralCell_In2"
 			(at 173.99 100.8884 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2677,12 +2703,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 173.99 112.9796 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -2746,11 +2774,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "6dc076a9-090d-4435-876f-4f4d9e17a4cd")
 		(property "Sheetname" "GeneralCell_In12"
 			(at 97.79 79.9334 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2760,12 +2790,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 97.79 92.0246 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -2829,11 +2861,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "76b8a98d-3772-41d2-b4b8-333a4491c25a")
 		(property "Sheetname" "GeneralCell_In4"
 			(at 173.99 71.6784 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2843,12 +2877,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 173.99 83.7696 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -2912,11 +2948,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "776fea2b-4c6d-4bea-929e-6ed25ce2eeb4")
 		(property "Sheetname" "Cell16_In"
 			(at 97.79 48.1834 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2926,12 +2964,14 @@
 		)
 		(property "Sheetfile" "Cell16_In_sch.kicad_sch"
 			(at 97.79 60.2746 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -2995,11 +3035,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "88b79d8b-28c3-458e-992d-53ad25f9ce60")
 		(property "Sheetname" "GeneralCell_In9"
 			(at 97.79 128.1934 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3009,12 +3051,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 97.79 140.2846 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -3078,11 +3122,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "a0853bd6-6533-45ce-8242-a77e4a976906")
 		(property "Sheetname" "GeneralCell_In8"
 			(at 97.79 145.3384 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3092,12 +3138,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 97.79 157.4296 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -3161,11 +3209,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "a62422a9-18da-45ab-9c68-23a92b680eef")
 		(property "Sheetname" "GeneralCell_In1"
 			(at 173.99 116.7634 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3175,12 +3225,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 173.99 128.8546 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -3244,11 +3296,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "dc0216f9-0959-49ab-9945-f77fe1a0f952")
 		(property "Sheetname" "GeneralCell_In13"
 			(at 97.79 64.6934 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3258,12 +3312,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 97.79 76.7846 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -3327,11 +3383,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "e358e545-459e-4cd7-93d4-eacfe907b1d2")
 		(property "Sheetname" "GeneralCell_In5"
 			(at 173.99 56.4384 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3341,12 +3399,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 173.99 68.5296 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
@@ -3410,11 +3470,13 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0.0000)
+			(color 0 0 0 0)
 		)
 		(uuid "f8a8a7e4-9541-4434-a06c-5ce02a81158d")
 		(property "Sheetname" "GeneralCell_In10"
 			(at 97.79 112.3184 0)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3424,12 +3486,14 @@
 		)
 		(property "Sheetfile" "GeneralCell_In_sch.kicad_sch"
 			(at 97.79 124.4096 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
-				(hide yes)
 			)
 		)
 		(pin "BMS+" output
