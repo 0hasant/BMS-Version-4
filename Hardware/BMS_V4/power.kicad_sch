@@ -8,7 +8,7 @@
 		(date "2026-05-13")
 	)
 	(lib_symbols
-		(symbol "Connector:TestPoint"
+		(symbol "Connector:TestPoint_Small"
 			(pin_numbers
 				(hide yes)
 			)
@@ -22,7 +22,7 @@
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "TP"
-				(at 0 6.858 0)
+				(at 0 3.81 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -31,8 +31,8 @@
 					)
 				)
 			)
-			(property "Value" "TestPoint"
-				(at 0 5.08 0)
+			(property "Value" "TestPoint_Small"
+				(at 0 2.032 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -96,10 +96,10 @@
 					)
 				)
 			)
-			(symbol "TestPoint_0_1"
+			(symbol "TestPoint_Small_0_1"
 				(circle
-					(center 0 3.302)
-					(radius 0.762)
+					(center 0 0)
+					(radius 0.508)
 					(stroke
 						(width 0)
 						(type default)
@@ -109,10 +109,10 @@
 					)
 				)
 			)
-			(symbol "TestPoint_1_1"
+			(symbol "TestPoint_Small_1_1"
 				(pin passive line
 					(at 0 0 90)
-					(length 2.54)
+					(length 0)
 					(name "1"
 						(effects
 							(font
@@ -2385,6 +2385,12 @@
 		(uuid "60eede99-8754-4bda-8152-8e020d44dae9")
 	)
 	(junction
+		(at 217.17 25.4)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6388be2f-a4ef-4645-bca0-060898be2177")
+	)
+	(junction
 		(at 186.69 123.19)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2598,7 +2604,7 @@
 	)
 	(wire
 		(pts
-			(xy 212.09 25.4) (xy 218.44 25.4)
+			(xy 212.09 25.4) (xy 217.17 25.4)
 		)
 		(stroke
 			(width 0)
@@ -2938,6 +2944,16 @@
 	)
 	(wire
 		(pts
+			(xy 87.63 121.92) (xy 93.98 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "99ee2eda-3714-45bd-9ea3-082ad00a0650")
+	)
+	(wire
+		(pts
 			(xy 186.69 104.14) (xy 186.69 107.95)
 		)
 		(stroke
@@ -3018,7 +3034,7 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 120.65) (xy 93.98 116.84)
+			(xy 93.98 121.92) (xy 93.98 116.84)
 		)
 		(stroke
 			(width 0)
@@ -3118,6 +3134,16 @@
 	)
 	(wire
 		(pts
+			(xy 217.17 25.4) (xy 218.44 25.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eafe2b1b-7f94-4507-b31f-e61194f51ad0")
+	)
+	(wire
+		(pts
 			(xy 62.23 111.76) (xy 71.12 111.76)
 		)
 		(stroke
@@ -3155,6 +3181,16 @@
 			(type default)
 		)
 		(uuid "f4276ffd-ee06-43d2-8140-a508773a951f")
+	)
+	(wire
+		(pts
+			(xy 217.17 25.4) (xy 217.17 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f53d1c88-adf9-4f9b-8fbd-bb811a7f68db")
 	)
 	(wire
 		(pts
@@ -4161,83 +4197,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint")
-		(at 93.98 120.65 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4b990dd4-2a5a-4233-990f-2a55d2d5a171")
-		(property "Reference" "TP9"
-			(at 90.678 115.57 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+3.3V"
-			(at 90.678 118.11 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_THTPad_D1.0mm_Drill0.5mm"
-			(at 93.98 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 115.57 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "test point"
-			(at 93.98 120.65 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "21600c41-2ca2-4281-905a-b7cc674f0d9b")
-		)
-		(instances
-			(project "BMS_V4"
-				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/58ad889b-5819-4ba8-84ce-e0a42c717c47"
-					(reference "TP9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 85.09 36.83 270)
 		(unit 1)
@@ -5161,6 +5120,83 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint_Small")
+		(at 87.63 121.92 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9594db19-0c20-4672-b4f1-9be8363e335d")
+		(property "Reference" "TP12"
+			(at 87.63 116.84 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "3.3V_Test"
+			(at 87.63 119.38 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_THTPad_1.5x1.5mm_Drill0.7mm"
+			(at 87.63 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 87.63 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 87.63 121.92 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "25ce90f5-62c9-49c8-ba60-407ce560092d")
+		)
+		(instances
+			(project "BMS_V4"
+				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/58ad889b-5819-4ba8-84ce-e0a42c717c47"
+					(reference "TP12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
 		(at 58.42 48.26 0)
 		(unit 1)
@@ -5497,6 +5533,85 @@
 			(project "BMS_V4"
 				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/58ad889b-5819-4ba8-84ce-e0a42c717c47"
 					(reference "J9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint_Small")
+		(at 217.17 31.75 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "aee10fef-3324-4348-ad92-802199a434a2")
+		(property "Reference" "TP11"
+			(at 218.44 30.4799 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "5V_Test"
+			(at 218.44 33.0199 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_THTPad_1.5x1.5mm_Drill0.7mm"
+			(at 217.17 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 217.17 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 217.17 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c844fcd5-940b-4330-8dfb-872e5bcc3720")
+		)
+		(instances
+			(project "BMS_V4"
+				(path "/75669ae6-ac20-4eac-978b-1fb06607e202/58ad889b-5819-4ba8-84ce-e0a42c717c47"
+					(reference "TP11")
 					(unit 1)
 				)
 			)
