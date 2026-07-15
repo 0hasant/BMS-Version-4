@@ -52184,12 +52184,12 @@
 	(footprint "Solaris_Logo:Logo_Kicad"
 		(layer "F.Cu")
 		(uuid "f947223f-168c-4505-9d0c-66232a134d26")
-		(at 105.147028 96.453275)
+		(at 105.147028 95)
 		(property "Reference" "G***"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "2438b563-98ef-42bc-9a57-5d9c9dba24ff")
+			(uuid "560d61ef-d783-4e6b-8817-aa579ef1018f")
 			(effects
 				(font
 					(size 1.5 1.5)
@@ -52201,7 +52201,7 @@
 			(at 0.75 0 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "70092bb5-8ed8-4eaf-b3f6-3270494bf833")
+			(uuid "aa973fb6-57d8-4717-b114-4ac4b4107c74")
 			(effects
 				(font
 					(size 1.5 1.5)
@@ -52213,7 +52213,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f6a4f2f9-d0f3-4e79-b1d7-7e5ab847fd06")
+			(uuid "1d8136d4-e432-40c6-a114-74c91b683929")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -52224,7 +52224,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "597c48ba-31f7-44a5-8db5-c7aa8b6eaf87")
+			(uuid "33d89fd3-f594-4f13-b65e-4ff94be70b1d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -63016,93 +63016,76 @@
 		(net "/BMS_IC/SPI_MOSI")
 		(uuid "d95676d7-e031-4f29-99e3-bb2046076d5c")
 	)
-	(gr_poly
-		(pts
-			(xy 68.515 134.64) (xy 69.005 135) (xy 68.515 135.34)
-		)
+	(gr_line
+		(start 40.5 41.5)
+		(end 40.5 125.294066)
 		(stroke
 			(width 0.15)
-			(type solid)
+			(type dash)
 		)
-		(fill yes)
 		(layer "F.SilkS")
-		(uuid "39007eb4-a2d7-48c1-b12b-035eaae64858")
+		(uuid "b72e7bf4-d906-495f-9600-7d739bb6dd28")
 	)
-	(gr_poly
-		(pts
-			(xy 83.89 19.08) (xy 84.38 19.44) (xy 83.89 19.78)
-		)
+	(gr_line
+		(start 67 41.5)
+		(end 40.5 41.5)
 		(stroke
 			(width 0.15)
-			(type solid)
+			(type dash)
 		)
-		(fill yes)
 		(layer "F.SilkS")
-		(uuid "c0db5127-2e98-4605-8de7-4489d3c560b0")
+		(uuid "d5e6f168-f362-4fe2-88e7-7190a8420a1b")
 	)
-	(gr_poly
-		(pts
-			(xy 121.52 89.12) (xy 122.01 89.48) (xy 121.52 89.82)
-		)
+	(gr_line
+		(start 67 103.615037)
+		(end 67 41.5)
 		(stroke
 			(width 0.15)
-			(type solid)
+			(type dash)
 		)
-		(fill yes)
 		(layer "F.SilkS")
-		(uuid "02a00ae8-3c64-4b21-8987-ee87446ebd96")
+		(uuid "86b59ce9-c2da-485f-8269-885fc4ebfea0")
 	)
 	(gr_rect
-		(start 40.4 41.6)
-		(end 66.9 125.3)
-		(stroke
-			(width 0.15)
-			(type dot)
-		)
-		(fill no)
-		(layer "F.SilkS")
-		(uuid "9dde5efa-2822-4d46-95ac-be4b36a9b961")
-	)
-	(gr_rect
-		(start 67.176061 103.615037)
+		(start 67 103.615037)
 		(end 140.157518 125.294066)
 		(stroke
 			(width 0.15)
-			(type dot)
+			(type dash)
 		)
 		(fill reverse_hatch)
 		(layer "F.SilkS")
 		(uuid "b43331a3-05c1-4fdb-bb26-5076e8d50928")
 	)
 	(gr_line
-		(start 69.005 135)
-		(end 67.075 135)
+		(start 67 125.294066)
+		(end 40.5 125.294066)
 		(stroke
 			(width 0.15)
-			(type default)
+			(type dash)
 		)
 		(layer "F.SilkS")
-		(uuid "0e5e6310-9f9a-452f-b73f-d492d6e831e0")
+		(uuid "be35083a-5a80-4969-9eac-052adc5b57e4")
 	)
 	(gr_line
-		(start 84.38 19.44)
-		(end 82.45 19.44)
+		(start 105.5 25)
+		(end 105.5 50.5)
 		(stroke
 			(width 0.15)
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "3e441723-3aea-4c37-907c-1fdd7153690c")
+		(uuid "ddfa41d4-c89b-4940-9dda-1091af47ed4a")
 	)
 	(gr_line
-		(start 122.01 89.48)
-		(end 120.08 89.48)
+		(start 105.5 50.5)
+		(end 130 50.5)
 		(stroke
 			(width 0.15)
 			(type default)
 		)
 		(layer "F.SilkS")
-		(uuid "9ed14cd9-072b-4ed9-88d8-64c155d558d6")
+		(uuid "49718070-f1b8-4aa4-b3f4-60818e80bab2")
 	)
 	(gr_rect
 		(start 67.399999 115.483629)
@@ -63159,6 +63142,19 @@
 		(layer "Edge.Cuts")
 		(uuid "4681df87-3985-45c8-bb23-0faf7718b1de")
 	)
+	(gr_text "ISOLATED"
+		(at 106 50 0)
+		(layer "F.SilkS")
+		(uuid "3302550d-5abc-4150-8691-8b0755fc99ef")
+		(effects
+			(font
+				(size 0.4 0.4)
+				(thickness 0.1)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
 	(gr_text "ISO_SHILD"
 		(at 130 31 90)
 		(layer "F.SilkS")
@@ -63211,6 +63207,214 @@
 			(justify left bottom)
 		)
 	)
+	(gr_text "BATTERY IN VOLTAGE"
+		(at 41 37.5 0)
+		(layer "F.SilkS")
+		(uuid "7b19d17c-1008-4c63-ba4c-5838997f784f")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "BQ_MAİN"
+		(at 78.5 72 0)
+		(layer "F.SilkS")
+		(uuid "5f9984c1-49a4-4ace-b963-e5edf63b89a6")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "ISO_GND"
+		(at 108.5 29 0)
+		(layer "F.SilkS")
+		(uuid "4d5d58e2-d0ba-464b-8ce6-c3a3aa505c18")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "Idle"
+		(at 110.5 45.5 0)
+		(layer "F.SilkS")
+		(uuid "4d2304f9-26f0-4383-8704-c47fc8d57d5f")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "ISO_5V"
+		(at 113 29 0)
+		(layer "F.SilkS")
+		(uuid "bd72933f-f9df-4aca-8331-1e680f9a801c")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "Ter_Res"
+		(at 115.5 49.5 0)
+		(layer "F.SilkS")
+		(uuid "8a9bc28d-4af6-419a-9501-ef0d99d5b2d6")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "Idle"
+		(at 120 45.5 0)
+		(layer "F.SilkS")
+		(uuid "7a06cccf-1449-4833-bf71-3279c5339570")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "Ter_Res"
+		(at 125 49.5 0)
+		(layer "F.SilkS")
+		(uuid "700ab946-c84f-4abd-b5d2-a78778f7c19a")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "TEST_LED"
+		(at 111 75 90)
+		(layer "F.SilkS")
+		(uuid "48caae8e-108c-4a11-8c22-56842f21fca2")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "EXT_BALANCE"
+		(at 103.5 28.5 270)
+		(layer "F.SilkS")
+		(uuid "edc47c38-783d-4285-82bd-4392cabfc86b")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "3.3V"
+		(at 99.5 38.5 0)
+		(layer "F.SilkS")
+		(uuid "430d0145-a6d9-40ef-84ce-2de379e22738")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "3.3V"
+		(at 105.5 65 0)
+		(layer "F.SilkS")
+		(uuid "56a22f7a-b983-4bce-a5f7-b59743c10152")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "BQ_RESET"
+		(at 78 68 90)
+		(layer "F.SilkS")
+		(uuid "1a8a1b3e-f343-4b6c-bbfa-d662ed560921")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "RELAY"
+		(at 122 96 90)
+		(layer "F.SilkS")
+		(uuid "8cb2be0e-accc-4183-820b-576782b7c857")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "STM_RESET"
+		(at 132.5 80.5 90)
+		(layer "F.SilkS")
+		(uuid "cd67b0e1-9df1-4315-a921-b682f1bf0fff")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "TP: Test Point"
+		(at 41.5 29 270)
+		(layer "F.SilkS")
+		(uuid "392a66b8-1968-4680-a6e1-906f9d2b00b6")
+		(effects
+			(font
+				(size 0.6 0.6)
+				(thickness 0.12)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
 	(gr_text "!C_IN"
 		(at 101.6 109.8 0)
 		(layer "F.SilkS")
@@ -63237,30 +63441,6 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "5V"
-		(at 63.4 15.6 0)
-		(layer "F.SilkS")
-		(uuid "6a2e2d5d-6b14-405a-9141-890c80f4dfeb")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-			(justify left bottom)
-		)
-	)
-	(gr_text "BATTERY IN VOLTAGE"
-		(at 66.1 20 0)
-		(layer "F.SilkS")
-		(uuid "7b19d17c-1008-4c63-ba4c-5838997f784f")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-			(justify left bottom)
-		)
-	)
 	(gr_text "High Current"
 		(at 68.4 110.9 0)
 		(layer "F.SilkS")
@@ -63274,33 +63454,9 @@
 		)
 	)
 	(gr_text "BMS VERSION 4\nSOLAR TEAM SOLARIS"
-		(at 99.4 103.2 0)
+		(at 99.4 102 0)
 		(layer "F.SilkS")
 		(uuid "666271e8-938e-4fe5-9758-1be60f1b25e2")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-			(justify left bottom)
-		)
-	)
-	(gr_text "System Test 1\n"
-		(at 100.02 82.57 0)
-		(layer "F.SilkS")
-		(uuid "186df039-eafe-4149-96ff-20e17dd40b9c")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-			(justify left bottom)
-		)
-	)
-	(gr_text "STM_RESET"
-		(at 110.97 90 0)
-		(layer "F.SilkS")
-		(uuid "909a73d2-7f4c-48c0-ae3f-537b4e42d15f")
 		(effects
 			(font
 				(size 1 1)
@@ -63330,19 +63486,6 @@
 			(font
 				(size 1 1)
 				(thickness 0.2)
-				(bold yes)
-			)
-			(justify left bottom)
-		)
-	)
-	(gr_text "GND"
-		(at 61.76 135.86 0)
-		(layer "F.SilkS")
-		(uuid "56ae93a2-00e0-4751-a289-8e9a90cddb74")
-		(effects
-			(font
-				(size 1.5 1.5)
-				(thickness 0.3)
 				(bold yes)
 			)
 			(justify left bottom)
