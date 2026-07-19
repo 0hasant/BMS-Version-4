@@ -67,48 +67,44 @@ uint8_t BQ_SPI_ReadReg(uint8_t reg_addr) {
     return rx_buf[1];
 }
 
-// 4. Configure 7S Vcell Mode
+//Function is 16 Cell
 void BQ_Configure_Cell_Count(void) {
+    // Step 1: Enter Config Update Mode (subcommand 0x0090)
     BQ_SPI_WriteReg(0x3E, 0x90);
     BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(2);
+    HAL_Delay(5);
 
+    // Step 2: Target subcommand 0x9304 (Settings:Configuration:VCell Mode)
     BQ_SPI_WriteReg(0x3E, 0x04);
     BQ_SPI_WriteReg(0x3F, 0x93);
 
-    BQ_SPI_WriteReg(0x40, 0x1F);
-    BQ_SPI_WriteReg(0x41, 0xC0);
+    // Step 3: Write the 2-byte payload to Transfer Buffer
+    // 0xFFFF enables VC1 through VC16
+    BQ_SPI_WriteReg(0x40, 0xFF);  // Byte 1: VC8..VC1
+    BQ_SPI_WriteReg(0x41, 0xFF);  // Byte 2: VC16..VC9
 
-    BQ_SPI_WriteReg(0x60, 0x89);
-    BQ_SPI_WriteReg(0x61, 0x06);
+    // Step 4: Write Checksum and Length
+    // Checksum = ~( (0x04 + 0x93 + 0xFF + 0xFF) & 0xFF ) = ~(0x95) = 0x6A
+    BQ_SPI_WriteReg(0x60, 0x6A);  // Updated checksum byte
+    BQ_SPI_WriteReg(0x61, 0x06);  // Length remains 6
 
-    HAL_Delay(2);
+    HAL_Delay(5);
 
+    // Step 5: Exit Config Update Mode (subcommand 0x0092)
     BQ_SPI_WriteReg(0x3E, 0x92);
     BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(2);
+    HAL_Delay(5);
 }
 
-// 5. Read all 7 active cells and save to the provided array
 void BQ_Read_All_Cell_Voltages(uint16_t *cell_array) {
-    // Cells 1-5 (Addresses 0x14 through 0x1D)
-    for (int i = 0; i < 5; i++) {
-        uint8_t low_addr = 0x14 + (i * 2);
+    // Loop extended to 16 iterations to capture VC1 through VC16
+    for (int i = 0; i < 16; i++) {
+        uint8_t low_addr  = 0x14 + (i * 2);
         uint8_t high_addr = low_addr + 1;
-        uint8_t cell_low = BQ_SPI_ReadReg(low_addr);
+        uint8_t cell_low  = BQ_SPI_ReadReg(low_addr);
         uint8_t cell_high = BQ_SPI_ReadReg(high_addr);
-        cell_array[i] = (cell_high << 8) | cell_low;
+        cell_array[i] = (uint16_t)((cell_high << 8) | cell_low);
     }
-
-    // Cell 6 (Physically connected to VC14-VC15 -> Address 0x30)
-    uint8_t c6_low = BQ_SPI_ReadReg(0x30);
-    uint8_t c6_high = BQ_SPI_ReadReg(0x31);
-    cell_array[5] = (c6_high << 8) | c6_low;
-
-    // Cell 7 (Physically connected to VC15-VC16 -> Address 0x32)
-    uint8_t c7_low = BQ_SPI_ReadReg(0x32);
-    uint8_t c7_high = BQ_SPI_ReadReg(0x33);
-    cell_array[6] = (c7_high << 8) | c7_low;
 }
 
 // 6. Read the internal 1.8V LDO (REG18) Diagnostic ADC counts
@@ -184,13 +180,183 @@ void BQ_Wake_SPI(void) {
     uint8_t tx_buf[3] = {0x00, 0xFF, 0xFF}; // Dummy read to Control Status (0x00)
     uint8_t rx_buf[3];
 
-    // 1. Send the dummy frame to wake the High-Frequency Oscillator (HFO)[cite: 4]
+    // 1. Send the dummy frame to wake the High-Frequency Oscillator (HFO)
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
     HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 
-    // 2. Wait for the HFO to stabilize.
-    // TRM specifies waiting at least 135 µs in NORMAL/SLEEP mode[cite: 4].
-    // A 1 ms delay is extremely safe.
+    // 2. Wait for the HFO to stabilize (TRM: >=135 us; 1 ms is safe).
     HAL_Delay(1);
+}
+
+// ===========================================================================
+// CELL BALANCING SUBSYSTEM - Autonomous Mode (BQ76952 does all the work)
+// ===========================================================================
+
+// ---------------------------------------------------------------------------
+// Private Helper: Write a 1-byte value into BQ76952 Data Memory.
+// Must be called ONLY while the IC is already in CONFIG_UPDATE mode.
+// ---------------------------------------------------------------------------
+static void BQ_WriteDataMem1(uint16_t sub_addr, uint8_t value) {
+    uint8_t lo_a = (uint8_t)(sub_addr & 0xFF);
+    uint8_t hi_a = (uint8_t)(sub_addr >> 8);
+
+    BQ_SPI_WriteReg(0x3E, lo_a);
+    BQ_SPI_WriteReg(0x3F, hi_a);
+    BQ_SPI_WriteReg(0x40, value);
+
+    // Checksum = ~( (addr_low + addr_high + data) & 0xFF )
+    uint8_t chk = (uint8_t)(~((lo_a + hi_a + value) & 0xFF));
+    BQ_SPI_WriteReg(0x60, chk);
+    BQ_SPI_WriteReg(0x61, 0x05);   // Length: 2 (addr) + 1 (data) + 2 (chk+len) = 5
+
+    HAL_Delay(5);
+}
+
+// ---------------------------------------------------------------------------
+// Private Helper: Write a 2-byte (16-bit) value into BQ76952 Data Memory.
+// Must be called ONLY while the IC is already in CONFIG_UPDATE mode.
+// ---------------------------------------------------------------------------
+static void BQ_WriteDataMem2(uint16_t sub_addr, uint16_t value) {
+    uint8_t lo_a = (uint8_t)(sub_addr & 0xFF);
+    uint8_t hi_a = (uint8_t)(sub_addr >> 8);
+    uint8_t lo_d = (uint8_t)(value & 0xFF);
+    uint8_t hi_d = (uint8_t)(value >> 8);
+
+    BQ_SPI_WriteReg(0x3E, lo_a);
+    BQ_SPI_WriteReg(0x3F, hi_a);
+    BQ_SPI_WriteReg(0x40, lo_d);
+    BQ_SPI_WriteReg(0x41, hi_d);
+
+    // Checksum = ~( (addr_low + addr_high + data_low + data_high) & 0xFF )
+    uint8_t chk = (uint8_t)(~((lo_a + hi_a + lo_d + hi_d) & 0xFF));
+    BQ_SPI_WriteReg(0x60, chk);
+    BQ_SPI_WriteReg(0x61, 0x06);   // Length: 2 (addr) + 2 (data) + 2 (chk+len) = 6
+
+    HAL_Delay(5);
+}
+
+// ---------------------------------------------------------------------------
+// 9. Configure BQ76952 Autonomous Cell Balancing
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Configure BQ76952 Autonomous Cell Balancing (Updated for 16 Cells)
+// ---------------------------------------------------------------------------
+void BQ_Configure_Balancing(void) {
+
+    // Step 1: Enter CONFIG_UPDATE mode (subcommand 0x0090)
+    BQ_SPI_WriteReg(0x3E, 0x90);
+    BQ_SPI_WriteReg(0x3F, 0x00);
+
+    uint32_t t_start = HAL_GetTick();
+    while (!(BQ_SPI_ReadReg(0x12) & 0x04)) {   // Wait for CFGUPDATE bit
+        if (HAL_GetTick() - t_start > 500U) {
+            Error_Handler();
+        }
+        HAL_Delay(1);
+    }
+
+    // Step 2: Write cell-balancing configuration registers
+
+    // Enables CB_CHG | CB_RLX | CB_SLEEP
+    BQ_WriteDataMem1(0x9335, 0x07);
+
+    // --- Temperature Guards ---
+    // Note: Set to wide limits (-100 to 120C) for bench testing without thermistors.
+    // When you build the KiCad PCB with real thermistors, revert these to -20 and 60.
+    BQ_WriteDataMem1(0x9336, (uint8_t)-100);  // Min Cell Temp  = -100 °C
+    BQ_WriteDataMem1(0x9337, 120);            // Max Cell Temp  =  120 °C
+    BQ_WriteDataMem1(0x9338, 120);            // Max Internal Temp = 120 °C
+
+    // --- Balancing Interval ---
+    BQ_WriteDataMem1(0x9339, 3);              // Re-evaluate every 3 seconds
+
+    // --- CB Max Cells ---
+    // For a 16-cell pack, the BQ76952 can balance up to 4 non-adjacent cells safely.
+    BQ_WriteDataMem1(0x933A, 4);
+
+    // --- Charge Balancing Thresholds ---
+    BQ_WriteDataMem2(0x933B, BALANCE_MIN_VOLTAGE_MV);
+    BQ_WriteDataMem1(0x933D, (uint8_t)BALANCE_THRESHOLD_MV);
+    BQ_WriteDataMem1(0x933E, (uint8_t)BALANCE_STOP_DELTA_MV);
+
+    // --- Relax Balancing Thresholds ---
+    BQ_WriteDataMem2(0x933F, BALANCE_MIN_VOLTAGE_MV);
+    BQ_WriteDataMem1(0x9341, (uint8_t)BALANCE_THRESHOLD_MV);
+    BQ_WriteDataMem1(0x9342, (uint8_t)BALANCE_STOP_DELTA_MV);
+
+    // Step 3: Exit CONFIG_UPDATE mode (subcommand 0x0092)
+    BQ_SPI_WriteReg(0x3E, 0x92);
+    BQ_SPI_WriteReg(0x3F, 0x00);
+    HAL_Delay(10);
+}
+
+// ---------------------------------------------------------------------------
+// 10. Read Balance Status (Updated for 16 Cells)
+// ---------------------------------------------------------------------------
+void BQ_Read_Balance_Status(uint16_t *cell_mV, BQ_Balance_Status_t *status) {
+
+    // --- Read CB_ACTIVE_CELLS using Subcommand 0x0083 ---
+    BQ_SPI_WriteReg(0x3E, 0x83);
+    BQ_SPI_WriteReg(0x3F, 0x00);
+
+    // Provide a small delay for the IC to populate the transfer buffer
+    HAL_Delay(1);
+
+    // Read the full 16-bit bitmask from the transfer buffer (0x40 and 0x41)
+    // Bit 0 = Cell 1 ... Bit 15 = Cell 16
+    uint16_t cb_active_mask = BQ_SPI_ReadReg(0x40) | (BQ_SPI_ReadReg(0x41) << 8);
+
+    // FIX: Removed the & 0x007F mask. We now save all 16 bits directly.
+    status->hw_balance_mask = cb_active_mask;
+
+    // --- Count how many cells are actively balancing ---
+    uint8_t count = 0;
+    uint16_t tmp = status->hw_balance_mask;
+    while (tmp) {
+        count += (tmp & 1U);
+        tmp >>= 1;
+    }
+    status->cells_balancing = count;
+    status->balancing_active = (count > 0) ? 1U : 0U;
+
+    // --- Compute min/max/delta from cell voltages for diagnostics ---
+    // This loop relies on NUM_CELLS being defined as 16 in the header.
+    uint16_t v_min = cell_mV[0];
+    uint16_t v_max = cell_mV[0];
+    for (uint8_t i = 1; i < NUM_CELLS; i++) {
+        if (cell_mV[i] < v_min) v_min = cell_mV[i];
+        if (cell_mV[i] > v_max) v_max = cell_mV[i];
+    }
+    status->min_voltage_mV = v_min;
+    status->max_voltage_mV = v_max;
+    status->delta_mV       = v_max - v_min;
+}
+
+// ---------------------------------------------------------------------------
+// Configure Power Modes / Current Thresholds
+// This tells the IC when to transition between RELAX, CHARGE, and DISCHARGE modes.
+// ---------------------------------------------------------------------------
+void BQ_Configure_Power_Modes(void) {
+    // Step 1: Enter CONFIG_UPDATE mode (subcommand 0x0090)
+    BQ_SPI_WriteReg(0x3E, 0x90);
+    BQ_SPI_WriteReg(0x3F, 0x00);
+    HAL_Delay(50); // Ensure IC is in Config Update mode
+
+    // Step 2: Write Current Thresholds (Settings:Configuration:Power Config)
+
+    // Dsg Current Threshold (0x9310) - 2 bytes
+    // If discharging current exceeds this, IC enters DISCHARGE mode.
+    // Assuming default CC Gain, 100 roughly equals a pack current of ~1000mA (depends on sense resistor)
+    BQ_WriteDataMem2(0x9310, 100);
+
+    // Chg Current Threshold (0x9312) - 2 bytes
+    // If charging current exceeds this, IC enters CHARGE mode and uses Charge Balancing limits.
+    // Assuming default CC Gain, 50 roughly equals a pack current of ~500mA
+    BQ_WriteDataMem2(0x9312, 50);
+
+    // Step 3: Exit CONFIG_UPDATE mode (subcommand 0x0092)
+    BQ_SPI_WriteReg(0x3E, 0x92);
+    BQ_SPI_WriteReg(0x3F, 0x00);
+    HAL_Delay(10);
 }
