@@ -6189,7 +6189,8 @@
 			)
 		)
 		(property "Description" "Resistor 0805 100R 1%"
-			(at 82.55 106.68 0)
+			(at 82.55 93.218 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10733,7 +10734,6 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "f84af002-8448-4e88-b5d7-fcb0ba1b7d5e")
 		(property "Reference" "R8"
 			(at 83.185 132.08 0)
@@ -10780,7 +10780,8 @@
 			)
 		)
 		(property "Description" "Resistor 0805 100R 1%"
-			(at 82.55 129.54 0)
+			(at 82.804 147.066 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
