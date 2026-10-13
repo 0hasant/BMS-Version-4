@@ -53653,7 +53653,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -53679,7 +53679,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -54077,7 +54077,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -54103,7 +54103,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -54521,7 +54521,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -54547,7 +54547,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -54945,7 +54945,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -54971,7 +54971,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -55157,7 +55157,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -55183,7 +55183,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -55793,7 +55793,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -55819,7 +55819,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -57683,7 +57683,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -57709,7 +57709,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -58274,7 +58274,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -58300,7 +58300,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -59501,7 +59501,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -59527,7 +59527,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -59713,7 +59713,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -59739,7 +59739,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -60589,7 +60589,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 0)
 			(layer "B.Fab")
 			(hide yes)
@@ -60615,7 +60615,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
@@ -60801,7 +60801,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -60827,7 +60827,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -61013,7 +61013,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -61039,7 +61039,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -61225,7 +61225,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 0)
 			(layer "B.Fab")
 			(hide yes)
@@ -61251,7 +61251,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 0)
 			(layer "B.Fab")
 			(hide yes)
@@ -61437,7 +61437,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -61463,7 +61463,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -61861,7 +61861,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Value" "HP122WJ0100T4E"
+		(property "Value" "HP122WJ0220T4E"
 			(at 0 -2.63 180)
 			(layer "B.Fab")
 			(hide yes)
@@ -61887,7 +61887,7 @@
 				(justify mirror)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
+		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
 			(at 0 0 180)
 			(layer "B.Fab")
 			(hide yes)

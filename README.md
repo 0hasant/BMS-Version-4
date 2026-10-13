@@ -71,15 +71,21 @@ is about 0.4 A. Balancing is enabled by an external button (J4 opto input).
 - [ ] **Ground, lower board (carries pack current through the shunt):** wire GND to TP2 (-Batt_In,
       battery side of the shunt) and **remove R43**. Never fit both, or pack current flows in the cell-0 sense wire
 - [ ] **Ground, upper board (no pack current):** keep R43 = 0 R, tie TP2 and TP3 to GND so SRP/SRN do not float
-- [ ] Balancing heat: 10 R balance resistors = ~1.7 W each (2 W parts). Limit to 2 cells or change to 22 R
+- [x] Balance resistors changed to **22 R, 2 W, 2512** (HP122WJ0220T4E) in schematic and PCB: ~0.19 A and
+      ~0.8 W each at 4.2 V (10 R was ~1.7 W each). Same footprint, BOM change only.
+      Özdisan has it at 0 stock today (Request Price & Stock); any 22 R 2 W 2512 fits
 - [ ] C27 (CAN split termination) is 10 pF, should be ~4.7 nF
 - [ ] Regenerate the BOM from the current schematic (`BMS_V4.csv` and `BMS_V4.013.xlsx` use old references)
 
 ### Next revision (v4.03) wish list
-- [ ] Power REGIN from +5V_Main and enable REG1 = 3.3 V: MISO becomes 3.3 V logic (`MISO_REG1`),
-      and DDSG/DCHG can drive real loads
-- [ ] RST_SHUT: 10 k-100 k pull-down (R11 is 100 R) and drive it from an STM32 pin and/or a button to 3.3 V
-- [ ] Connect S1 to an MCU pin (it is connected to nothing today)
+- [ ] Power REGIN from +5V_Main (BREG tied to REGIN, 1 uF at REGIN, 1 uF at REG1) and enable REG1 = 3.3 V:
+      MISO becomes 3.3 V logic (`MISO_REG1` + SWAP_TO_SPI), and DDSG/DCHG can drive real loads.
+      Not practical as a bodge on v4.02: pins 36/37 are tied to GND by traces that meet under the chip body
+- [ ] **BQ reset button is wired wrong.** In the "bq76952 reset" block, R11 and C9 land on the S1 NO/GND side, so
+      pressing S1 only shorts the R12 node (3.3 V via 4.7 k) to GND and RST_SHUT never goes high.
+      Fix: +3.3V -> S1 -> R12 (1 k) -> RST_SHUT; RST_SHUT -> R11 (10 k, was 100 R) -> GND; C9 100 nF RST_SHUT -> GND.
+      Short press = reset, held > 1 s = SHUTDOWN (the TS2 thermistor wakes it again). Optionally also an STM32 pin.
+      On v4.02: use S2; the firmware sends RESET() to the BQ at every MCU boot
 - [ ] Direct GND star point at the battery side of the shunt, VC0 through R/C to it
 - [ ] Separate VC16 sense wire from the fused power wire (fuse drop shows up in cell 16)
 - [ ] Balance-enable input: R27 sized for the button supply voltage (5 V needs ~1 k)
