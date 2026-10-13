@@ -64,3 +64,9 @@ Release/
 
 # Optional: Ignore the CubeMX project backup file
 .mxproject
+
+# --- KiCad lock / cache / autosave files ---
+*.lck
+fp-info-cache
+\#auto_saved_files\#
+_autosave-*

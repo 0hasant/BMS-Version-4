@@ -1,0 +1,11 @@
+Plotted to 'E:\Electronics_Solaris\BMS Version 4\Hardware\All_Gerber\Gerber v4.013\BMS_V4-F_Cu.gbr'.
+Plotted to 'E:\Electronics_Solaris\BMS Version 4\Hardware\All_Gerber\Gerber v4.013\BMS_V4-B_Cu.gbr'.
+Plotted to 'E:\Electronics_Solaris\BMS Version 4\Hardware\All_Gerber\Gerber v4.013\BMS_V4-F_Paste.gbr'.
+Plotted to 'E:\Electronics_Solaris\BMS Version 4\Hardware\All_Gerber\Gerber v4.013\BMS_V4-B_Paste.gbr'.
+Plotted to 'E:\Electronics_Solaris\BMS Version 4\Hardware\All_Gerber\Gerber v4.013\BMS_V4-F_Silkscreen.gbr'.
+Plotted to 'E:\Electronics_Solaris\BMS Version 4\Hardware\All_Gerber\Gerber v4.013\BMS_V4-B_Silkscreen.gbr'.
+Plotted to 'E:\Electronics_Solaris\BMS Version 4\Hardware\All_Gerber\Gerber v4.013\BMS_V4-F_Mask.gbr'.
+Plotted to 'E:\Electronics_Solaris\BMS Version 4\Hardware\All_Gerber\Gerber v4.013\BMS_V4-B_Mask.gbr'.
+Plotted to 'E:\Electronics_Solaris\BMS Version 4\Hardware\All_Gerber\Gerber v4.013\BMS_V4-Edge_Cuts.gbr'.
+Created Gerber job file 'E:\Electronics_Solaris\BMS Version 4\Hardware\All_Gerber\Gerber v4.013\BMS_V4-job.gbrjob'.
+Info: Done.

@@ -1,0 +1,1 @@
+Burada kullanılan 5v entegersi direkt olarak TI ın tasarım uygulaması baz alınarak yapılmıştır. Dizayn dosyaları klasör altına bulunabilir. Bobin değeri değiştirilmiştir. Şematikteki baz alınmalıdır.
