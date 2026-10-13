@@ -1,362 +1,529 @@
 #include "bq76952.h"
 
-// Borrow the SPI handler from main.c
+// SPI handle is created by CubeMX in main.c
 extern SPI_HandleTypeDef hspi1;
 
-// 1. Calculate CRC (Mandatory for BQ76952)
+BQ_Health_t BQ_Health = {0};
+
+// ---------------------------------------------------------------------------
+// Timing (TI: >= 50 us between SPI transactions)
+// ---------------------------------------------------------------------------
+#define BQ_FRAME_GAP_US        100U   // pause after every SPI frame
+#define BQ_READ_RETRIES        20U    // frames to wait for a valid read answer
+#define BQ_WRITE_RETRIES       5U     // attempts for a write
+#define BQ_SUBCMD_POLLS        50U    // completion polls (x ~0.8 ms)
+#define BQ_CFG_TIMEOUT_MS      100U   // enter/exit CONFIG_UPDATE timeout
+#define BQ_RESET_BOOT_MS       300U   // TRM: ~200-300 ms boot after reset
+#define BQ_RESET_TIMEOUT_MS    1000U
+
+// Registers whose write triggers an action. Writing them twice could run
+// the action twice, so they are sent once and checked differently.
+#define BQ_REG_SUBCMD_LO       0x3EU
+#define BQ_REG_SUBCMD_HI       0x3FU
+#define BQ_REG_BUFFER          0x40U
+#define BQ_REG_CHECKSUM        0x60U
+#define BQ_REG_LENGTH          0x61U
+#define BQ_REG_BATTERY_STATUS  0x12U
+#define BQ_REG_ALARM_STATUS    0x62U
+
+// Subcommands
+#define BQ_SUB_RESET           0x0012U
+#define BQ_SUB_CB_ACTIVE_CELLS 0x0083U
+#define BQ_SUB_DASTATUS5       0x0075U
+#define BQ_SUB_SET_CFGUPDATE   0x0090U
+#define BQ_SUB_EXIT_CFGUPDATE  0x0092U
+
+// Data memory addresses (BQ76952 TRM, SLUUBY2B)
+#define BQ_DM_VCELL_MODE       0x9304U   // H2
+#define BQ_DM_DSG_CURR_THR     0x9310U   // I2 userA, followed by Chg Current Threshold
+#define BQ_DM_CB_CONFIG        0x9335U   // start of the 14-byte balancing block
+
+// ---------------------------------------------------------------------------
+// Microsecond delay using the Cortex-M3 cycle counter
+// ---------------------------------------------------------------------------
+static void bq_delay_us(uint32_t us) {
+    if (!(DWT->CTRL & DWT_CTRL_CYCCNTENA_Msk)) {
+        CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;
+        DWT->CYCCNT = 0;
+        DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
+    }
+    uint32_t start = DWT->CYCCNT;
+    uint32_t ticks = us * (SystemCoreClock / 1000000U);
+    while ((DWT->CYCCNT - start) < ticks) {
+    }
+}
+
+static BQ_Status bq_fail(BQ_Status s) {
+    BQ_Health.failures++;
+    BQ_Health.last_error = s;
+    return s;
+}
+
+// ---------------------------------------------------------------------------
+// CRC-8, polynomial 0x07 (used on every SPI frame)
+// ---------------------------------------------------------------------------
 uint8_t BQ_CalculateCRC(uint8_t *data, uint8_t len) {
     uint8_t crc = 0x00;
     for (uint8_t i = 0; i < len; i++) {
         crc ^= data[i];
         for (uint8_t j = 0; j < 8; j++) {
-            if (crc & 0x80)
-                crc = (crc << 1) ^ 0x07;
-            else
-                crc = (crc << 1);
+            crc = (crc & 0x80) ? (uint8_t)((crc << 1) ^ 0x07) : (uint8_t)(crc << 1);
         }
     }
     return crc;
 }
 
-// 2. Reusable WRITE Function
-void BQ_SPI_WriteReg(uint8_t reg_addr, uint8_t data) {
-    uint8_t tx_buf[3];
-    uint8_t rx_buf[3];
+// ---------------------------------------------------------------------------
+// One 3-byte SPI frame. rx receives the answer to the PREVIOUS frame.
+// ---------------------------------------------------------------------------
+static BQ_Status bq_frame(uint8_t b0, uint8_t b1, uint8_t rx[3]) {
+    uint8_t tx[3] = { b0, b1, 0 };
+    tx[2] = BQ_CalculateCRC(tx, 2);
 
-    // R/W bit is 1 for Write (Add 0x80 to the address)
-    tx_buf[0] = reg_addr | 0x80;
-    tx_buf[1] = data;
-    tx_buf[2] = BQ_CalculateCRC(tx_buf, 2);
+    HAL_GPIO_WritePin(CS_GPIO_Port, CS_Pin, GPIO_PIN_RESET);
+    HAL_StatusTypeDef hs = HAL_SPI_TransmitReceive(&hspi1, tx, rx, 3, 10);
+    HAL_GPIO_WritePin(CS_GPIO_Port, CS_Pin, GPIO_PIN_SET);
 
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-    HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-    HAL_Delay(1);
+    BQ_Health.frames++;
+    bq_delay_us(BQ_FRAME_GAP_US);
+    return (hs == HAL_OK) ? BQ_OK : BQ_ERR_SPI;
 }
 
-// 3. Reusable READ Function (TI Pipelined Architecture)
+// True if rx is a valid echo of (b0, b1) with a correct CRC
+static int bq_echo_ok(const uint8_t rx[3], uint8_t b0, uint8_t b1) {
+    if (rx[0] != b0 || rx[1] != b1) return 0;
+    uint8_t chk[2] = { rx[0], rx[1] };
+    if (BQ_CalculateCRC(chk, 2) != rx[2]) {
+        BQ_Health.crc_errors++;
+        return 0;
+    }
+    return 1;
+}
+
+// 0xFFFFFF = oscillator was off, 0xFFFFAA = our frame had a CRC error:
+// in both cases the previous frame was NOT accepted.
+static int bq_frame_rejected(const uint8_t rx[3]) {
+    return (rx[0] == 0xFF && rx[1] == 0xFF && (rx[2] == 0xFF || rx[2] == 0xAA));
+}
+
+// ---------------------------------------------------------------------------
+// Register write
+// ---------------------------------------------------------------------------
+BQ_Status BQ_SPI_WriteReg(uint8_t reg_addr, uint8_t data) {
+    uint8_t rx[3];
+    uint8_t b0 = (uint8_t)(reg_addr | 0x80);   // R/W bit = 1 for write
+
+    if (reg_addr == BQ_REG_SUBCMD_HI || reg_addr == BQ_REG_LENGTH) {
+        // Trigger register: send once, then a harmless read frame to collect
+        // the echo. Resend only if the IC clearly rejected the frame.
+        for (uint8_t attempt = 0; attempt < BQ_WRITE_RETRIES; attempt++) {
+            if (bq_frame(b0, data, rx) != BQ_OK) return bq_fail(BQ_ERR_SPI);
+            if (bq_frame(BQ_REG_BATTERY_STATUS, 0xFF, rx) != BQ_OK) return bq_fail(BQ_ERR_SPI);
+            if (bq_echo_ok(rx, b0, data)) return BQ_OK;
+            if (!bq_frame_rejected(rx)) {
+                // 0xFFFF00: IC still busy. Assume accepted; the caller
+                // verifies the result (completion poll or read-back).
+                BQ_Health.not_ready++;
+                return BQ_OK;
+            }
+            BQ_Health.retries++;
+            bq_delay_us(500);
+        }
+        return bq_fail(BQ_ERR_TIMEOUT);
+    }
+
+    // Normal register: repeat the same frame until its echo comes back
+    // (TI reference method; repeating a plain register write is harmless).
+    if (bq_frame(b0, data, rx) != BQ_OK) return bq_fail(BQ_ERR_SPI);
+    for (uint8_t attempt = 0; attempt < BQ_WRITE_RETRIES; attempt++) {
+        if (bq_frame(b0, data, rx) != BQ_OK) return bq_fail(BQ_ERR_SPI);
+        if (bq_echo_ok(rx, b0, data)) return BQ_OK;
+        BQ_Health.retries++;
+        bq_delay_us(500);
+    }
+    return bq_fail(BQ_ERR_TIMEOUT);
+}
+
+// ---------------------------------------------------------------------------
+// Register read (pipelined: the answer arrives on the next frame)
+// ---------------------------------------------------------------------------
+BQ_Status BQ_ReadReg8(uint8_t reg_addr, uint8_t *value) {
+    uint8_t rx[3];
+    uint8_t b0 = (uint8_t)(reg_addr & 0x7F);   // R/W bit = 0 for read
+
+    if (bq_frame(b0, 0xFF, rx) != BQ_OK) return bq_fail(BQ_ERR_SPI);
+    for (uint8_t i = 0; i < BQ_READ_RETRIES; i++) {
+        if (bq_frame(b0, 0xFF, rx) != BQ_OK) return bq_fail(BQ_ERR_SPI);
+        if (rx[0] == b0) {
+            uint8_t chk[2] = { rx[0], rx[1] };
+            if (BQ_CalculateCRC(chk, 2) == rx[2]) {
+                *value = rx[1];
+                return BQ_OK;
+            }
+            BQ_Health.crc_errors++;
+        } else {
+            BQ_Health.not_ready++;
+        }
+        BQ_Health.retries++;
+    }
+    return bq_fail(BQ_ERR_TIMEOUT);
+}
+
+BQ_Status BQ_ReadReg16(uint8_t reg_addr, uint16_t *value) {
+    uint8_t lo, hi;
+    BQ_Status s = BQ_ReadReg8(reg_addr, &lo);
+    if (s != BQ_OK) return s;
+    s = BQ_ReadReg8((uint8_t)(reg_addr + 1), &hi);
+    if (s != BQ_OK) return s;
+    *value = (uint16_t)((hi << 8) | lo);
+    return BQ_OK;
+}
+
+// Kept for old code: returns 0 if the read failed (see BQ_Health)
 uint8_t BQ_SPI_ReadReg(uint8_t reg_addr) {
-    uint8_t tx_buf[3];
-    uint8_t rx_buf[3] = {0, 0, 0};
-    uint8_t timeout = 10;
+    uint8_t v = 0;
+    (void)BQ_ReadReg8(reg_addr, &v);
+    return v;
+}
 
-    tx_buf[0] = reg_addr;
-    tx_buf[1] = 0xFF;
-    tx_buf[2] = BQ_CalculateCRC(tx_buf, 2);
+// Wake the internal oscillator before a burst (TRM: wait >= 135 us)
+void BQ_Wake_SPI(void) {
+    uint8_t rx[3];
+    (void)bq_frame(0x00, 0xFF, rx);
+    bq_delay_us(200);
+}
 
-    // Step A: Send request
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-    HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+// ---------------------------------------------------------------------------
+// Subcommands
+// ---------------------------------------------------------------------------
+BQ_Status BQ_Subcommand(uint16_t cmd) {
+    BQ_Status s = BQ_SPI_WriteReg(BQ_REG_SUBCMD_LO, (uint8_t)(cmd & 0xFF));
+    if (s != BQ_OK) return s;
+    return BQ_SPI_WriteReg(BQ_REG_SUBCMD_HI, (uint8_t)(cmd >> 8));
+}
+
+// Wait until 0x3E/0x3F read back the command (0xFF = still busy)
+static BQ_Status bq_wait_subcmd_done(uint16_t cmd) {
+    uint8_t lo = (uint8_t)(cmd & 0xFF), hi = (uint8_t)(cmd >> 8);
+    for (uint8_t i = 0; i < BQ_SUBCMD_POLLS; i++) {
+        uint8_t r_lo, r_hi;
+        if (BQ_ReadReg8(BQ_REG_SUBCMD_LO, &r_lo) == BQ_OK &&
+            BQ_ReadReg8(BQ_REG_SUBCMD_HI, &r_hi) == BQ_OK &&
+            r_lo == lo && r_hi == hi) {
+            return BQ_OK;
+        }
+        bq_delay_us(200);
+    }
+    return BQ_ERR_TIMEOUT;
+}
+
+// Send a subcommand and wait for completion; resend if it never completes
+// (the trigger frame may have been lost).
+static BQ_Status bq_subcmd_and_wait(uint16_t cmd) {
+    BQ_Status s = BQ_ERR_TIMEOUT;
+    for (uint8_t attempt = 0; attempt < 3; attempt++) {
+        if ((s = BQ_Subcommand(cmd)) != BQ_OK) continue;
+        if ((s = bq_wait_subcmd_done(cmd)) == BQ_OK) return BQ_OK;
+        BQ_Health.retries++;
+    }
+    return bq_fail(s);
+}
+
+// Send a subcommand that returns data and read up to len bytes of it.
+// The whole response is read so the checksum at 0x60 can be verified.
+BQ_Status BQ_SubcommandRead(uint16_t cmd, uint8_t *buf, uint8_t len) {
+    uint8_t data[32];
+    uint8_t resp_len, chk;
+
+    BQ_Status s = bq_subcmd_and_wait(cmd);
+    if (s != BQ_OK) return s;
+
+    if ((s = BQ_ReadReg8(BQ_REG_LENGTH, &resp_len)) != BQ_OK) return s;
+    if (resp_len < 5 || resp_len > 36) return bq_fail(BQ_ERR_CRC);
+    uint8_t n = (uint8_t)(resp_len - 4);   // length includes 0x3E,0x3F,0x60,0x61
+
+    uint8_t sum = (uint8_t)((cmd & 0xFF) + (cmd >> 8));
+    for (uint8_t i = 0; i < n; i++) {
+        if ((s = BQ_ReadReg8((uint8_t)(BQ_REG_BUFFER + i), &data[i])) != BQ_OK) return s;
+        sum = (uint8_t)(sum + data[i]);
+    }
+    if ((s = BQ_ReadReg8(BQ_REG_CHECKSUM, &chk)) != BQ_OK) return s;
+    if ((uint8_t)~sum != chk) {
+        BQ_Health.crc_errors++;
+        return bq_fail(BQ_ERR_CRC);
+    }
+
+    for (uint8_t i = 0; i < len && i < n; i++) buf[i] = data[i];
+    return BQ_OK;
+}
+
+// ---------------------------------------------------------------------------
+// Data memory
+// ---------------------------------------------------------------------------
+BQ_Status BQ_ReadDataMem(uint16_t addr, uint8_t *data, uint8_t len) {
+    return BQ_SubcommandRead(addr, data, len);
+}
+
+// Write len bytes (max 32) to contiguous data memory.
+// Must be called while in CONFIG_UPDATE mode.
+BQ_Status BQ_WriteDataMem(uint16_t addr, const uint8_t *data, uint8_t len) {
+    uint8_t lo = (uint8_t)(addr & 0xFF), hi = (uint8_t)(addr >> 8);
+    BQ_Status s;
+
+    if (len == 0 || len > 32) return bq_fail(BQ_ERR_VERIFY);
+
+    // Writing the address makes the IC load the current contents into the
+    // buffer; wait for that before overwriting the buffer with new data.
+    if ((s = bq_subcmd_and_wait(addr)) != BQ_OK) return s;
+
+    uint8_t sum = (uint8_t)(lo + hi);
+    for (uint8_t i = 0; i < len; i++) {
+        if ((s = BQ_SPI_WriteReg((uint8_t)(BQ_REG_BUFFER + i), data[i])) != BQ_OK) return s;
+        sum = (uint8_t)(sum + data[i]);
+    }
+    if ((s = BQ_SPI_WriteReg(BQ_REG_CHECKSUM, (uint8_t)~sum)) != BQ_OK) return s;
+    if ((s = BQ_SPI_WriteReg(BQ_REG_LENGTH, (uint8_t)(len + 4))) != BQ_OK) return s;
 
     HAL_Delay(2);
+    return BQ_OK;
+}
 
-    // Step B: Clock the data out
-    while (timeout > 0) {
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-        HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
-        HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-        if (rx_buf[0] == reg_addr) {
-            break;
-        }
-        HAL_Delay(1);
-        timeout--;
+// Read back and compare
+static BQ_Status bq_verify_dm(uint16_t addr, const uint8_t *expect, uint8_t len) {
+    uint8_t buf[32];
+    BQ_Status s = BQ_ReadDataMem(addr, buf, len);
+    if (s != BQ_OK) return s;
+    for (uint8_t i = 0; i < len; i++) {
+        if (buf[i] != expect[i]) return bq_fail(BQ_ERR_VERIFY);
     }
-    return rx_buf[1];
-}
-
-//Function is 16 Cell
-void BQ_Configure_Cell_Count(void) {
-    // Step 1: Enter Config Update Mode (subcommand 0x0090)
-    BQ_SPI_WriteReg(0x3E, 0x90);
-    BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(5);
-
-    // Step 2: Target subcommand 0x9304 (Settings:Configuration:VCell Mode)
-    BQ_SPI_WriteReg(0x3E, 0x04);
-    BQ_SPI_WriteReg(0x3F, 0x93);
-
-    // Step 3: Write the 2-byte payload to Transfer Buffer
-    // 0xFFFF enables VC1 through VC16
-    BQ_SPI_WriteReg(0x40, 0xFF);  // Byte 1: VC8..VC1
-    BQ_SPI_WriteReg(0x41, 0xFF);  // Byte 2: VC16..VC9
-
-    // Step 4: Write Checksum and Length
-    // Checksum = ~( (0x04 + 0x93 + 0xFF + 0xFF) & 0xFF ) = ~(0x95) = 0x6A
-    BQ_SPI_WriteReg(0x60, 0x6A);  // Updated checksum byte
-    BQ_SPI_WriteReg(0x61, 0x06);  // Length remains 6
-
-    HAL_Delay(5);
-
-    // Step 5: Exit Config Update Mode (subcommand 0x0092)
-    BQ_SPI_WriteReg(0x3E, 0x92);
-    BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(5);
-}
-
-void BQ_Read_All_Cell_Voltages(uint16_t *cell_array) {
-    // Loop extended to 16 iterations to capture VC1 through VC16
-    for (int i = 0; i < 16; i++) {
-        uint8_t low_addr  = 0x14 + (i * 2);
-        uint8_t high_addr = low_addr + 1;
-        uint8_t cell_low  = BQ_SPI_ReadReg(low_addr);
-        uint8_t cell_high = BQ_SPI_ReadReg(high_addr);
-        cell_array[i] = (uint16_t)((cell_high << 8) | cell_low);
-    }
-}
-
-// 6. Read the internal 1.8V LDO (REG18) Diagnostic ADC counts
-uint16_t BQ_Read_REG18_ADC(void) {
-    // 1. Write the subcommand 0x0075 to the 0x3E Mailbox
-    BQ_SPI_WriteReg(0x3E, 0x75); // Lower byte of 0x0075
-    BQ_SPI_WriteReg(0x3F, 0x00); // Upper byte of 0x0075
-
-    // 2. Wait for the BQ76952 to fetch the diagnostic data
-    HAL_Delay(5);
-
-    // 3. Read the answer from the Transfer Buffer (0x40 and 0x41)
-    uint8_t reg18_low = BQ_SPI_ReadReg(0x40);
-    uint8_t reg18_high = BQ_SPI_ReadReg(0x41);
-
-    // 4. Combine them into a 16-bit number and return
-    return (reg18_high << 8) | reg18_low;
-}
-
-// 7. Read the Total Stack Voltage (VC16 pin)
-uint16_t BQ_Read_Stack_Voltage(void) {
-    uint8_t stack_low = BQ_SPI_ReadReg(0x34);
-    uint8_t stack_high = BQ_SPI_ReadReg(0x35);
-
-    // Combine the bytes. The raw value is in 10 mV units (Centivolts)
-    uint16_t stack_cv = (stack_high << 8) | stack_low;
-
-    // Multiply by 10 to return the value in standard millivolts (mV)
-    // Note: A uint16_t can hold up to 65,535 mV (65.5V), which is safe for a 7S pack.
-    return stack_cv * 10;
-}
-// 8. Read the Internal Die Temperature
-float BQ_Read_Internal_Temp_C(void) {
-    // Read the 16-bit temperature data
-    uint8_t temp_low = BQ_SPI_ReadReg(0x68);
-    uint8_t temp_high = BQ_SPI_ReadReg(0x69);
-
-    // Combine the bytes into the raw 16-bit integer
-    uint16_t raw_temp = (temp_high << 8) | temp_low;
-
-    // The raw value is in units of 0.1 Kelvin.
-    // Convert to Celsius: (Raw / 10.0) - 273.15
-    float temp_celsius = (raw_temp / 10.0f) - 273.15f;
-
-    return temp_celsius;
-}
-
-// Read the actual pack current in Amps using STM32 math (No BQ RAM writes required)
-float BQ_Get_Pack_Current_Amps(void) {
-    // Read direct commands 0x3A (CC2 Current Low Byte) and 0x3B (High Byte)
-    uint8_t curr_low = BQ_SPI_ReadReg(0x3A);
-    uint8_t curr_high = BQ_SPI_ReadReg(0x3B);
-
-    // Combine into a signed 16-bit integer
-    // 2's complement natively handles negative values for discharge currents
-    int16_t current_raw = (int16_t)((curr_high << 8) | curr_low);
-
-    // --- The Math Explanation ---
-    // Out of the box, the BQ76952 expects a 1 mOhm sense resistor, where 1 LSB = 1 mA.
-    // Because your hardware uses a 2 mOhm resistor, the voltage drop across it is twice as large.
-    // This means the BQ76952 will report a raw number that is exactly DOUBLE your actual current.
-    // To get the real current in mA, we divide by 2. To get Amperes, we divide by 1000.
-    // Combined, we just divide the raw reading by 2000.0f.
-
-    float actual_current_amps = (float)current_raw / 2000.0f;
-
-    return actual_current_amps;
-}
-
-
-// Wake the BQ76952's internal oscillator before a burst of SPI reads
-void BQ_Wake_SPI(void) {
-    uint8_t tx_buf[3] = {0x00, 0xFF, 0xFF}; // Dummy read to Control Status (0x00)
-    uint8_t rx_buf[3];
-
-    // 1. Send the dummy frame to wake the High-Frequency Oscillator (HFO)
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-    HAL_SPI_TransmitReceive(&hspi1, tx_buf, rx_buf, 3, 100);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-    // 2. Wait for the HFO to stabilize (TRM: >=135 us; 1 ms is safe).
-    HAL_Delay(1);
-}
-
-// ===========================================================================
-// CELL BALANCING SUBSYSTEM - Autonomous Mode (BQ76952 does all the work)
-// ===========================================================================
-
-// ---------------------------------------------------------------------------
-// Private Helper: Write a 1-byte value into BQ76952 Data Memory.
-// Must be called ONLY while the IC is already in CONFIG_UPDATE mode.
-// ---------------------------------------------------------------------------
-static void BQ_WriteDataMem1(uint16_t sub_addr, uint8_t value) {
-    uint8_t lo_a = (uint8_t)(sub_addr & 0xFF);
-    uint8_t hi_a = (uint8_t)(sub_addr >> 8);
-
-    BQ_SPI_WriteReg(0x3E, lo_a);
-    BQ_SPI_WriteReg(0x3F, hi_a);
-    BQ_SPI_WriteReg(0x40, value);
-
-    // Checksum = ~( (addr_low + addr_high + data) & 0xFF )
-    uint8_t chk = (uint8_t)(~((lo_a + hi_a + value) & 0xFF));
-    BQ_SPI_WriteReg(0x60, chk);
-    BQ_SPI_WriteReg(0x61, 0x05);   // Length: 2 (addr) + 1 (data) + 2 (chk+len) = 5
-
-    HAL_Delay(5);
+    return BQ_OK;
 }
 
 // ---------------------------------------------------------------------------
-// Private Helper: Write a 2-byte (16-bit) value into BQ76952 Data Memory.
-// Must be called ONLY while the IC is already in CONFIG_UPDATE mode.
+// CONFIG_UPDATE mode
 // ---------------------------------------------------------------------------
-static void BQ_WriteDataMem2(uint16_t sub_addr, uint16_t value) {
-    uint8_t lo_a = (uint8_t)(sub_addr & 0xFF);
-    uint8_t hi_a = (uint8_t)(sub_addr >> 8);
-    uint8_t lo_d = (uint8_t)(value & 0xFF);
-    uint8_t hi_d = (uint8_t)(value >> 8);
-
-    BQ_SPI_WriteReg(0x3E, lo_a);
-    BQ_SPI_WriteReg(0x3F, hi_a);
-    BQ_SPI_WriteReg(0x40, lo_d);
-    BQ_SPI_WriteReg(0x41, hi_d);
-
-    // Checksum = ~( (addr_low + addr_high + data_low + data_high) & 0xFF )
-    uint8_t chk = (uint8_t)(~((lo_a + hi_a + lo_d + hi_d) & 0xFF));
-    BQ_SPI_WriteReg(0x60, chk);
-    BQ_SPI_WriteReg(0x61, 0x06);   // Length: 2 (addr) + 2 (data) + 2 (chk+len) = 6
-
-    HAL_Delay(5);
-}
-
-// ---------------------------------------------------------------------------
-// 9. Configure BQ76952 Autonomous Cell Balancing
-// ---------------------------------------------------------------------------
-// ---------------------------------------------------------------------------
-// Configure BQ76952 Autonomous Cell Balancing (Updated for 16 Cells)
-// ---------------------------------------------------------------------------
-void BQ_Configure_Balancing(void) {
-
-    // Step 1: Enter CONFIG_UPDATE mode (subcommand 0x0090)
-    BQ_SPI_WriteReg(0x3E, 0x90);
-    BQ_SPI_WriteReg(0x3F, 0x00);
-
-    uint32_t t_start = HAL_GetTick();
-    while (!(BQ_SPI_ReadReg(0x12) & 0x04)) {   // Wait for CFGUPDATE bit
-        if (HAL_GetTick() - t_start > 500U) {
-            Error_Handler();
+static BQ_Status bq_wait_cfgupdate(uint8_t want_set) {
+    uint32_t t0 = HAL_GetTick();
+    while ((HAL_GetTick() - t0) < BQ_CFG_TIMEOUT_MS) {
+        uint16_t bs;
+        if (BQ_ReadReg16(BQ_REG_BATTERY_STATUS, &bs) == BQ_OK) {
+            uint8_t is_set = (bs & BQ_BATSTAT_CFGUPDATE) ? 1U : 0U;   // bit 0
+            if (is_set == want_set) return BQ_OK;
         }
         HAL_Delay(1);
     }
+    return BQ_ERR_TIMEOUT;
+}
 
-    // Step 2: Write cell-balancing configuration registers
+// Send SET_CFGUPDATE / EXIT_CFGUPDATE and confirm via Battery Status bit 0
+static BQ_Status bq_cfgupdate(uint16_t cmd, uint8_t want_set) {
+    BQ_Status s = BQ_ERR_TIMEOUT;
+    for (uint8_t attempt = 0; attempt < 3; attempt++) {
+        if ((s = BQ_Subcommand(cmd)) != BQ_OK) continue;
+        if ((s = bq_wait_cfgupdate(want_set)) == BQ_OK) return BQ_OK;
+        BQ_Health.retries++;
+    }
+    return bq_fail(s);
+}
 
-    // Enables CB_CHG | CB_RLX | CB_SLEEP
-    BQ_WriteDataMem1(0x9335, 0x07);
+BQ_Status BQ_EnterConfigUpdate(void) {
+    return bq_cfgupdate(BQ_SUB_SET_CFGUPDATE, 1);
+}
 
-    // --- Temperature Guards ---
-    // Note: Set to wide limits (-100 to 120C) for bench testing without thermistors.
-    // When you build the KiCad PCB with real thermistors, revert these to -20 and 60.
-    BQ_WriteDataMem1(0x9336, (uint8_t)-100);  // Min Cell Temp  = -100 °C
-    BQ_WriteDataMem1(0x9337, 120);            // Max Cell Temp  =  120 °C
-    BQ_WriteDataMem1(0x9338, 120);            // Max Internal Temp = 120 °C
-
-    // --- Balancing Interval ---
-    BQ_WriteDataMem1(0x9339, 3);              // Re-evaluate every 3 seconds
-
-    // --- CB Max Cells ---
-    // For a 16-cell pack, the BQ76952 can balance up to 4 non-adjacent cells safely.
-    BQ_WriteDataMem1(0x933A, 4);
-
-    // --- Charge Balancing Thresholds ---
-    BQ_WriteDataMem2(0x933B, BALANCE_MIN_VOLTAGE_MV);
-    BQ_WriteDataMem1(0x933D, (uint8_t)BALANCE_THRESHOLD_MV);
-    BQ_WriteDataMem1(0x933E, (uint8_t)BALANCE_STOP_DELTA_MV);
-
-    // --- Relax Balancing Thresholds ---
-    BQ_WriteDataMem2(0x933F, BALANCE_MIN_VOLTAGE_MV);
-    BQ_WriteDataMem1(0x9341, (uint8_t)BALANCE_THRESHOLD_MV);
-    BQ_WriteDataMem1(0x9342, (uint8_t)BALANCE_STOP_DELTA_MV);
-
-    // Step 3: Exit CONFIG_UPDATE mode (subcommand 0x0092)
-    BQ_SPI_WriteReg(0x3E, 0x92);
-    BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(10);
+BQ_Status BQ_ExitConfigUpdate(void) {
+    return bq_cfgupdate(BQ_SUB_EXIT_CFGUPDATE, 0);
 }
 
 // ---------------------------------------------------------------------------
-// 10. Read Balance Status (Updated for 16 Cells)
+// Reset and configuration
 // ---------------------------------------------------------------------------
-void BQ_Read_Balance_Status(uint16_t *cell_mV, BQ_Balance_Status_t *status) {
+// POR is already 1 after power-up, so first clear it (entering and leaving
+// CONFIG_UPDATE clears POR). Then POR = 1 after RESET() proves the reset ran.
+BQ_Status BQ_Reset(void) {
+    if (BQ_EnterConfigUpdate() == BQ_OK) (void)BQ_ExitConfigUpdate();
 
-    // --- Read CB_ACTIVE_CELLS using Subcommand 0x0083 ---
-    BQ_SPI_WriteReg(0x3E, 0x83);
-    BQ_SPI_WriteReg(0x3F, 0x00);
+    for (uint8_t attempt = 0; attempt < 2; attempt++) {
+        if (BQ_Subcommand(BQ_SUB_RESET) != BQ_OK) continue;
+        HAL_Delay(BQ_RESET_BOOT_MS);
 
-    // Provide a small delay for the IC to populate the transfer buffer
-    HAL_Delay(1);
+        uint32_t t0 = HAL_GetTick();
+        while ((HAL_GetTick() - t0) < BQ_RESET_TIMEOUT_MS) {
+            uint16_t bs;
+            BQ_Wake_SPI();
+            if (BQ_ReadReg16(BQ_REG_BATTERY_STATUS, &bs) == BQ_OK && (bs & BQ_BATSTAT_POR)) {
+                return BQ_OK;
+            }
+            HAL_Delay(10);
+        }
+        BQ_Health.retries++;
+    }
+    return bq_fail(BQ_ERR_TIMEOUT);
+}
 
-    // Read the full 16-bit bitmask from the transfer buffer (0x40 and 0x41)
-    // Bit 0 = Cell 1 ... Bit 15 = Cell 16
-    uint16_t cb_active_mask = BQ_SPI_ReadReg(0x40) | (BQ_SPI_ReadReg(0x41) << 8);
+BQ_Status BQ_Configure(void) {
+    BQ_Health.configured = 0;
 
-    // FIX: Removed the & 0x007F mask. We now save all 16 bits directly.
-    status->hw_balance_mask = cb_active_mask;
+    // --- Values to write ---
+    const uint8_t vcell[2] = { (uint8_t)(BQ_VCELL_MODE & 0xFF), (uint8_t)(BQ_VCELL_MODE >> 8) };
 
-    // --- Count how many cells are actively balancing ---
+    // Dsg / Chg Current Threshold (userA). 100 / 50 are the TI defaults.
+    // With the default CC Gain and a 2 mOhm shunt these mean 50 mA / 25 mA.
+    const uint8_t curr_thr[4] = { 100, 0, 50, 0 };
+
+    // Cell balancing block, 0x9335 .. 0x9342 (14 bytes, contiguous)
+    const uint8_t cb[14] = {
+        0x07,                                   // 0x9335 Balancing Configuration: CB_CHG | CB_RLX | CB_SLEEP
+        (uint8_t)(int8_t)-100,                  // 0x9336 Min Cell Temp  (bench test: wide limits)
+        120,                                    // 0x9337 Max Cell Temp
+        120,                                    // 0x9338 Max Internal Temp
+        BALANCE_INTERVAL_S,                     // 0x9339 Cell Balance Interval
+        BALANCE_MAX_CELLS,                      // 0x933A Cell Balance Max Cells
+        (uint8_t)(BALANCE_MIN_VOLTAGE_MV & 0xFF),   // 0x933B Min Cell V (Charge), I2
+        (uint8_t)(BALANCE_MIN_VOLTAGE_MV >> 8),
+        BALANCE_THRESHOLD_MV,                   // 0x933D Min Delta (Charge)
+        BALANCE_STOP_DELTA_MV,                  // 0x933E Stop Delta (Charge)
+        (uint8_t)(BALANCE_MIN_VOLTAGE_MV & 0xFF),   // 0x933F Min Cell V (Relax), I2
+        (uint8_t)(BALANCE_MIN_VOLTAGE_MV >> 8),
+        BALANCE_THRESHOLD_MV,                   // 0x9341 Min Delta (Relax)
+        BALANCE_STOP_DELTA_MV,                  // 0x9342 Stop Delta (Relax)
+    };
+
+    // --- Write everything in one CONFIG_UPDATE session ---
+    BQ_Status s = BQ_EnterConfigUpdate();
+    if (s != BQ_OK) return s;
+
+    if (s == BQ_OK) s = BQ_WriteDataMem(BQ_DM_VCELL_MODE, vcell, sizeof(vcell));
+    if (s == BQ_OK) s = BQ_WriteDataMem(BQ_DM_DSG_CURR_THR, curr_thr, sizeof(curr_thr));
+    if (s == BQ_OK) s = BQ_WriteDataMem(BQ_DM_CB_CONFIG, cb, sizeof(cb));
+
+    // Always try to leave CONFIG_UPDATE, even after an error
+    BQ_Status s_exit = BQ_ExitConfigUpdate();
+    if (s != BQ_OK) return s;
+    if (s_exit != BQ_OK) return s_exit;
+
+    // --- Verify by reading back ---
+    if ((s = bq_verify_dm(BQ_DM_VCELL_MODE, vcell, sizeof(vcell))) != BQ_OK) return s;
+    if ((s = bq_verify_dm(BQ_DM_DSG_CURR_THR, curr_thr, sizeof(curr_thr))) != BQ_OK) return s;
+    if ((s = bq_verify_dm(BQ_DM_CB_CONFIG, cb, sizeof(cb))) != BQ_OK) return s;
+
+    BQ_Health.configured = 1;
+    BQ_Health.configs++;
+    return BQ_OK;
+}
+
+BQ_Status BQ_Init(void) {
+    BQ_Wake_SPI();
+#if BQ_RESET_ON_BOOT
+    BQ_Status s = BQ_Reset();
+    if (s != BQ_OK) return s;
+#endif
+    return BQ_Configure();
+}
+
+// The POR flag is set by any full reset of the IC and cleared when
+// CONFIG_UPDATE is exited. If it is set, the RAM settings are gone.
+BQ_Status BQ_CheckForReset(void) {
+    uint16_t bs;
+    BQ_Status s = BQ_ReadReg16(BQ_REG_BATTERY_STATUS, &bs);
+    if (s != BQ_OK) return s;
+    if (bs & BQ_BATSTAT_POR) {
+        BQ_Health.resets_detected++;
+        return BQ_Configure();
+    }
+    return BQ_OK;
+}
+
+// ---------------------------------------------------------------------------
+// Measurements
+// ---------------------------------------------------------------------------
+
+// Reads the cells enabled in BQ_VCELL_MODE into cell_array[0..NUM_CELLS-1]
+BQ_Status BQ_Read_All_Cell_Voltages(uint16_t *cell_array) {
+    uint8_t n = 0;
+    for (uint8_t input = 0; input < 16 && n < NUM_CELLS; input++) {
+        if (!(BQ_VCELL_MODE & (1U << input))) continue;
+        uint16_t mv;
+        BQ_Status s = BQ_ReadReg16((uint8_t)(0x14 + input * 2), &mv);   // Cell 1 = 0x14
+        if (s != BQ_OK) return s;
+        cell_array[n++] = mv;
+    }
+    return BQ_OK;
+}
+
+// Stack voltage (0x34) in mV. Raw unit is 10 mV (default DA Configuration).
+// uint32 because a full 16S pack is above 65.5 V.
+BQ_Status BQ_Read_Stack_Voltage(uint32_t *stack_mV) {
+    uint16_t raw;
+    BQ_Status s = BQ_ReadReg16(0x34, &raw);
+    if (s == BQ_OK) *stack_mV = (uint32_t)raw * 10U;
+    return s;
+}
+
+// Internal die temperature (0x68), unit 0.1 K
+BQ_Status BQ_Read_Internal_Temp_C(float *temp_c) {
+    uint16_t raw;
+    BQ_Status s = BQ_ReadReg16(0x68, &raw);
+    if (s == BQ_OK) *temp_c = ((float)raw / 10.0f) - 273.15f;
+    return s;
+}
+
+// CC2 current (0x3A), int16 in mA for a 1 mOhm shunt (default CC Gain).
+// Positive = charge, negative = discharge.
+BQ_Status BQ_Get_Pack_Current_Amps(float *amps) {
+    uint16_t raw;
+    BQ_Status s = BQ_ReadReg16(0x3A, &raw);
+    if (s == BQ_OK) *amps = (float)(int16_t)raw / (1000.0f * BQ_SHUNT_MOHM);
+    return s;
+}
+
+// REG18 voltage in ADC counts (first 2 bytes of DASTATUS5)
+BQ_Status BQ_Read_REG18_ADC(uint16_t *counts) {
+    uint8_t buf[2];
+    BQ_Status s = BQ_SubcommandRead(BQ_SUB_DASTATUS5, buf, 2);
+    if (s == BQ_OK) *counts = (uint16_t)(buf[0] | (buf[1] << 8));
+    return s;
+}
+
+BQ_Status BQ_Read_Balance_Status(const uint16_t *cell_mV, BQ_Balance_Status_t *status) {
+    uint8_t buf[2];
+    BQ_Status s = BQ_SubcommandRead(BQ_SUB_CB_ACTIVE_CELLS, buf, 2);
+    if (s != BQ_OK) return s;
+
+    uint16_t mask = (uint16_t)(buf[0] | (buf[1] << 8));   // bit 0 = cell 1
+    status->hw_balance_mask = mask;
+
     uint8_t count = 0;
-    uint16_t tmp = status->hw_balance_mask;
-    while (tmp) {
-        count += (tmp & 1U);
-        tmp >>= 1;
-    }
-    status->cells_balancing = count;
+    for (uint16_t tmp = mask; tmp; tmp >>= 1) count += (uint8_t)(tmp & 1U);
+    status->cells_balancing  = count;
     status->balancing_active = (count > 0) ? 1U : 0U;
 
-    // --- Compute min/max/delta from cell voltages for diagnostics ---
-    // This loop relies on NUM_CELLS being defined as 16 in the header.
-    uint16_t v_min = cell_mV[0];
-    uint16_t v_max = cell_mV[0];
+    uint16_t v_min = cell_mV[0], v_max = cell_mV[0];
     for (uint8_t i = 1; i < NUM_CELLS; i++) {
         if (cell_mV[i] < v_min) v_min = cell_mV[i];
         if (cell_mV[i] > v_max) v_max = cell_mV[i];
     }
     status->min_voltage_mV = v_min;
     status->max_voltage_mV = v_max;
-    status->delta_mV       = v_max - v_min;
+    status->delta_mV       = (uint16_t)(v_max - v_min);
+    return BQ_OK;
 }
 
-// ---------------------------------------------------------------------------
-// Configure Power Modes / Current Thresholds
-// This tells the IC when to transition between RELAX, CHARGE, and DISCHARGE modes.
-// ---------------------------------------------------------------------------
-void BQ_Configure_Power_Modes(void) {
-    // Step 1: Enter CONFIG_UPDATE mode (subcommand 0x0090)
-    BQ_SPI_WriteReg(0x3E, 0x90);
-    BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(50); // Ensure IC is in Config Update mode
+// Reads all safety flags. Alarm Status bits are latched: they are cleared
+// here (write 1 to clear) so the next read shows only new events.
+BQ_Status BQ_Read_Safety(BQ_Safety_t *sf) {
+    BQ_Status s;
+    if ((s = BQ_ReadReg8(0x02, &sf->safety_alert_a))  != BQ_OK) return s;
+    if ((s = BQ_ReadReg8(0x03, &sf->safety_status_a)) != BQ_OK) return s;
+    if ((s = BQ_ReadReg8(0x04, &sf->safety_alert_b))  != BQ_OK) return s;
+    if ((s = BQ_ReadReg8(0x05, &sf->safety_status_b)) != BQ_OK) return s;
+    if ((s = BQ_ReadReg8(0x06, &sf->safety_alert_c))  != BQ_OK) return s;
+    if ((s = BQ_ReadReg8(0x07, &sf->safety_status_c)) != BQ_OK) return s;
+    if ((s = BQ_ReadReg16(BQ_REG_BATTERY_STATUS, &sf->battery_status)) != BQ_OK) return s;
+    if ((s = BQ_ReadReg16(BQ_REG_ALARM_STATUS, &sf->alarm_status)) != BQ_OK) return s;
 
-    // Step 2: Write Current Thresholds (Settings:Configuration:Power Config)
-
-    // Dsg Current Threshold (0x9310) - 2 bytes
-    // If discharging current exceeds this, IC enters DISCHARGE mode.
-    // Assuming default CC Gain, 100 roughly equals a pack current of ~1000mA (depends on sense resistor)
-    BQ_WriteDataMem2(0x9310, 100);
-
-    // Chg Current Threshold (0x9312) - 2 bytes
-    // If charging current exceeds this, IC enters CHARGE mode and uses Charge Balancing limits.
-    // Assuming default CC Gain, 50 roughly equals a pack current of ~500mA
-    BQ_WriteDataMem2(0x9312, 50);
-
-    // Step 3: Exit CONFIG_UPDATE mode (subcommand 0x0092)
-    BQ_SPI_WriteReg(0x3E, 0x92);
-    BQ_SPI_WriteReg(0x3F, 0x00);
-    HAL_Delay(10);
+    if (sf->alarm_status) {
+        if ((s = BQ_SPI_WriteReg(BQ_REG_ALARM_STATUS, (uint8_t)(sf->alarm_status & 0xFF))) != BQ_OK) return s;
+        if ((s = BQ_SPI_WriteReg(BQ_REG_ALARM_STATUS + 1, (uint8_t)(sf->alarm_status >> 8))) != BQ_OK) return s;
+    }
+    return BQ_OK;
 }

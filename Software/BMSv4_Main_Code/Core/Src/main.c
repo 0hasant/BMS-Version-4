@@ -46,13 +46,17 @@ SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 
-volatile uint16_t         Cell_Voltages_mV[16] = {0};
-volatile uint16_t         REG18_Raw_ADC = 0;
-volatile uint16_t         Stack_Voltage_mV = 0;
-volatile float            Internal_Temp_C = 0.0f;
-volatile float            Battery_Current = 0;
-BQ_Balance_Status_t Balance_Status = {0}; // Live expression: inspect all balance fields
-volatile uint16_t         BQ_Alarms = 0;
+// Live expressions for the debugger
+uint16_t            Cell_Voltages_mV[NUM_CELLS] = {0};
+uint16_t            REG18_Raw_ADC = 0;
+uint32_t            Stack_Voltage_mV = 0;
+float               Internal_Temp_C = 0.0f;
+float               Battery_Current = 0.0f;
+BQ_Balance_Status_t Balance_Status = {0};
+BQ_Safety_t         BQ_Safety = {0};      // safety flags, Battery Status, Alarm Status
+uint32_t            Loop_Count = 0;
+uint32_t            Loop_Errors = 0;      // loops where at least one read failed
+uint8_t             Consecutive_Errors = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -65,6 +69,45 @@ static void MX_SPI1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+// Independent watchdog: resets the MCU if the main loop hangs.
+// Set to 0 while single-stepping if you prefer; the counter is frozen
+// anyway while the debugger halts the core (DBG_IWDG_STOP).
+#define BMS_USE_IWDG          1
+// LSI ~40 kHz / 64 = 625 Hz; 1250 counts = ~2 s (1.3-4 s over LSI tolerance)
+#define BMS_IWDG_RELOAD       1250U
+
+// After this many loops in a row with failed reads, re-initialise the BQ76952
+#define BMS_MAX_CONSEC_ERRORS 5U
+
+static void BMS_IWDG_Start(void) {
+#if BMS_USE_IWDG
+    DBGMCU->CR |= DBGMCU_CR_DBG_IWDG_STOP;   // stop the watchdog while halted
+    IWDG->KR  = 0x5555;                      // unlock PR/RLR
+    IWDG->PR  = 4;                           // prescaler /64
+    IWDG->RLR = BMS_IWDG_RELOAD;
+    IWDG->KR  = 0xAAAA;                      // reload
+    IWDG->KR  = 0xCCCC;                      // start
+#endif
+}
+
+static inline void BMS_IWDG_Kick(void) {
+#if BMS_USE_IWDG
+    IWDG->KR = 0xAAAA;
+#endif
+}
+
+// Retry BQ_Init a few times; returns BQ_OK when the IC is configured
+static BQ_Status BMS_Init_BQ(void) {
+    BQ_Status s = BQ_ERR_TIMEOUT;
+    for (uint8_t attempt = 0; attempt < 3; attempt++) {
+        BMS_IWDG_Kick();
+        s = BQ_Init();
+        if (s == BQ_OK) break;
+        HAL_Delay(100);
+    }
+    return s;
+}
 
 /* USER CODE END 0 */
 
@@ -100,16 +143,14 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
-  // 1. Send the wake-up ping to the BQ76952
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-  HAL_Delay(1);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-  HAL_Delay(5);
+  // Give the BQ76952 time to boot if the whole board just powered up
+  HAL_Delay(50);
 
+  // Reset (BQ_RESET_ON_BOOT) + write and verify configuration.
+  // If it fails, the main loop keeps retrying; check BQ_Health in the debugger.
+  (void)BMS_Init_BQ();
 
-  BQ_Configure_Cell_Count();
-  BQ_Configure_Power_Modes();
-  BQ_Configure_Balancing();  // Set up CB thresholds and eligible cells (VC1-VC7)
+  BMS_IWDG_Start();
 
   /* USER CODE END 2 */
 
@@ -120,33 +161,38 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	  // Check which hardware fault tripped
+	  BMS_IWDG_Kick();
+	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	  Loop_Count++;
 
-	  HAL_GPIO_TogglePin(GPIOA, LED_Pin);
+	  BQ_Wake_SPI();
 
-	  BQ_Wake_SPI();// Check that function
+	  // Not configured yet, or the IC was reset (POR flag) -> (re)configure.
+	  BQ_Status s = BQ_Health.configured ? BQ_CheckForReset() : BQ_Configure();
 
-	  BQ_Read_All_Cell_Voltages((uint16_t*)Cell_Voltages_mV);
+	  // Measurements. A failed read keeps the previous value.
+	  if (s == BQ_OK) s = BQ_Read_All_Cell_Voltages(Cell_Voltages_mV);
+	  if (s == BQ_OK) s = BQ_Read_Balance_Status(Cell_Voltages_mV, &Balance_Status);
+	  if (s == BQ_OK) s = BQ_Read_Stack_Voltage(&Stack_Voltage_mV);
+	  if (s == BQ_OK) s = BQ_Read_Internal_Temp_C(&Internal_Temp_C);
+	  if (s == BQ_OK) s = BQ_Get_Pack_Current_Amps(&Battery_Current);
+	  if (s == BQ_OK) s = BQ_Read_REG18_ADC(&REG18_Raw_ADC);
 
-	  // Monitor what the BQ76952's autonomous balancer is doing (read-only)
-	  BQ_Read_Balance_Status((uint16_t*)Cell_Voltages_mV, &Balance_Status);
+	  // Safety flags: safety_status_a bits = BQ_SSA_* (CUV, COV, OCC, OCD, SCD),
+	  // alarm_status bits = BQ_ALARM_* (CB = balancing active, SSA/SSBC = fault)
+	  if (s == BQ_OK) s = BQ_Read_Safety(&BQ_Safety);
 
-	  REG18_Raw_ADC = BQ_Read_REG18_ADC();
+	  if (s != BQ_OK) {
+	      Loop_Errors++;
+	      if (++Consecutive_Errors >= BMS_MAX_CONSEC_ERRORS) {
+	          Consecutive_Errors = 0;
+	          (void)BMS_Init_BQ();    // lost contact: reset and reconfigure
+	      }
+	  } else {
+	      Consecutive_Errors = 0;
+	  }
 
-	  Stack_Voltage_mV = BQ_Read_Stack_Voltage();
-
-	  Internal_Temp_C = BQ_Read_Internal_Temp_C();
-
-	  Battery_Current = BQ_Get_Pack_Current_Amps();
-
-
-	  // Direct command 0x62 is AlarmStatus. If it is NOT 0, a fault is blocking balancing!
-	  BQ_Alarms = BQ_SPI_ReadReg(0x62) | (BQ_SPI_ReadReg(0x63) << 8);
-	  // If (alarms & 0x0004) -> CUV is active
-	  // If (alarms & 0x0008) -> COV is active
-
-	  // 100 ms gives the BQ76952 one full ADC measurement cycle (~50 Hz)
-	  // to complete before the next read burst, ensuring fresh voltage data.
+	  // Loop period: ~100 ms plus the time spent on SPI reads.
 	  HAL_Delay(100);
 
   }
