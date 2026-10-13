@@ -75,7 +75,36 @@ is about 0.4 A. Balancing is enabled by an external button (J4 opto input).
       ~0.8 W each at 4.2 V (10 R was ~1.7 W each). Same footprint, BOM change only.
       Özdisan has it at 0 stock today (Request Price & Stock); any 22 R 2 W 2512 fits
 - [ ] C27 (CAN split termination) is 10 pF, should be ~4.7 nF
-- [ ] Regenerate the BOM from the current schematic (`BMS_V4.csv` and `BMS_V4.013.xlsx` use old references)
+- [x] BOM regenerated from the current schematic: `Hardware/BMS_V4/BOM/BMS_V4.02_BOM.xlsx` (and `.csv`), see below
+
+### BOM
+`Hardware/BMS_V4/BOM/BMS_V4.02_BOM.xlsx` - one line per part number, with Özdisan link, stock, price (TRY, tax
+included, at MOQ, checked 2026-10-13) and a "Boards to build" cell that updates the quantities to buy. A second
+table lists the off-board parts (mating plugs for J1-J5, jumpers for J7/J8). The `.csv` is the same list as plain text.
+`Docs/Listeler/BMS_V4.013.xlsx` and `Hardware/BMS_V4/BMS_V4.csv` are old (v4.013 references), do not order from them.
+
+Not in stock at Özdisan on 2026-10-13 (order elsewhere or "Request Price & Stock"): BQ76952 (U1), CD74HC4067 (U6),
+BAT46W (D1), 22R 2W 2512 (balance resistors), NTC TH1-TH3, 10k 1% (R33), 0R (R43), 30pF (C24/C25, 47pF is in stock
+if you want to change), 56pF (C33), 1206 caps C1 and C29, 3.3nF 2kV disc (C26), J5 header, J6 box header,
+PS1 (not sold by Özdisan; RECOM RFM-0505S is a candidate, check pinout first). C35 (TDK 10uF 50V) has only 9 left.
+
+### Component naming in the schematic
+Every symbol now follows the same rule; the full part number is in hidden fields
+(`MPN`, `Manufacturer`, `Supplier`, `Supplier Link`), visible in the symbol properties and in the BOM.
+
+| Part type | Value shows | Example |
+|---|---|---|
+| Resistor | resistance, power only if >= 1 W, tolerance only where it matters | `4.7k`, `22R 2W`, `10k 1%` |
+| Capacitor | capacitance + voltage | `100nF 50V`, `3.3nF 2kV` |
+| Inductor / crystal / fuse | main value | `220uH`, `16MHz`, `1A slow` |
+| IC, diode, transistor | short part name | `BQ76952`, `SI1050X`, `BAT54C` |
+| Connector / switch | what it connects or does | `Cells 0-9`, `CAN`, `BMS ID`, `MCU reset` |
+
+R1 and R2 are marked DNP (do not populate). The PCB Value fields were synced to the schematic
+(this also fixes Q1-Q16, which showed RQ6E080AJ on the PCB).
+
+Reference designators kept as they are on v4.02 so they match the ordered board's silkscreen.
+For v4.03 rename: C36/C37 (PhotoMOS relays) -> K1/K2, LED1 -> D36, IC1/IC2 -> U7/U8.
 
 ### Next revision (v4.03) wish list
 - [ ] Power REGIN from +5V_Main (BREG tied to REGIN, 1 uF at REGIN, 1 uF at REG1) and enable REG1 = 3.3 V:

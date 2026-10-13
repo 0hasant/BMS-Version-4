@@ -2945,7 +2945,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF"
+		(property "Value" "100nF 50V"
 			(at 25.654 93.472 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2978,7 +2978,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor"
+		(property "Description" "MLCC 0805 100nF 50V X7R"
+			(at 34.29 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21B104KBCNNNC"
+			(at 34.29 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 34.29 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 34.29 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21b104kbcnnnc-14777"
 			(at 34.29 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -3027,7 +3071,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10uF,0805"
+		(property "Value" "10uF 25V"
 			(at 58.42 36.8362 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3060,7 +3104,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "MLCC 0805 10uF 25V X7S"
+			(at 60.96 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "GRT21BC71E106KE13L"
+			(at 60.96 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Murata"
+			(at 60.96 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 60.96 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/murata-grt21bc71e106ke13l-695580"
 			(at 60.96 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -3266,7 +3354,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "30pF"
+		(property "Value" "30pF 50V"
 			(at 106.68 87.884 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3299,7 +3387,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor"
+		(property "Description" "MLCC 0805 30pF 50V C0G"
+			(at 114.3 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21C300JBANNNC"
+			(at 114.3 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 114.3 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 114.3 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21c300jbannnc-523139"
 			(at 114.3 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -3500,7 +3632,7 @@
 				)
 			)
 		)
-		(property "Value" "60R"
+		(property "Value" "60.4R"
 			(at 147.32 98.806 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3532,7 +3664,51 @@
 				)
 			)
 		)
-		(property "Description" "Resistor"
+		(property "Description" "Resistor 0805 60.4R 1%"
+			(at 147.32 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F604JT5E"
+			(at 147.32 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 147.32 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 147.32 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f604jt5e-505356"
 			(at 147.32 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -3816,7 +3992,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "380-10-103-00-002000"
+		(property "Value" "CAN_L term"
 			(at 137.16 109.2199 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3851,7 +4027,51 @@
 				(justify left top)
 			)
 		)
-		(property "Description" "Headers & Wire Housings STANDARD PIN HEADER"
+		(property "Description" "Pin header 1x40 2.54mm vertical, cut to 3 pins"
+			(at 133.35 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "L-KLS1-207-1-40-S"
+			(at 133.35 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "KLS"
+			(at 133.35 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 133.35 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/pin-headers-293/kls-electronic-l-kls1-207-1-40-s-456171"
 			(at 133.35 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -4096,7 +4316,51 @@
 				)
 			)
 		)
-		(property "Description" "Resistor"
+		(property "Description" "Resistor 0805 1M 1%"
+			(at 133.35 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F1004T5E"
+			(at 133.35 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 133.35 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 133.35 29.21 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f1004t5e-29700"
 			(at 133.35 29.21 0)
 			(hide yes)
 			(show_name no)
@@ -4222,7 +4486,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "30pF"
+		(property "Value" "30pF 50V"
 			(at 106.934 98.044 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4255,7 +4519,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor"
+		(property "Description" "MLCC 0805 30pF 50V C0G"
+			(at 114.3 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21C300JBANNNC"
+			(at 114.3 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 114.3 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 114.3 96.52 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21c300jbannnc-523139"
 			(at 114.3 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -4304,7 +4612,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "200R,0805"
+		(property "Value" "200R"
 			(at 41.91 38.0999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4337,7 +4645,51 @@
 				)
 			)
 		)
-		(property "Description" "Resistor, US symbol"
+		(property "Description" "Resistor 0805 200R 1%"
+			(at 44.45 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F2000T5E"
+			(at 44.45 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 44.45 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 44.45 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f2000t5e-404862"
 			(at 44.45 36.83 0)
 			(hide yes)
 			(show_name no)
@@ -4696,7 +5048,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10pF"
+		(property "Value" "10pF 50V"
 			(at 159.004 93.472 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4729,7 +5081,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor"
+		(property "Description" "MLCC 0805 10pF 50V C0G"
+			(at 156.21 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CC0805JRNPO9BN100"
+			(at 156.21 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Yageo"
+			(at 156.21 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 156.21 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/yageo-cc0805jrnpo9bn100-743750"
 			(at 156.21 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -4856,7 +5252,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100nF"
+		(property "Value" "100nF 50V"
 			(at 93.218 77.47 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4889,7 +5285,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor"
+		(property "Description" "MLCC 0805 100nF 50V X7R"
+			(at 90.17 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21B104KBCNNNC"
+			(at 90.17 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 90.17 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 90.17 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21b104kbcnnnc-14777"
 			(at 90.17 76.2 0)
 			(hide yes)
 			(show_name no)
@@ -4937,7 +5377,7 @@
 				)
 			)
 		)
-		(property "Value" "ISO1050DUB"
+		(property "Value" "ISO1050"
 			(at 60.96 82.55 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4970,7 +5410,51 @@
 				)
 			)
 		)
-		(property "Description" "Isolated CAN Transceiver, SOP-8"
+		(property "Description" "Isolated CAN transceiver, SOP-8"
+			(at 60.96 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "ISO1050DUBR"
+			(at 60.96 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Texas Instruments"
+			(at 60.96 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 60.96 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/drivers-receivers-and-transceivers-229/texas-iso1050dubr-348272"
 			(at 60.96 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -5037,7 +5521,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "380-10-103-00-002000"
+		(property "Value" "CAN_H term"
 			(at 137.16 74.9299 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5072,7 +5556,51 @@
 				(justify left top)
 			)
 		)
-		(property "Description" "Headers & Wire Housings STANDARD PIN HEADER"
+		(property "Description" "Pin header 1x40 2.54mm vertical, cut to 3 pins"
+			(at 128.27 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "L-KLS1-207-1-40-S"
+			(at 128.27 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "KLS"
+			(at 128.27 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 128.27 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/pin-headers-293/kls-electronic-l-kls1-207-1-40-s-456171"
 			(at 128.27 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -5315,7 +5843,51 @@
 				)
 			)
 		)
-		(property "Description" "Resistor"
+		(property "Description" "Resistor 0805 330R 1%"
+			(at 77.47 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F3300T5E"
+			(at 77.47 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 77.47 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 77.47 76.2 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f3300t5e-36831"
 			(at 77.47 76.2 0)
 			(hide yes)
 			(show_name no)
@@ -5441,7 +6013,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "4.7uF,0805"
+		(property "Value" "4.7uF 25V"
 			(at 58.42 29.2162 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5474,7 +6046,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "MLCC 0805 4.7uF 25V X5R"
+			(at 60.96 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21A475KAQNNNE"
+			(at 60.96 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 60.96 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 60.96 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21a475kaqnnne-441542"
 			(at 60.96 27.94 0)
 			(hide yes)
 			(show_name no)
@@ -5755,7 +6371,7 @@
 				)
 			)
 		)
-		(property "Value" "60R"
+		(property "Value" "60.4R"
 			(at 147.32 88.646 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5787,7 +6403,51 @@
 				)
 			)
 		)
-		(property "Description" "Resistor"
+		(property "Description" "Resistor 0805 60.4R 1%"
+			(at 147.32 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F604JT5E"
+			(at 147.32 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 147.32 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 147.32 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f604jt5e-505356"
 			(at 147.32 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -5835,7 +6495,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "3.3nF"
+		(property "Value" "3.3nF 2kV"
 			(at 136.398 41.91 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5868,7 +6528,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor"
+		(property "Description" "Ceramic disc 3.3nF 2kV, 5 mm pitch"
+			(at 133.35 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "KB3D332KL518Y"
+			(at 133.35 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Cinetech"
+			(at 133.35 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 133.35 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/ceramic-capacitors-181/cinetech-kb3d332kl518y-401993"
 			(at 133.35 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -5995,7 +6699,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1S4E_1505S1U"
+		(property "Value" "1S4E_0505S1U"
 			(at 88.9 33.0199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6030,7 +6734,51 @@
 				(justify left top)
 			)
 		)
-		(property "Description" "1W - Single Output - Fixed Input - Isolated & Unregulated SIP PACKAGE"
+		(property "Description" "Isolated DC/DC 5V to 5V 1W, SIP4"
+			(at 67.31 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "1S4E_0505S1U"
+			(at 67.31 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "-"
+			(at 67.31 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" ""
+			(at 67.31 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" ""
 			(at 67.31 27.94 0)
 			(hide yes)
 			(show_name no)
