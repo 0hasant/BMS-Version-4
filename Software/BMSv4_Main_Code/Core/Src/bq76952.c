@@ -67,7 +67,7 @@ uint8_t BQ_SPI_ReadReg(uint8_t reg_addr) {
     return rx_buf[1];
 }
 
-//Function is 16 Cell
+// Configure BQ76952 for 7-Cell (7S) Pack
 void BQ_Configure_Cell_Count(void) {
     // Step 1: Enter Config Update Mode (subcommand 0x0090)
     BQ_SPI_WriteReg(0x3E, 0x90);
@@ -79,13 +79,14 @@ void BQ_Configure_Cell_Count(void) {
     BQ_SPI_WriteReg(0x3F, 0x93);
 
     // Step 3: Write the 2-byte payload to Transfer Buffer
-    // 0xFFFF enables VC1 through VC16
-    BQ_SPI_WriteReg(0x40, 0xFF);  // Byte 1: VC8..VC1
-    BQ_SPI_WriteReg(0x41, 0xFF);  // Byte 2: VC16..VC9
+    // For 7S per TI TRM Table 4-1: VCELL_MODE = 0x82AB
+    // Enabled VC inputs: VC1, VC2, VC4, VC6, VC8, VC10, VC16
+    BQ_SPI_WriteReg(0x40, 0xAB);  // Byte 1: VC8..VC1 (VC1, VC2, VC4, VC6, VC8 enabled = 0xAB)
+    BQ_SPI_WriteReg(0x41, 0x82);  // Byte 2: VC16..VC9 (VC10, VC16 enabled = 0x82)
 
     // Step 4: Write Checksum and Length
-    // Checksum = ~( (0x04 + 0x93 + 0xFF + 0xFF) & 0xFF ) = ~(0x95) = 0x6A
-    BQ_SPI_WriteReg(0x60, 0x6A);  // Updated checksum byte
+    // Checksum = ~( (0x04 + 0x93 + 0xAB + 0x82) & 0xFF ) = ~(0xC4) = 0x3B
+    BQ_SPI_WriteReg(0x60, 0x3B);  // Updated checksum byte for 0x82AB
     BQ_SPI_WriteReg(0x61, 0x06);  // Length remains 6
 
     HAL_Delay(5);
@@ -97,9 +98,19 @@ void BQ_Configure_Cell_Count(void) {
 }
 
 void BQ_Read_All_Cell_Voltages(uint16_t *cell_array) {
-    // Loop extended to 16 iterations to capture VC1 through VC16
-    for (int i = 0; i < 16; i++) {
-        uint8_t low_addr  = 0x14 + (i * 2);
+    // 7S cell voltage direct register addresses according to TI TRM Table 4-1
+    static const uint8_t cell_regs[NUM_CELLS] = {
+        0x14, // Cell 1 (VC1 - VC0)
+        0x16, // Cell 2 (VC2 - VC1)
+        0x1A, // Cell 3 (VC4 - VC2)
+        0x1E, // Cell 4 (VC6 - VC4)
+        0x22, // Cell 5 (VC8 - VC6)
+        0x26, // Cell 6 (VC10 - VC8)
+        0x32  // Cell 7 (VC16 - VC10)
+    };
+
+    for (uint8_t i = 0; i < NUM_CELLS; i++) {
+        uint8_t low_addr  = cell_regs[i];
         uint8_t high_addr = low_addr + 1;
         uint8_t cell_low  = BQ_SPI_ReadReg(low_addr);
         uint8_t cell_high = BQ_SPI_ReadReg(high_addr);
@@ -237,10 +248,7 @@ static void BQ_WriteDataMem2(uint16_t sub_addr, uint16_t value) {
 }
 
 // ---------------------------------------------------------------------------
-// 9. Configure BQ76952 Autonomous Cell Balancing
-// ---------------------------------------------------------------------------
-// ---------------------------------------------------------------------------
-// Configure BQ76952 Autonomous Cell Balancing (Updated for 16 Cells)
+// 9. Configure BQ76952 Autonomous Cell Balancing (7-Cell Configuration)
 // ---------------------------------------------------------------------------
 void BQ_Configure_Balancing(void) {
 
@@ -272,8 +280,8 @@ void BQ_Configure_Balancing(void) {
     BQ_WriteDataMem1(0x9339, 3);              // Re-evaluate every 3 seconds
 
     // --- CB Max Cells ---
-    // For a 16-cell pack, the BQ76952 can balance up to 4 non-adjacent cells safely.
-    BQ_WriteDataMem1(0x933A, 4);
+    // For a 7-cell pack, limit autonomous balancing to 2 non-adjacent cells.
+    BQ_WriteDataMem1(0x933A, 2);
 
     // --- Charge Balancing Thresholds ---
     BQ_WriteDataMem2(0x933B, BALANCE_MIN_VOLTAGE_MV);
@@ -292,7 +300,7 @@ void BQ_Configure_Balancing(void) {
 }
 
 // ---------------------------------------------------------------------------
-// 10. Read Balance Status (Updated for 16 Cells)
+// 10. Read Balance Status (7-Cell Mapping)
 // ---------------------------------------------------------------------------
 void BQ_Read_Balance_Status(uint16_t *cell_mV, BQ_Balance_Status_t *status) {
 
@@ -304,11 +312,20 @@ void BQ_Read_Balance_Status(uint16_t *cell_mV, BQ_Balance_Status_t *status) {
     HAL_Delay(1);
 
     // Read the full 16-bit bitmask from the transfer buffer (0x40 and 0x41)
-    // Bit 0 = Cell 1 ... Bit 15 = Cell 16
+    // Bit 0 = VC1, Bit 1 = VC2, Bit 3 = VC4, Bit 5 = VC6, Bit 7 = VC8, Bit 9 = VC10, Bit 15 = VC16
     uint16_t cb_active_mask = BQ_SPI_ReadReg(0x40) | (BQ_SPI_ReadReg(0x41) << 8);
 
-    // FIX: Removed the & 0x007F mask. We now save all 16 bits directly.
-    status->hw_balance_mask = cb_active_mask;
+    // Map 7S hardware balance bits to cell flags 0..6 (bits 0..6 of status->hw_balance_mask)
+    uint16_t cell_bal_mask = 0;
+    if (cb_active_mask & (1 << 0))  cell_bal_mask |= (1 << 0); // Cell 1 (VC1)
+    if (cb_active_mask & (1 << 1))  cell_bal_mask |= (1 << 1); // Cell 2 (VC2)
+    if (cb_active_mask & (1 << 3))  cell_bal_mask |= (1 << 2); // Cell 3 (VC4)
+    if (cb_active_mask & (1 << 5))  cell_bal_mask |= (1 << 3); // Cell 4 (VC6)
+    if (cb_active_mask & (1 << 7))  cell_bal_mask |= (1 << 4); // Cell 5 (VC8)
+    if (cb_active_mask & (1 << 9))  cell_bal_mask |= (1 << 5); // Cell 6 (VC10)
+    if (cb_active_mask & (1 << 15)) cell_bal_mask |= (1 << 6); // Cell 7 (VC16)
+
+    status->hw_balance_mask = cell_bal_mask;
 
     // --- Count how many cells are actively balancing ---
     uint8_t count = 0;
@@ -321,7 +338,6 @@ void BQ_Read_Balance_Status(uint16_t *cell_mV, BQ_Balance_Status_t *status) {
     status->balancing_active = (count > 0) ? 1U : 0U;
 
     // --- Compute min/max/delta from cell voltages for diagnostics ---
-    // This loop relies on NUM_CELLS being defined as 16 in the header.
     uint16_t v_min = cell_mV[0];
     uint16_t v_max = cell_mV[0];
     for (uint8_t i = 1; i < NUM_CELLS; i++) {

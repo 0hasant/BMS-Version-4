@@ -46,7 +46,7 @@ SPI_HandleTypeDef hspi1;
 
 /* USER CODE BEGIN PV */
 
-volatile uint16_t         Cell_Voltages_mV[16] = {0};
+volatile uint16_t         Cell_Voltages_mV[NUM_CELLS] = {0};
 volatile uint16_t         REG18_Raw_ADC = 0;
 volatile uint16_t         Stack_Voltage_mV = 0;
 volatile float            Internal_Temp_C = 0.0f;
@@ -109,7 +109,7 @@ int main(void)
 
   BQ_Configure_Cell_Count();
   BQ_Configure_Power_Modes();
-  BQ_Configure_Balancing();  // Set up CB thresholds and eligible cells (VC1-VC7)
+  //BQ_Configure_Balancing();  // Set up CB thresholds and eligible cells (VC1-VC7)
 
   /* USER CODE END 2 */
 

@@ -3790,7 +3790,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_Push_Dual"
+		(property "Value" "DS1040-02RN"
 			(at 153.67 26.67 0)
 			(show_name no)
 			(do_not_autoplace no)

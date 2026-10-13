@@ -13,15 +13,18 @@
 7. Fix the 5V regulator circuit. The cell connection can be reduced to 13 cells.//Done by Hasan Turan
 8. Revise the R32 and GND connection.// 02.05.2026 - Done by Hasan Turan.
 9. Make the component naming system consistent.
-10. Add an external balancing system.
+10. Add an external balancing system.//Done by Hasan Turan.
 11. Make the net name conventions consistent.
 12. Place R18 cap to near.
 13. Place the current read cap to near to BQ.
 14. Add two switch for BMS numbering.
-15. Complete routing of PCB.
+15. Add contactor safety system.
+16. Connect smd thermistor to Temp pin of BQ.
+17. Complete routing of PCB.
 
 ### Software Changes
 
 1. Implement the voltage reading algorithm.// been doing by Hasan Turan.
 2. Implement the current reading algorithm.// been doing by Hasan Turan.
 3. Make a dedicated library for the BQ76952.// been doing by Hasan Turan.
+4. Implement the balancing algorithm. // been doing by Hasan Turan.

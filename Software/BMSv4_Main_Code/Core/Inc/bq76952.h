@@ -29,7 +29,7 @@
 #define BALANCE_INTERVAL_S       3U
 
 // Number of series cells in this pack.
-#define NUM_CELLS                16U
+#define NUM_CELLS                7U
 
 // ---------------------------------------------------------------------------
 // Balance Status Struct (monitor-only — visible in debugger live expressions)
