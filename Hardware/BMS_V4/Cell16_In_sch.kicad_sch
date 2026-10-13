@@ -1411,9 +1411,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0805S8F4700T5E"
+		(property "Value" "470R"
 			(at 146.0501 88.9 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1445,7 +1444,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 470 Ohms 1% 1/8W-S 100PPM"
+		(property "Description" "Resistor 0805 470R 1%"
+			(at 147.32 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F4700T5E"
+			(at 147.32 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 147.32 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 147.32 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f4700t5e-29701"
 			(at 147.32 86.36 0)
 			(hide yes)
 			(show_name no)
@@ -1493,9 +1536,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "HL-PSC-2012S9AC"
+		(property "Value" "LED red"
 			(at 156.21 85.4074 90)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1527,7 +1569,51 @@
 				)
 			)
 		)
-		(property "Description" "LED SMD 0805 RED 110mcd 120° WATER CLEAR"
+		(property "Description" "LED red 0805"
+			(at 152.4 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "HL-PSC-2012S9AC"
+			(at 152.4 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Honglitronic"
+			(at 152.4 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 152.4 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/led-signal-color-361/honglitronic-hl-psc-2012s9ac-471650"
 			(at 152.4 82.55 0)
 			(hide yes)
 			(show_name no)
@@ -1585,9 +1671,8 @@
 				)
 			)
 		)
-		(property "Value" "0805 20 Ohms 1%"
-			(at 118.11 74.93 90)
-			(hide yes)
+		(property "Value" "20R"
+			(at 118.11 79.756 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1618,8 +1703,52 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor 0805 20R 1%"
 			(at 118.11 77.47 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F200JT5E"
+			(at 118.11 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 118.11 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 118.11 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f200jt5e-453058"
+			(at 118.11 77.47 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1665,16 +1794,15 @@
 				(justify left)
 			)
 		)
-		(property "Value" "200n 805"
-			(at 101.6 85.0962 0)
-			(hide yes)
+		(property "Value" "220nF 50V"
+			(at 96.266 83.82 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
@@ -1699,7 +1827,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "MLCC 0805 220nF 50V X7R"
+			(at 99.06 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21B224KBFNNNE"
+			(at 99.06 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 99.06 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 99.06 83.82 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21b224kbfnnne-11149"
 			(at 99.06 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -1747,9 +1919,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "BZX584C4V7_R2_00001"
+		(property "Value" "BZX584C4V7"
 			(at 129.54 97.536 90)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1781,7 +1952,51 @@
 				)
 			)
 		)
-		(property "Description" "DIODE ZENER 200mW 4.7V ±5% SOD523 SMT"
+		(property "Description" "Zener 4.7V 200mW, SOD-523"
+			(at 129.54 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "BZX584C4V7_R2_00001"
+			(at 129.54 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Panjit"
+			(at 129.54 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 129.54 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/zener-diodes-390/panjit-bzx584c4v7-r2-00001-464736"
 			(at 129.54 95.25 0)
 			(hide yes)
 			(show_name no)
@@ -1828,9 +2043,8 @@
 				)
 			)
 		)
-		(property "Value" "CRT05F7E1001"
-			(at 118.11 86.36 90)
-			(hide yes)
+		(property "Value" "1k"
+			(at 118.11 93.218 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -1861,7 +2075,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 1K Ohms 1% 1/8W-S 100PPM"
+		(property "Description" "Resistor 0805 1k 1%"
+			(at 118.11 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F1001T5E"
+			(at 118.11 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 118.11 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 118.11 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f1001t5e-29698"
 			(at 118.11 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -1909,16 +2167,15 @@
 				(justify left)
 			)
 		)
-		(property "Value" "SI1050X-T1-GE3"
-			(at 143.51 91.4399 0)
-			(hide yes)
+		(property "Value" "SI1050X"
+			(at 131.064 90.17 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "SamacSys_Parts:SOTFL50P160X60-6N"
@@ -1946,7 +2203,51 @@
 				(justify left)
 			)
 		)
-		(property "Description" "8A Id, 30V Vds, 16.5 mOhm RdsOn, N-Channel Small-Signal MOSFET, TSOT-23-6"
+		(property "Description" "N-MOSFET 8V 1.34A, SC-89-6"
+			(at 137.16 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "SI1050X-T1-GE3"
+			(at 137.16 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Vishay"
+			(at 137.16 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 137.16 90.17 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/discrete-mosfets-435/vishay-si1050x-t1-ge3-502451"
 			(at 137.16 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -2006,16 +2307,15 @@
 				(justify left)
 			)
 		)
-		(property "Value" "HP122WJ0220T4E"
-			(at 142.24 82.5499 0)
-			(hide yes)
+		(property "Value" "22R 2W"
+			(at 137.16 81.28 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_2512_6332Metric_Pad1.40x3.35mm_HandSolder"
@@ -2040,7 +2340,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
+		(property "Description" "Resistor 2512 22R 5% 2W"
+			(at 139.7 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "HP122WJ0220T4E"
+			(at 139.7 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 139.7 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 139.7 81.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-hp122wj0220t4e-604706"
 			(at 139.7 81.28 0)
 			(hide yes)
 			(show_name no)

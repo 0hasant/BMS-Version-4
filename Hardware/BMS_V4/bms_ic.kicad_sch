@@ -5875,7 +5875,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100 pF 0805"
+		(property "Value" "100pF 50V"
 			(at 96.52 123.444 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5908,7 +5908,51 @@
 				)
 			)
 		)
-		(property "Description" "0.1 µF ±10% 50V Ceramic Capacitor X7R 0805 (2012 Metric)"
+		(property "Description" "MLCC 0805 100pF 50V C0G"
+			(at 99.06 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21C101JBANNNC"
+			(at 99.06 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 99.06 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 99.06 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21c101jbannnc-5599"
 			(at 99.06 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -6111,7 +6155,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0805 100R 1%"
+		(property "Value" "100R"
 			(at 80.645 109.22 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6144,8 +6188,53 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor 0805 100R 1%"
+			(at 82.55 93.218 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F1000T5E"
 			(at 82.55 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 82.55 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 82.55 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f1000t5e-30250"
+			(at 82.55 106.68 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6191,7 +6280,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "CL31B105KCHNNNE"
+		(property "Value" "1uF 100V"
 			(at 75.692 75.946 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6224,7 +6313,51 @@
 				)
 			)
 		)
-		(property "Description" "1 µF ±10% 100V Ceramic Capacitor X7R 1206 (3216 Metric)"
+		(property "Description" "MLCC 1206 1uF 100V X7R"
+			(at 78.74 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL31B105KCHNNNE"
+			(at 78.74 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 78.74 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 78.74 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl31b105kchnnne-382908"
 			(at 78.74 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -6272,7 +6405,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TSM2A103F3951RZ"
+		(property "Value" "10k NTC"
 			(at 145.034 183.388 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6305,7 +6438,51 @@
 				)
 			)
 		)
-		(property "Description" "THERMISTOR NTC 0805 10K %1 SMD T/R THINKING"
+		(property "Description" "NTC 10k 1% B3950, 0805"
+			(at 133.35 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "TSM2A103F3951RZ"
+			(at 133.35 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Thinking"
+			(at 133.35 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 133.35 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/ntc-thermistors-852/thinking-tsm2a103f3951rz-383456"
 			(at 133.35 179.07 0)
 			(hide yes)
 			(show_name no)
@@ -6511,7 +6688,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TSM2A103F3951RZ"
+		(property "Value" "10k NTC"
 			(at 147.574 167.132 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6544,7 +6721,51 @@
 				)
 			)
 		)
-		(property "Description" "THERMISTOR NTC 0805 10K %1 SMD T/R THINKING"
+		(property "Description" "NTC 10k 1% B3950, 0805"
+			(at 135.89 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "TSM2A103F3951RZ"
+			(at 135.89 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Thinking"
+			(at 135.89 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 135.89 162.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/ntc-thermistors-852/thinking-tsm2a103f3951rz-383456"
 			(at 135.89 162.56 0)
 			(hide yes)
 			(show_name no)
@@ -6749,7 +6970,7 @@
 				)
 			)
 		)
-		(property "Value" "BVS-A-R002-1.0"
+		(property "Value" "2mR 6W"
 			(at 74.93 118.11 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6782,7 +7003,55 @@
 				)
 			)
 		)
-		(property "Description" "2 mOhms ±1% 6W Chip Resistor 3920 (1052 Metric) Automotive AEC-Q200, Current Sense Metal Element"
+		(property "Description" "Shunt 2 mOhm 1% 6W, 3920"
+			(at 71.12 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "MPN" "BVS-A-R002-1.0"
+			(at 71.12 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Manufacturer" "Isabellenhütte"
+			(at 71.12 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 71.12 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/precision-power-and-shunt-resistors-195/isabellenhutte-bvs-a-r002-1-0-536227"
 			(at 71.12 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -7153,7 +7422,7 @@
 				)
 			)
 		)
-		(property "Value" "DTS-62R-V"
+		(property "Value" "BQ reset"
 			(at 256.54 40.64 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7187,7 +7456,51 @@
 				(justify left top)
 			)
 		)
-		(property "Description" "Switch Tactile N.O. SPST Round Button PC Pins 0.05A 12VDC 2.55N Thru-Hole"
+		(property "Description" "Tactile switch 6x6 mm THT"
+			(at 241.3 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "DTS-62R-V"
+			(at 241.3 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Diptronics"
+			(at 241.3 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 241.3 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/tactile-switches-485/diptronics-dts-62r-v-476750"
 			(at 241.3 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -7404,7 +7717,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1 uF 0805"
+		(property "Value" "100nF 50V"
 			(at 86.36 123.444 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7437,7 +7750,51 @@
 				)
 			)
 		)
-		(property "Description" "0.1 µF ±10% 50V Ceramic Capacitor X7R 0805 (2012 Metric)"
+		(property "Description" "MLCC 0805 100nF 50V X7R"
+			(at 88.9 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21B104KBCNNNC"
+			(at 88.9 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 88.9 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 88.9 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21b104kbcnnnc-14777"
 			(at 88.9 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -7486,7 +7843,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "0805S8F1002T5E"
+		(property "Value" "10k"
 			(at 177.8 109.2199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7519,7 +7876,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 10K Ohms 1% 1/8W-S 100PPM"
+		(property "Description" "Resistor 0805 10k 5%"
+			(at 175.26 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8J0103T5E"
+			(at 175.26 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 175.26 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 175.26 107.95 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8j0103t5e-28433"
 			(at 175.26 107.95 0)
 			(hide yes)
 			(show_name no)
@@ -7647,7 +8048,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "MCF05KTB500102"
+		(property "Value" "1nF 50V"
 			(at 118.11 186.6962 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7680,7 +8081,51 @@
 				)
 			)
 		)
-		(property "Description" "MLCC (2012) 0805 1nF 50VDC ±10% X7R"
+		(property "Description" "MLCC 0805 1nF 50V X7R"
+			(at 115.57 185.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MCF05KTB500102"
+			(at 115.57 185.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Viking"
+			(at 115.57 185.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 115.57 185.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/viking-mcf05ktb500102-1057174"
 			(at 115.57 185.42 0)
 			(hide yes)
 			(show_name no)
@@ -7962,7 +8407,7 @@
 				)
 			)
 		)
-		(property "Value" "BAT46W-7-F"
+		(property "Value" "BAT46W"
 			(at 49.53 53.34 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7995,7 +8440,55 @@
 				)
 			)
 		)
-		(property "Description" "Diode Schottky 100V 0.15A 2Pin SOD123 | Diodes Inc BAT46W-7-F"
+		(property "Description" "Schottky 100V 150mA, SOD-123"
+			(at 49.53 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "MPN" "BAT46W-7-F"
+			(at 49.53 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Manufacturer" "Diodes Inc."
+			(at 49.53 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 49.53 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/schottky-diodes-385/diodes-bat46w-7-f-982659"
 			(at 49.53 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -8177,7 +8670,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "CRT05F7E4701"
+		(property "Value" "4.7k"
 			(at 259.08 31.7499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8210,7 +8703,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 4.7K Ohms 1% 1/8W 100PPM"
+		(property "Description" "Resistor 0805 4.7k 1%"
+			(at 256.54 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CRT05F7E4701"
+			(at 256.54 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Viking"
+			(at 256.54 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 256.54 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/viking-crt05f7e4701-1086646"
 			(at 256.54 30.48 0)
 			(hide yes)
 			(show_name no)
@@ -8259,7 +8796,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "MCF05KTB500102"
+		(property "Value" "1nF 50V"
 			(at 118.11 170.1862 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8292,7 +8829,51 @@
 				)
 			)
 		)
-		(property "Description" "MLCC (2012) 0805 1nF 50VDC ±10% X7R"
+		(property "Description" "MLCC 0805 1nF 50V X7R"
+			(at 115.57 168.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MCF05KTB500102"
+			(at 115.57 168.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Viking"
+			(at 115.57 168.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 115.57 168.91 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/viking-mcf05ktb500102-1057174"
 			(at 115.57 168.91 0)
 			(hide yes)
 			(show_name no)
@@ -8340,7 +8921,7 @@
 				)
 			)
 		)
-		(property "Value" "0805 100 Ohms 1%"
+		(property "Value" "100R"
 			(at 71.12 52.07 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8372,7 +8953,51 @@
 				)
 			)
 		)
-		(property "Description" "Resistor, US symbol"
+		(property "Description" "Resistor 0805 100R 1%"
+			(at 71.12 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F1000T5E"
+			(at 71.12 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 71.12 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 71.12 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f1000t5e-30250"
 			(at 71.12 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -8500,7 +9125,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "MCF05KTB500102"
+		(property "Value" "1nF 50V"
 			(at 118.11 152.4062 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8533,7 +9158,51 @@
 				)
 			)
 		)
-		(property "Description" "MLCC (2012) 0805 1nF 50VDC ±10% X7R"
+		(property "Description" "MLCC 0805 1nF 50V X7R"
+			(at 115.57 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MCF05KTB500102"
+			(at 115.57 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Viking"
+			(at 115.57 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 115.57 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/viking-mcf05ktb500102-1057174"
 			(at 115.57 151.13 0)
 			(hide yes)
 			(show_name no)
@@ -8580,7 +9249,7 @@
 				)
 			)
 		)
-		(property "Value" "10k_0805"
+		(property "Value" "10k"
 			(at 117.094 60.96 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8612,7 +9281,51 @@
 				)
 			)
 		)
-		(property "Description" "Resistor, US symbol"
+		(property "Description" "Resistor 0805 10k 5%"
+			(at 114.3 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8J0103T5E"
+			(at 114.3 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 114.3 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 114.3 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8j0103t5e-28433"
 			(at 114.3 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -8739,7 +9452,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "CL31B105KCHNNNE"
+		(property "Value" "1uF 100V"
 			(at 96.52 57.912 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8772,7 +9485,51 @@
 				)
 			)
 		)
-		(property "Description" "0.1 µF ±10% 50V Ceramic Capacitor X7R 0805 (2012 Metric)"
+		(property "Description" "MLCC 0805 1uF 100V X7S"
+			(at 92.71 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21Y105KCFVPJE"
+			(at 92.71 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 92.71 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 92.71 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21y105kcfvpje-634349"
 			(at 92.71 63.5 0)
 			(hide yes)
 			(show_name no)
@@ -8977,7 +9734,7 @@
 				)
 			)
 		)
-		(property "Value" "BQ76952PFBR"
+		(property "Value" "BQ76952"
 			(at 142.24 45.72 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9010,7 +9767,55 @@
 				)
 			)
 		)
-		(property "Description" "3-s to 16-s high-accuracy battery monitor and protector for Li-ion, Li-polymer and LiFePO4"
+		(property "Description" "Battery monitor 3-16S, TQFP-48"
+			(at 142.24 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "MPN" "BQ76952PFBR"
+			(at 142.24 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Manufacturer" "Texas Instruments"
+			(at 142.24 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 142.24 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/battery-management-ics-272/texas-bq76952pfbr-993252"
 			(at 142.24 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -9408,7 +10213,7 @@
 				)
 			)
 		)
-		(property "Value" "CL21B225KAFNNNE"
+		(property "Value" "2.2uF 25V"
 			(at 179.0763 52.07 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9440,7 +10245,51 @@
 				)
 			)
 		)
-		(property "Description" "0.1 µF ±10% 50V Ceramic Capacitor X7R 0805 (2012 Metric)"
+		(property "Description" "MLCC 0805 2.2uF 25V X7R"
+			(at 179.07 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21B225KAFNNNE"
+			(at 179.07 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 179.07 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 179.07 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21b225kafnnne-347149"
 			(at 179.07 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -9488,7 +10337,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TSM2A103F3951RZ"
+		(property "Value" "10k NTC"
 			(at 145.288 149.352 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9521,7 +10370,51 @@
 				)
 			)
 		)
-		(property "Description" "THERMISTOR NTC 0805 10K %1 SMD T/R THINKING"
+		(property "Description" "NTC 10k 1% B3950, 0805"
+			(at 134.62 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "TSM2A103F3951RZ"
+			(at 134.62 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Thinking"
+			(at 134.62 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 134.62 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/ntc-thermistors-852/thinking-tsm2a103f3951rz-383456"
 			(at 134.62 144.78 0)
 			(hide yes)
 			(show_name no)
@@ -9761,7 +10654,51 @@
 				)
 			)
 		)
-		(property "Description" "Resistor, US symbol"
+		(property "Description" "Resistor 0805 100R 1%"
+			(at 233.68 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F1000T5E"
+			(at 233.68 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 233.68 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 233.68 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f1000t5e-30250"
 			(at 233.68 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -9797,7 +10734,6 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "f84af002-8448-4e88-b5d7-fcb0ba1b7d5e")
 		(property "Reference" "R8"
 			(at 83.185 132.08 0)
@@ -9810,7 +10746,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0805 100R 1%"
+		(property "Value" "100R"
 			(at 80.645 132.08 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9843,8 +10779,53 @@
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Resistor 0805 100R 1%"
+			(at 82.804 147.066 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F1000T5E"
 			(at 82.55 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 82.55 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 82.55 129.54 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f1000t5e-30250"
+			(at 82.55 129.54 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9891,7 +10872,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100n 805"
+		(property "Value" "100nF 50V"
 			(at 236.22 48.2662 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9924,7 +10905,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "MLCC 0805 100nF 50V X7R"
+			(at 238.76 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21B104KBCNNNC"
+			(at 238.76 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 238.76 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 238.76 46.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21b104kbcnnnc-14777"
 			(at 238.76 46.99 0)
 			(hide yes)
 			(show_name no)
