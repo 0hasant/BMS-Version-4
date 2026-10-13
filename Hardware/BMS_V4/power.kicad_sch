@@ -3346,7 +3346,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0805S8F3163T5E"
+		(property "Value" "316k"
 			(at 191.77 36.8299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3379,7 +3379,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 316K Ohms 1% 1/8W-S 100PPM"
+		(property "Description" "Resistor 0805 316k 1%"
+			(at 189.23 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F3163T5E"
+			(at 189.23 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 189.23 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 189.23 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f3163t5e-505632"
 			(at 189.23 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -3584,7 +3628,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "CL31B106KBHNNNE"
+		(property "Value" "10uF 50V"
 			(at 214.63 41.9162 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3617,7 +3661,51 @@
 				)
 			)
 		)
-		(property "Description" "MLCC (3216) 1206 10uF 50VDC ±10% X7R"
+		(property "Description" "MLCC 1206 10uF 50V X5R"
+			(at 212.09 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CGA5L3X5R1H106M160AB"
+			(at 212.09 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "TDK"
+			(at 212.09 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 212.09 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/tdk-cga5l3x5r1h106m160ab-1067014"
 			(at 212.09 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -3901,7 +3989,7 @@
 				)
 			)
 		)
-		(property "Value" "SDI104R-221M"
+		(property "Value" "220uH"
 			(at 158.75 22.86 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3933,7 +4021,51 @@
 				)
 			)
 		)
-		(property "Description" "INDUCTOR POWER 220UH 10.5X10.3X4.0MM SMD"
+		(property "Description" "Power inductor 220uH 10.4x10.4 mm"
+			(at 158.75 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "SDI104R-221M"
+			(at 158.75 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Core Master"
+			(at 158.75 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 158.75 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/fixed-inductors-468/core-master-sdi104r-221m-506762"
 			(at 158.75 25.4 0)
 			(hide yes)
 			(show_name no)
@@ -4138,7 +4270,7 @@
 				)
 			)
 		)
-		(property "Value" "MCF05KTB500222"
+		(property "Value" "2.2nF 50V"
 			(at 168.9163 33.02 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4170,7 +4302,51 @@
 				)
 			)
 		)
-		(property "Description" "MLCC (2012) 0805 2.2nF 50VDC ±10% X7R"
+		(property "Description" "MLCC 0805 2.2nF 50V X7R"
+			(at 168.91 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MCF05KTB500222"
+			(at 168.91 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Viking"
+			(at 168.91 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 168.91 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/viking-mcf05ktb500222-1057182"
 			(at 168.91 36.83 0)
 			(hide yes)
 			(show_name no)
@@ -4297,7 +4473,7 @@
 				)
 			)
 		)
-		(property "Value" "805 10n"
+		(property "Value" "10nF 50V"
 			(at 104.1336 102.87 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4329,7 +4505,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "MLCC 0805 10nF 50V X7R"
+			(at 104.14 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21B103KBANNNC"
+			(at 104.14 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 104.14 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 104.14 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21b103kbannnc-5607"
 			(at 104.14 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -4378,7 +4598,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1206S4F6192T5E"
+		(property "Value" "61.9k"
 			(at 85.09 55.8799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4411,7 +4631,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(3216) 1206 61.9K Ohms 1% 1/4W-S 100PPM"
+		(property "Description" "Resistor 1206 61.9k 1%"
+			(at 82.55 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "1206S4F6192T5E"
+			(at 82.55 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 82.55 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 82.55 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-1206s4f6192t5e-505187"
 			(at 82.55 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -4537,7 +4801,7 @@
 				)
 			)
 		)
-		(property "Value" "K51-00AH"
+		(property "Value" "Load-"
 			(at 199.39 113.03 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4571,7 +4835,51 @@
 				(justify left top)
 			)
 		)
-		(property "Description" "Metal Part,nominal current:92A,screw thre Specification:M5,Contact surface"
+		(property "Description" "Barrier terminal 6 mm"
+			(at 189.23 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "K51-00AH"
+			(at 189.23 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Degson"
+			(at 189.23 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 189.23 118.11 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/screw-connectors-342/degson-k51-00ah-574940"
 			(at 189.23 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -4715,7 +5023,7 @@
 				)
 			)
 		)
-		(property "Value" "LM5163HQDDARQ1"
+		(property "Value" "LM5163-Q1"
 			(at 106.68 31.75 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4749,7 +5057,51 @@
 				(justify left top)
 			)
 		)
-		(property "Description" "Switching Voltage Regulators 100-V Input, 0.5-A synchronous high temperature buck DC/DC converter with ultra-low IQ 8-SO PowerPAD -40 to 125"
+		(property "Description" "Buck 100V 0.5A, SO-8 PowerPAD"
+			(at 88.9 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "LM5163HQDDARQ1"
+			(at 88.9 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Texas Instruments"
+			(at 88.9 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 88.9 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/dc-dc-switching-voltage-regulators-275/texas-lm5163hqddarq1-1044370"
 			(at 88.9 36.83 0)
 			(hide yes)
 			(show_name no)
@@ -4981,7 +5333,7 @@
 				)
 			)
 		)
-		(property "Value" "0805S8F4753T5E"
+		(property "Value" "475k"
 			(at 148.59 33.02 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5013,7 +5365,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 475K Ohms 1% 1/8W-S 100PPM"
+		(property "Description" "Resistor 0805 475k 1%"
+			(at 148.59 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F4753T5E"
+			(at 148.59 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 148.59 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 148.59 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f4753t5e-505646"
 			(at 148.59 36.83 0)
 			(hide yes)
 			(show_name no)
@@ -5061,7 +5457,7 @@
 				)
 			)
 		)
-		(property "Value" "805 1u"
+		(property "Value" "1uF 50V"
 			(at 104.1463 113.03 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5093,7 +5489,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "MLCC 0805 1uF 50V X7R"
+			(at 104.14 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21B105KBFNNNE"
+			(at 104.14 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 104.14 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 104.14 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21b105kbfnnne-347740"
 			(at 104.14 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -5219,7 +5659,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "CL31B225KCHSNNE"
+		(property "Value" "2.2uF 100V"
 			(at 60.96 49.5362 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5252,7 +5692,51 @@
 				)
 			)
 		)
-		(property "Description" "MLCC (3216) 1206 2.2uF 100VDC ±10% X7R"
+		(property "Description" "MLCC 1206 2.2uF 100V X7R"
+			(at 58.42 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL31B225KCHSNNE"
+			(at 58.42 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 58.42 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 58.42 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl31b225kchsnne-523413"
 			(at 58.42 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -5301,7 +5785,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0805 1u"
+		(property "Value" "1uF 50V"
 			(at 49.53 110.4962 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5334,7 +5818,51 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "MLCC 0805 1uF 50V X7R"
+			(at 46.99 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL21B105KBFNNNE"
+			(at 46.99 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung"
+			(at 46.99 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 46.99 109.22 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/samsung-cl21b105kbfnnne-347740"
 			(at 46.99 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -5382,7 +5910,7 @@
 				)
 			)
 		)
-		(property "Value" "K51-00AH"
+		(property "Value" "Batt-"
 			(at 199.39 93.98 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5416,7 +5944,51 @@
 				(justify left top)
 			)
 		)
-		(property "Description" "Metal Part,nominal current:92A,screw thre Specification:M5,Contact surface"
+		(property "Description" "Barrier terminal 6 mm"
+			(at 189.23 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "K51-00AH"
+			(at 189.23 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Degson"
+			(at 189.23 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 189.23 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/screw-connectors-342/degson-k51-00ah-574940"
 			(at 189.23 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -5639,7 +6211,7 @@
 				)
 			)
 		)
-		(property "Value" "TPS73233DBVR"
+		(property "Value" "TPS73233"
 			(at 85.09 101.6 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5673,7 +6245,51 @@
 				(justify left top)
 			)
 		)
-		(property "Description" "Cap-Free, NMOS, 250mA Low Dropout Regulator with Reverse Current Protection"
+		(property "Description" "LDO 3.3V 250mA, SOT-23-5"
+			(at 71.12 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "TPS73233DBVR"
+			(at 71.12 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Texas Instruments"
+			(at 71.12 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 71.12 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/linear-voltage-regulators-279/texas-tps73233dbvr-588532"
 			(at 71.12 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -5972,7 +6588,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "MCF05KTB500222"
+		(property "Value" "2.2nF 50V"
 			(at 138.43 40.6462 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6005,7 +6621,51 @@
 				)
 			)
 		)
-		(property "Description" "MLCC (2012) 0805 2.2nF 50VDC ±10% X7R"
+		(property "Description" "MLCC 0805 2.2nF 50V X7R"
+			(at 135.89 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MCF05KTB500222"
+			(at 135.89 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Viking"
+			(at 135.89 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 135.89 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/viking-mcf05ktb500222-1057182"
 			(at 135.89 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -6288,7 +6948,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0805S8F1003T5E"
+		(property "Value" "100k"
 			(at 191.77 53.3399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6321,7 +6981,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 100K Ohms 1% 1/8W-S 100PPM"
+		(property "Description" "Resistor 0805 100k 1%"
+			(at 189.23 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F1003T5E"
+			(at 189.23 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 189.23 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 189.23 52.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f1003t5e-30244"
 			(at 189.23 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -6402,7 +7106,51 @@
 				)
 			)
 		)
-		(property "Description" "dual schottky barrier diode, common cathode"
+		(property "Description" "Dual Schottky common cathode 30V 200mA, SOT-23"
+			(at 264.16 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "BAT54CLT1G"
+			(at 264.16 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "onsemi"
+			(at 264.16 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 264.16 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/schottky-diodes-385/ons-bat54clt1g-532668"
 			(at 264.16 33.02 0)
 			(hide yes)
 			(show_name no)
@@ -6454,7 +7202,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "MCF05JTN500560"
+		(property "Value" "56pF 50V"
 			(at 161.29 41.9162 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6487,7 +7235,51 @@
 				)
 			)
 		)
-		(property "Description" "MLCC (2012) 0805 56pF 50VDC ±5% C0G (NP0)"
+		(property "Description" "MLCC 0805 56pF 50V C0G"
+			(at 158.75 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "MCF05JTN500560"
+			(at 158.75 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Viking"
+			(at 158.75 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 158.75 40.64 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-mlcc-capacitors-184/viking-mcf05jtn500560-1078244"
 			(at 158.75 40.64 0)
 			(hide yes)
 			(show_name no)

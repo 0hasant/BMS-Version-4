@@ -2728,7 +2728,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "15EDGVC-THR-3.5-02P-13-1"
+		(property "Value" "Balance EN"
 			(at 200.66 153.6699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2761,7 +2761,51 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Header 2P 3.5mm vertical, closed"
+			(at 198.12 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "15EDGVC-3.5-02P-12-00AH"
+			(at 198.12 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Degson"
+			(at 198.12 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 198.12 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/pluggable-terminal-blocks-411/degson-15edgvc-3-5-02p-12-00ah-707708"
 			(at 198.12 151.13 0)
 			(hide yes)
 			(show_name no)
@@ -2809,7 +2853,7 @@
 				)
 			)
 		)
-		(property "Value" "Conn_01x04"
+		(property "Value" "Contactor"
 			(at 121.92 182.88 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2841,7 +2885,51 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Header 4P 3.5mm vertical, closed"
+			(at 123.19 176.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "15EDGVC-3.5-04P-13-00AH"
+			(at 123.19 176.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Degson"
+			(at 123.19 176.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 123.19 176.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/pluggable-terminal-blocks-411/degson-15edgvc-3-5-04p-13-00ah-476371"
 			(at 123.19 176.53 0)
 			(hide yes)
 			(show_name no)
@@ -2895,7 +2983,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "15EDGVC-THR-3.5-10P-13-1"
+		(property "Value" "Cells 0-9"
 			(at 71.628 19.558 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2928,7 +3016,51 @@
 				)
 			)
 		)
-		(property "Description" "TERM.BLK.3.5MM 10P 180C MALE BLACK CLOSED BOX"
+		(property "Description" "Header 10P 3.5mm vertical, closed"
+			(at 55.88 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "15EDGVC-3.5-10P-14-00AH"
+			(at 55.88 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Degson"
+			(at 55.88 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 55.88 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/pluggable-terminal-blocks-411/degson-15edgvc-3-5-10p-14-00ah-701064"
 			(at 55.88 25.4 0)
 			(hide yes)
 			(show_name no)
@@ -3156,7 +3288,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0679H0250-05"
+		(property "Value" "1A slow"
 			(at 95.25 36.8299 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3189,7 +3321,51 @@
 				)
 			)
 		)
-		(property "Description" "FUSE BOARD MOUNT 250MA 350VAC"
+		(property "Description" "Fuse 1A 125V time-lag, 2410"
+			(at 93.98 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "SET1100"
+			(at 93.98 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Reomax"
+			(at 93.98 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 93.98 35.56 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/fuses-849/reomax-set1100-525709"
 			(at 93.98 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -3238,7 +3414,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "0805S8F1002T5E"
+		(property "Value" "10k"
 			(at 124.46 74.9299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3271,7 +3447,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 10K Ohms 1% 1/8W-S 100PPM"
+		(property "Description" "Resistor 0805 10k 5%"
+			(at 121.92 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8J0103T5E"
+			(at 121.92 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 121.92 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 121.92 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8j0103t5e-28433"
 			(at 121.92 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3319,9 +3539,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0805S8F1002T5E"
+		(property "Value" "10k"
 			(at 113.03 74.9299 0)
-			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -3353,7 +3572,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 10K Ohms 1% 1/8W-S 100PPM"
+		(property "Description" "Resistor 0805 10k 5%"
+			(at 110.49 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8J0103T5E"
+			(at 110.49 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 110.49 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 110.49 73.66 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8j0103t5e-28433"
 			(at 110.49 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -3388,7 +3651,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "b29a110d-a089-4665-9484-04a8f945b4e1")
 		(property "Reference" "R1"
 			(at 103.886 92.71 0)
@@ -3401,16 +3664,15 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0805S8F0000TDE"
-			(at 104.14 93.9799 0)
-			(hide yes)
+		(property "Value" "0R"
+			(at 99.314 92.71 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
@@ -3435,7 +3697,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 0 Ohms 1% 1/8W-S 800PPM"
+		(property "Description" "Resistor 0805 0R"
+			(at 101.6 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F0000TDE"
+			(at 101.6 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 101.6 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 101.6 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f0000tde-502826"
 			(at 101.6 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -3483,7 +3789,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "15EDGVC-THR-3.5-07P-13-1"
+		(property "Value" "Cells 10-16+"
 			(at 105.156 19.558 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3516,7 +3822,51 @@
 				)
 			)
 		)
-		(property "Description" "TERM.BLK.3.5MM 7P 180C MALE BLACK CLOSED BOX"
+		(property "Description" "Header 7P 3.5mm vertical, closed"
+			(at 86.36 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "15EDGVC-3.5-07P-13-00AH"
+			(at 86.36 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Degson"
+			(at 86.36 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 86.36 25.4 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/pluggable-terminal-blocks-411/degson-15edgvc-3-5-07p-13-00ah-741176"
 			(at 86.36 25.4 0)
 			(hide yes)
 			(show_name no)
@@ -3566,7 +3916,7 @@
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "bf5c3736-75bf-41a4-8aa0-3b7613b91314")
 		(property "Reference" "R2"
 			(at 110.236 92.71 0)
@@ -3579,16 +3929,15 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0805S8F0000TDE"
-			(at 110.49 93.9799 0)
-			(hide yes)
+		(property "Value" "0R"
+			(at 105.664 92.71 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
@@ -3613,7 +3962,51 @@
 				)
 			)
 		)
-		(property "Description" "RES.(2012) 0805 0 Ohms 1% 1/8W-S 800PPM"
+		(property "Description" "Resistor 0805 0R"
+			(at 107.95 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "0805S8F0000TDE"
+			(at 107.95 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Royalohm"
+			(at 107.95 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 107.95 92.71 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/smt-smd-and-chip-resistors-194/royalohm-0805s8f0000tde-502826"
 			(at 107.95 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -3662,7 +4055,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "Conn_01x04"
+		(property "Value" "CAN"
 			(at 246.38 64.7699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3695,7 +4088,51 @@
 				)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)"
+		(property "Description" "Header 4P 5.08mm vertical, closed"
+			(at 243.84 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "2EDGVC-5.08-04P-14-00AH"
+			(at 243.84 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Degson"
+			(at 243.84 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier" "Özdisan"
+			(at 243.84 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "https://www.ozdisan.com/en/p/pluggable-terminal-blocks-411/degson-2edgvc-5-08-04p-14-00ah-633947"
 			(at 243.84 62.23 0)
 			(hide yes)
 			(show_name no)
