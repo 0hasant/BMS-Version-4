@@ -1811,7 +1811,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "HP122WJ0220T4E"
+		(property "Value" "HP122WJ0100T4E"
 			(at 142.24 82.5499 0)
 			(hide yes)
 			(show_name no)
@@ -1845,7 +1845,7 @@
 				)
 			)
 		)
-		(property "Description" "RES.(6432) 2512 22 Ohms 5% 2W"
+		(property "Description" "RES.(6432) 2512 10 Ohms 5% 2W 200PPM"
 			(at 139.7 81.28 0)
 			(hide yes)
 			(show_name no)

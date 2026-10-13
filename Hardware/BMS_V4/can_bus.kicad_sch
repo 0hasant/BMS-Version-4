@@ -5995,7 +5995,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "1S4E_1505S1U"
+		(property "Value" "1S4E_0505S1U"
 			(at 88.9 33.0199 0)
 			(show_name no)
 			(do_not_autoplace no)
