@@ -25,6 +25,8 @@ is about 0.4 A. Balancing is enabled by an external button (J4 opto input).
 - [x] Safety Status A/B/C, Battery Status and Alarm Status read every loop
 - [x] Stack voltage as `uint32_t` (a full 16S pack is above 65.5 V)
 - [x] Communication health counters in `BQ_Health` (watch in debugger)
+- [x] Cell count selectable with `BMS_CELL_CONFIG` in `bq76952.h` (7 = 7S bench test, 13, 16).
+      7S wiring: cells 1-6 on VC1-VC6, cell 7 between VC15 and VC16, VC7..VC15 shorted to VC6
 
 ### To do (on the working board)
 - [ ] Protection setup: COV/CUV for the DMEGC INR45E cells, enable CUV, OCC/OCD1/OCD2/SCD
@@ -45,7 +47,7 @@ is about 0.4 A. Balancing is enabled by an external button (J4 opto input).
   - CAN at the bitrate used by the car
 - [ ] Contactor logic on PB11: ON only when configured, no safety fault, SPI healthy;
       OFF on any fault. Watchdog reset -> pin floats -> R32 pulls it low -> contactor OFF
-- [ ] VCell Mode for 13S per board (`0x8FFF`, unused VC13-VC15 shorted to VC12),
+- [ ] 13S per board: set `BMS_CELL_CONFIG 13` (`0x8FFF`, unused VC13-VC15 shorted to VC12);
       board number from PB10
 - [ ] Cell temperature reading through the CD74HC4067 mux
 - [ ] CAN messages
