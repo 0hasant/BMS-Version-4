@@ -6,6 +6,7 @@ extern SPI_HandleTypeDef hspi1;
 
 BQ_Health_t BQ_Health = {0};
 uint16_t    BQ_Input_mV[16] = {0};
+volatile uint8_t BQ_Balance_Enable = BALANCE_ENABLE;
 
 // ---------------------------------------------------------------------------
 // Timing (TI: >= 50 us between SPI transactions)
@@ -380,7 +381,7 @@ BQ_Status BQ_Configure(void) {
 
     // Cell balancing block, 0x9335 .. 0x9342 (14 bytes, contiguous)
     const uint8_t cb[14] = {
-        0x07,                                   // 0x9335 Balancing Configuration: CB_CHG | CB_RLX | CB_SLEEP
+        BQ_Balance_Enable ? 0x07 : 0x00,        // 0x9335 Balancing Configuration: CB_CHG | CB_RLX | CB_SLEEP, or off
         (uint8_t)(int8_t)-100,                  // 0x9336 Min Cell Temp  (bench test: wide limits)
         120,                                    // 0x9337 Max Cell Temp
         120,                                    // 0x9338 Max Internal Temp

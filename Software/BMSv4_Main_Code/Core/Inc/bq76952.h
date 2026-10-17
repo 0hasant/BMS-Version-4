@@ -73,6 +73,11 @@ _Static_assert(BQ_BITS16(BQ_VCELL_MODE) == NUM_CELLS, "NUM_CELLS does not match 
 // Cell balancing configuration (BQ76952 autonomous balancing)
 // ---------------------------------------------------------------------------
 
+// 1 = the IC balances on its own, 0 = balancing off.
+// This is the value at boot. While debugging, change BQ_Balance_Enable
+// (0 or 1) in the Expressions view: the main loop rewrites the config.
+#define BALANCE_ENABLE           0
+
 // Minimum spread between highest and lowest cell (mV) before balancing starts.
 #define BALANCE_THRESHOLD_MV     40U
 
@@ -173,6 +178,7 @@ typedef struct {
 #define BQ_SSA_SCD               0x80U
 
 extern BQ_Health_t BQ_Health;
+extern volatile uint8_t BQ_Balance_Enable;   // runtime copy of BALANCE_ENABLE
 extern uint16_t    BQ_Input_mV[16];   // all 16 VC inputs, mV (updated with the cell voltages)
 
 // ---------------------------------------------------------------------------
