@@ -172,6 +172,13 @@ int main(void)
 	  // Not configured yet, or the IC was reset (POR flag) -> (re)configure.
 	  BQ_Status s = BQ_Health.configured ? BQ_CheckForReset() : BQ_Configure();
 
+	  // Balancing switched on/off from the debugger -> write the config again
+	  static uint8_t balance_applied = BALANCE_ENABLE;
+	  if (s == BQ_OK && BQ_Balance_Enable != balance_applied) {
+	      s = BQ_Configure();
+	      if (s == BQ_OK) balance_applied = BQ_Balance_Enable;
+	  }
+
 	  // Measurements. A failed read keeps the previous value.
 	  if (s == BQ_OK) s = BQ_Read_All_Cell_Voltages(Cell_Voltages_mV);
 	  if (s == BQ_OK) s = BQ_Read_Balance_Status(Cell_Voltages_mV, &Balance_Status);
