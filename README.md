@@ -26,13 +26,16 @@ is about 0.4 A. Balancing is enabled by an external button (J4 opto input).
 - [x] Stack voltage as `uint32_t` (a full 16S pack is above 65.5 V)
 - [x] Communication health counters in `BQ_Health` (watch in debugger)
 - [x] Cell count selectable with `BMS_CELL_CONFIG` in `bq76952.h` (7 = 7S bench test, 13, 16).
-      7S wiring: cells 1-6 on VC1-VC6, cell 7 between VC15 and VC16, VC7..VC15 shorted to VC6
+      7S bench wiring: cells 1-7 on VC1-VC7, VC8..VC16 shorted to the top of cell 7 (`BMS_7S_TOP_ON_VC16 0`).
+      Wiring check in the debugger: `BQ_Input_mV[16]` and `Stack_Diff_mV` (should be about 0)
+- [x] CC Gain / Capacity Gain written from `BQ_SHUNT_MOHM`: current register is real mA (+/-32.7 A range).
+      Calibrate by adjusting `BQ_SHUNT_MOHM` against a reference meter
 
 ### To do (on the working board)
 - [ ] Protection setup: COV/CUV for the DMEGC INR45E cells, enable CUV, OCC/OCD1/OCD2/SCD
       thresholds for the 2 mOhm shunt (default SCD = 10 mV = only 5 A!), OTC/OTD
-- [ ] Current calibration: CC Gain / Capacity Gain for 2 mOhm and 10 mA user units
-      (raw int16 mA saturates at about 16.4 A today)
+- [ ] Current: fine-tune `BQ_SHUNT_MOHM` with a current source, Board Offset (0x91C8) for the zero reading,
+      10 mA user units if more than 32 A must be read
 - [ ] Disable the charge pump (CP1 is tied to BAT, saves ~200 uA)
 - [ ] Balancing: production `BALANCE_MIN_VOLTAGE_MV = 3900`, real temperature limits,
       `BALANCE_MAX_CELLS` chosen for heat (see Hardware notes)

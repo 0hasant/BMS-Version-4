@@ -50,6 +50,8 @@ SPI_HandleTypeDef hspi1;
 uint16_t            Cell_Voltages_mV[NUM_CELLS] = {0};
 uint16_t            REG18_Raw_ADC = 0;
 uint32_t            Stack_Voltage_mV = 0;
+uint32_t            Cell_Sum_mV = 0;      // sum of the NUM_CELLS cell voltages
+int32_t             Stack_Diff_mV = 0;    // Stack - Cell_Sum: about 0 when the wiring matches BMS_CELL_CONFIG
 float               Internal_Temp_C = 0.0f;
 float               Battery_Current = 0.0f;
 BQ_Balance_Status_t Balance_Status = {0};
@@ -174,6 +176,14 @@ int main(void)
 	  if (s == BQ_OK) s = BQ_Read_All_Cell_Voltages(Cell_Voltages_mV);
 	  if (s == BQ_OK) s = BQ_Read_Balance_Status(Cell_Voltages_mV, &Balance_Status);
 	  if (s == BQ_OK) s = BQ_Read_Stack_Voltage(&Stack_Voltage_mV);
+	  if (s == BQ_OK) {
+	      // Wiring check: a cell missing from BQ_VCELL_MODE shows up here
+	      // (stack 10 mV resolution, so up to ~+/-50 mV is normal)
+	      uint32_t sum = 0;
+	      for (uint8_t i = 0; i < NUM_CELLS; i++) sum += Cell_Voltages_mV[i];
+	      Cell_Sum_mV   = sum;
+	      Stack_Diff_mV = (int32_t)Stack_Voltage_mV - (int32_t)sum;
+	  }
 	  if (s == BQ_OK) s = BQ_Read_Internal_Temp_C(&Internal_Temp_C);
 	  if (s == BQ_OK) s = BQ_Get_Pack_Current_Amps(&Battery_Current);
 	  if (s == BQ_OK) s = BQ_Read_REG18_ADC(&REG18_Raw_ADC);

@@ -20,19 +20,29 @@
 
 // Cell configuration. Pick the number of series cells actually wired to the board.
 // BQ_VCELL_MODE says which VC inputs are real cells: bit n = input (n+1),
-// the cell between VC(n) and VC(n+1). The top cell always goes on VC16;
-// unused inputs are shorted to the highest used input below them, so they
-// read 0 V and the IC ignores them (no protection, no balancing).
+// the cell between VC(n) and VC(n+1). Unused inputs must be shorted to a
+// neighbour so they read 0 V; the IC then ignores them (no protection, no
+// balancing). An unused input that is left in BQ_VCELL_MODE reads 0 V and
+// blocks balancing (it is below the "Min Cell V" limit).
 //
-//   7  : 7S bench test. Cells 1-6 on VC1-VC6, cell 7 between VC15 and VC16.
-//        VC7..VC15 shorted together to VC6 (top of cell 6).
+//   7  : 7S bench test. Two wirings, select with BMS_7S_TOP_ON_VC16:
+//        0 -> cells 1-7 on VC1-VC7, VC8..VC16 shorted to the top of cell 7 (0x007F)
+//        1 -> cells 1-6 on VC1-VC6, cell 7 between VC15 and VC16,
+//             VC7..VC15 shorted to VC6 (0x803F)
 //   13 : 13S pack board. Cells 1-12 on VC1-VC12, cell 13 on VC16, VC13-VC15 shorted to VC12.
 //   16 : all 16 inputs.
+// Check the wiring in the debugger: BQ_Input_mV[0..15] shows all 16 inputs,
+// Stack_Diff_mV (main.c) should be close to 0.
 #define BMS_CELL_CONFIG          7
+#define BMS_7S_TOP_ON_VC16       0
 
 #if   BMS_CELL_CONFIG == 7
   #define NUM_CELLS              7U
-  #define BQ_VCELL_MODE          0x803FU
+  #if BMS_7S_TOP_ON_VC16
+    #define BQ_VCELL_MODE        0x803FU
+  #else
+    #define BQ_VCELL_MODE        0x007FU
+  #endif
 #elif BMS_CELL_CONFIG == 13
   #define NUM_CELLS              13U
   #define BQ_VCELL_MODE          0x8FFFU
@@ -47,12 +57,12 @@
 #define BQ_BITS4(x)   (((x) & 1U) + (((x) >> 1) & 1U) + (((x) >> 2) & 1U) + (((x) >> 3) & 1U))
 #define BQ_BITS16(x)  (BQ_BITS4(x) + BQ_BITS4((x) >> 4) + BQ_BITS4((x) >> 8) + BQ_BITS4((x) >> 12))
 _Static_assert(BQ_BITS16(BQ_VCELL_MODE) == NUM_CELLS, "NUM_CELLS does not match BQ_VCELL_MODE");
-_Static_assert((BQ_VCELL_MODE & 0x8000U) != 0U, "the top cell must be on VC16");
 
-// Sense resistor in milliohms. The BQ76952 default CC Gain assumes 1 mOhm,
-// so raw current is divided by this value. NOTE: raw current is int16 mA,
-// so with 2 mOhm the reading saturates at about +/-16.4 A until CC Gain and
-// DA Configuration are changed (planned with the protection setup).
+// Sense resistor in milliohms. Written to the IC as CC Gain = 7.4768 / R
+// (and Capacity Gain = CC Gain * 298261.6178), so Current (0x3A) is in real mA.
+// Range of the int16 mA reading: +/-32.7 A.
+// Current calibration: if the reading is X % high against a reference meter,
+// increase this value by X % (e.g. 2.0 -> 2.04 for a 2 % high reading).
 #define BQ_SHUNT_MOHM            2.0f
 
 // Send the RESET() subcommand at boot. Pressing the MCU reset button (S2)
@@ -109,7 +119,7 @@ typedef struct {
 
 // Balance status (read-only monitor; the IC decides what to balance)
 typedef struct {
-    uint16_t hw_balance_mask;   // as the IC reports it: bit n = VC input n+1 (7S: cell 7 = bit 15)
+    uint16_t hw_balance_mask;   // as the IC reports it: bit n = VC input n+1
     uint16_t cell_balance_mask; // in pack order: bit 0 = cell 1 ... bit NUM_CELLS-1 = top cell
     uint8_t  cells_balancing;   // number of cells being balanced now
     uint16_t min_voltage_mV;    // lowest cell voltage (computed by STM32)
@@ -163,6 +173,7 @@ typedef struct {
 #define BQ_SSA_SCD               0x80U
 
 extern BQ_Health_t BQ_Health;
+extern uint16_t    BQ_Input_mV[16];   // all 16 VC inputs, mV (updated with the cell voltages)
 
 // ---------------------------------------------------------------------------
 // Low-level access
@@ -191,7 +202,7 @@ BQ_Status BQ_CheckForReset(void);     // reconfigure if POR flag is set
 // ---------------------------------------------------------------------------
 // Measurements
 // ---------------------------------------------------------------------------
-BQ_Status BQ_Read_All_Cell_Voltages(uint16_t *cell_array);   // NUM_CELLS values, mV
+BQ_Status BQ_Read_All_Cell_Voltages(uint16_t *cell_array);   // NUM_CELLS values, mV; also fills BQ_Input_mV
 BQ_Status BQ_Read_Stack_Voltage(uint32_t *stack_mV);
 BQ_Status BQ_Read_Internal_Temp_C(float *temp_c);
 BQ_Status BQ_Get_Pack_Current_Amps(float *amps);

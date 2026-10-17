@@ -1,9 +1,11 @@
 #include "bq76952.h"
+#include <string.h>
 
 // SPI handle is created by CubeMX in main.c
 extern SPI_HandleTypeDef hspi1;
 
 BQ_Health_t BQ_Health = {0};
+uint16_t    BQ_Input_mV[16] = {0};
 
 // ---------------------------------------------------------------------------
 // Timing (TI: >= 50 us between SPI transactions)
@@ -36,6 +38,7 @@ BQ_Health_t BQ_Health = {0};
 // Data memory addresses (BQ76952 TRM, SLUUBY2B)
 #define BQ_DM_VCELL_MODE       0x9304U   // H2
 #define BQ_DM_DSG_CURR_THR     0x9310U   // I2 userA, followed by Chg Current Threshold
+#define BQ_DM_CC_GAIN          0x91A8U   // F4, followed by Capacity Gain (F4)
 #define BQ_DM_CB_CONFIG        0x9335U   // start of the 14-byte balancing block
 
 // ---------------------------------------------------------------------------
@@ -367,8 +370,13 @@ BQ_Status BQ_Configure(void) {
     const uint8_t vcell[2] = { (uint8_t)(BQ_VCELL_MODE & 0xFF), (uint8_t)(BQ_VCELL_MODE >> 8) };
 
     // Dsg / Chg Current Threshold (userA). 100 / 50 are the TI defaults.
-    // With the default CC Gain and a 2 mOhm shunt these mean 50 mA / 25 mA.
+    // In mA (CC Gain is set for the real shunt below).
     const uint8_t curr_thr[4] = { 100, 0, 50, 0 };
+
+    // CC Gain and Capacity Gain (two floats, little-endian like the STM32)
+    const float gains[2] = { 7.4768f / BQ_SHUNT_MOHM, (7.4768f / BQ_SHUNT_MOHM) * 298261.6178f };
+    uint8_t gain_bytes[8];
+    memcpy(gain_bytes, gains, sizeof(gain_bytes));
 
     // Cell balancing block, 0x9335 .. 0x9342 (14 bytes, contiguous)
     const uint8_t cb[14] = {
@@ -395,6 +403,7 @@ BQ_Status BQ_Configure(void) {
     if (s == BQ_OK) s = BQ_WriteDataMem(BQ_DM_VCELL_MODE, vcell, sizeof(vcell));
     if (s == BQ_OK) s = BQ_WriteDataMem(BQ_DM_DSG_CURR_THR, curr_thr, sizeof(curr_thr));
     if (s == BQ_OK) s = BQ_WriteDataMem(BQ_DM_CB_CONFIG, cb, sizeof(cb));
+    if (s == BQ_OK) s = BQ_WriteDataMem(BQ_DM_CC_GAIN, gain_bytes, sizeof(gain_bytes));
 
     // Always try to leave CONFIG_UPDATE, even after an error
     BQ_Status s_exit = BQ_ExitConfigUpdate();
@@ -405,6 +414,7 @@ BQ_Status BQ_Configure(void) {
     if ((s = bq_verify_dm(BQ_DM_VCELL_MODE, vcell, sizeof(vcell))) != BQ_OK) return s;
     if ((s = bq_verify_dm(BQ_DM_DSG_CURR_THR, curr_thr, sizeof(curr_thr))) != BQ_OK) return s;
     if ((s = bq_verify_dm(BQ_DM_CB_CONFIG, cb, sizeof(cb))) != BQ_OK) return s;
+    if ((s = bq_verify_dm(BQ_DM_CC_GAIN, gain_bytes, sizeof(gain_bytes))) != BQ_OK) return s;
 
     BQ_Health.configured = 1;
     BQ_Health.configs++;
@@ -437,15 +447,16 @@ BQ_Status BQ_CheckForReset(void) {
 // Measurements
 // ---------------------------------------------------------------------------
 
-// Reads the cells enabled in BQ_VCELL_MODE into cell_array[0..NUM_CELLS-1]
+// Reads all 16 inputs into BQ_Input_mV (for wiring checks) and the cells
+// enabled in BQ_VCELL_MODE into cell_array[0..NUM_CELLS-1], in pack order.
 BQ_Status BQ_Read_All_Cell_Voltages(uint16_t *cell_array) {
     uint8_t n = 0;
-    for (uint8_t input = 0; input < 16 && n < NUM_CELLS; input++) {
-        if (!(BQ_VCELL_MODE & (1U << input))) continue;
+    for (uint8_t input = 0; input < 16; input++) {
         uint16_t mv;
         BQ_Status s = BQ_ReadReg16((uint8_t)(0x14 + input * 2), &mv);   // Cell 1 = 0x14
         if (s != BQ_OK) return s;
-        cell_array[n++] = mv;
+        BQ_Input_mV[input] = mv;
+        if ((BQ_VCELL_MODE & (1U << input)) && n < NUM_CELLS) cell_array[n++] = mv;
     }
     return BQ_OK;
 }
@@ -467,12 +478,12 @@ BQ_Status BQ_Read_Internal_Temp_C(float *temp_c) {
     return s;
 }
 
-// CC2 current (0x3A), int16 in mA for a 1 mOhm shunt (default CC Gain).
+// CC2 current (0x3A), int16 in mA (CC Gain written for BQ_SHUNT_MOHM in BQ_Configure).
 // Positive = charge, negative = discharge.
 BQ_Status BQ_Get_Pack_Current_Amps(float *amps) {
     uint16_t raw;
     BQ_Status s = BQ_ReadReg16(0x3A, &raw);
-    if (s == BQ_OK) *amps = (float)(int16_t)raw / (1000.0f * BQ_SHUNT_MOHM);
+    if (s == BQ_OK) *amps = (float)(int16_t)raw / 1000.0f;
     return s;
 }
 
