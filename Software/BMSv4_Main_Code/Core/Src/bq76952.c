@@ -492,6 +492,16 @@ BQ_Status BQ_Read_Balance_Status(const uint16_t *cell_mV, BQ_Balance_Status_t *s
     uint16_t mask = (uint16_t)(buf[0] | (buf[1] << 8));   // bit 0 = cell 1
     status->hw_balance_mask = mask;
 
+    // Same mask in pack order (skip the unused inputs)
+    uint16_t cmask = 0;
+    uint8_t  n = 0;
+    for (uint8_t input = 0; input < 16; input++) {
+        if (!(BQ_VCELL_MODE & (1U << input))) continue;
+        if (mask & (1U << input)) cmask |= (uint16_t)(1U << n);
+        n++;
+    }
+    status->cell_balance_mask = cmask;
+
     uint8_t count = 0;
     for (uint16_t tmp = mask; tmp; tmp >>= 1) count += (uint8_t)(tmp & 1U);
     status->cells_balancing  = count;

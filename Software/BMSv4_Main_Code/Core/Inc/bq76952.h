@@ -18,11 +18,36 @@
 // Board / pack configuration
 // ---------------------------------------------------------------------------
 
-// Number of series cells and which VC inputs are real cells.
-// Bit n = cell (n+1). 0xFFFF = all 16 inputs.
-// For a 13S pack: cells 1-12 + 16 -> 0x8FFF (unused VC13-VC15 shorted to VC12).
-#define NUM_CELLS                16U
-#define BQ_VCELL_MODE            0xFFFFU
+// Cell configuration. Pick the number of series cells actually wired to the board.
+// BQ_VCELL_MODE says which VC inputs are real cells: bit n = input (n+1),
+// the cell between VC(n) and VC(n+1). The top cell always goes on VC16;
+// unused inputs are shorted to the highest used input below them, so they
+// read 0 V and the IC ignores them (no protection, no balancing).
+//
+//   7  : 7S bench test. Cells 1-6 on VC1-VC6, cell 7 between VC15 and VC16.
+//        VC7..VC15 shorted together to VC6 (top of cell 6).
+//   13 : 13S pack board. Cells 1-12 on VC1-VC12, cell 13 on VC16, VC13-VC15 shorted to VC12.
+//   16 : all 16 inputs.
+#define BMS_CELL_CONFIG          7
+
+#if   BMS_CELL_CONFIG == 7
+  #define NUM_CELLS              7U
+  #define BQ_VCELL_MODE          0x803FU
+#elif BMS_CELL_CONFIG == 13
+  #define NUM_CELLS              13U
+  #define BQ_VCELL_MODE          0x8FFFU
+#elif BMS_CELL_CONFIG == 16
+  #define NUM_CELLS              16U
+  #define BQ_VCELL_MODE          0xFFFFU
+#else
+  #error "BMS_CELL_CONFIG must be 7, 13 or 16"
+#endif
+
+// Compile-time check that NUM_CELLS matches the number of bits in BQ_VCELL_MODE
+#define BQ_BITS4(x)   (((x) & 1U) + (((x) >> 1) & 1U) + (((x) >> 2) & 1U) + (((x) >> 3) & 1U))
+#define BQ_BITS16(x)  (BQ_BITS4(x) + BQ_BITS4((x) >> 4) + BQ_BITS4((x) >> 8) + BQ_BITS4((x) >> 12))
+_Static_assert(BQ_BITS16(BQ_VCELL_MODE) == NUM_CELLS, "NUM_CELLS does not match BQ_VCELL_MODE");
+_Static_assert((BQ_VCELL_MODE & 0x8000U) != 0U, "the top cell must be on VC16");
 
 // Sense resistor in milliohms. The BQ76952 default CC Gain assumes 1 mOhm,
 // so raw current is divided by this value. NOTE: raw current is int16 mA,
@@ -84,7 +109,8 @@ typedef struct {
 
 // Balance status (read-only monitor; the IC decides what to balance)
 typedef struct {
-    uint16_t hw_balance_mask;   // bit 0 = cell 1 ... bit 15 = cell 16
+    uint16_t hw_balance_mask;   // as the IC reports it: bit n = VC input n+1 (7S: cell 7 = bit 15)
+    uint16_t cell_balance_mask; // in pack order: bit 0 = cell 1 ... bit NUM_CELLS-1 = top cell
     uint8_t  cells_balancing;   // number of cells being balanced now
     uint16_t min_voltage_mV;    // lowest cell voltage (computed by STM32)
     uint16_t max_voltage_mV;    // highest cell voltage
