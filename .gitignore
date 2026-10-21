@@ -70,3 +70,6 @@ Release/
 fp-info-cache
 \#auto_saved_files\#
 _autosave-*
+
+# Office lock files
+~$*
